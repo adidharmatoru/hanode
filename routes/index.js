@@ -18,10 +18,8 @@ router.get('/', function(req, res, next) {
     }
 
     client.exec(sql, function(error, rows) {
-      res.render('index', {
-        title: 'Sample Node.js on HANA express',
-        datarow: rows
-      });
+      res.header("Content-Type", 'application/json');
+      res.send(JSON.stringify(rows, null, 4));
     })
   })
 });
