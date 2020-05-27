@@ -7,7 +7,7 @@ let hanaConfig = {
   port: 30015,
   user: 'SYSTEM',
   password: 'Delta.123',
-  sc: 'DEV_TEST'
+  cs: 'DEV_TEST'
 }
 // select from a sample table
 let sql = "select * from DM_TEST"
