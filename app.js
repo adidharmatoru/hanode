@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 // Constants
-const PORT = 8080;
+const PORT = 7070;
 const HOST = '0.0.0.0';
 
 var app = express();
