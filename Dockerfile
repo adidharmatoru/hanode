@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm config set @SAP:registry https://npm.sap.com && npm install
+RUN npm config set @sap:registry https://npm.sap.com
+RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
