@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 7070
-CMD [ "npm start" ]
+CMD [ "node", "app.js" ]
