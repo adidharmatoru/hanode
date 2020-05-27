@@ -1,16 +1,25 @@
-'use strict';
+// Reference HANA driver in the Node app and update the connection details
+let hdbext = require('@sap/hdbext')
 
-const express = require('express');
+// Modify the host IP and password based on your system information
+let hanaConfig = {
+  host: '192.168.9.60',
+  port: 30015,
+  user: 'SYSTEM',
+  password: 'Delta.123',
+  sc: 'DEV_TEST'
+}
+// select from a sample table
+let sql = "select * from DM_TEST"
 
-// Constants
-const PORT = 7070;
-const HOST = '0.0.0.0';
+// Execute the query and output the results
+// Note: this code doesn't handle any errors (e.g. connection failures etc.,)
+hdbext.createConnection(hanaConfig, function(error, client) {
+  if (error) {
+    return console.error(error);
+  }
 
-// App
-const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+  client.exec(sql, function(error, rows) {
+    console.log('Results:', rows)
+  })
+})
