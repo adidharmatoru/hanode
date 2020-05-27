@@ -1,0 +1,13 @@
+{
+  "name": "delta-hanode",
+  "version": "1.0.0",
+  "description": "Node for hana",
+  "author": "Adidharma Torutama <adidharmatoru@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
