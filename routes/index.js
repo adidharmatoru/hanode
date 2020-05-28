@@ -9,7 +9,7 @@ var hanaConfig = {
   cs: 'DEV_TEST'
 }
 var sql = "select * from DM_TEST"
-router.get('/sq', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
   hdbext.createConnection(hanaConfig, function(error, client) {
     if (error) {
