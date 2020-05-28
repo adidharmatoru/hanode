@@ -1,10 +1,12 @@
 version: '3'
+
 services:
-  web:
+  hanode:
     build: .
-    command: npm run start
+    container_name: hanode
     volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
-      - "10123:7070"
+      - 10123:7070
+    command: npm start
