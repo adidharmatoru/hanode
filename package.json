@@ -1,19 +1,20 @@
 {
-  "name": "delta-hanode",
+  "name": "hanode",
   "version": "1.0.0",
-  "description": "Node for hana",
-  "author": "Adidharma Torutama <adidharmatoru@gmail.com>",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "npx nodemon ./bin/www"
   },
   "dependencies": {
     "@sap/hdbext": "latest",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2"
   }
 }
