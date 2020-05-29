@@ -21,7 +21,7 @@ exports.runQuery = function(res, sql) {
       client.exec(sql, function(error, rows) {
         //catch the error in query
         if (error) {
-          response.err(sql, res);
+          response.err(error, res);
         } else {
           response.success(rows, res);
         }
