@@ -1,6 +1,8 @@
-var hdbext = require('@sap/hdbext')
+var response = require('../res');
+const hdbext = require('@sap/hdbext')
 
-var con = {
+// db credential
+exports.con = {
   host: '192.168.9.60',
   port: 30015,
   user: 'SYSTEM',
@@ -8,4 +10,22 @@ var con = {
   cs: 'DEV_TEST'
 }
 
-module.exports = con;
+// run query
+exports.runQuery = function(res, sql) {
+  hdbext.createConnection(this.con, function(error, client) {
+    // check if connection error
+    if (error) {
+      response.err(error, res);
+    } else {
+      // exec query
+      client.exec(sql, function(error, rows) {
+        //catch the error in query
+        if (error) {
+          response.err(sql, res);
+        } else {
+          response.success(rows, res);
+        }
+      })
+    }
+  })
+}
