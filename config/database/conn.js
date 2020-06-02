@@ -23,7 +23,11 @@ exports.runQuery = function(res, sql) {
         if (error) {
           response.err(error, res);
         } else {
-          response.success(rows, res);
+          if (rows < 1) {
+            response.notFound(res);
+          } else {
+            response.success(rows, res);
+          }
         }
       })
     }

@@ -13,3 +13,12 @@ exports.success = function(values, res) {
 exports.err = function(values, res) {
   res.json(values);
 };
+
+exports.notFound = function(res) {
+  var data = {
+    'status': 404,
+    'message': 'Data Not Found'
+  };
+  res.json(data);
+  res.end();
+};
