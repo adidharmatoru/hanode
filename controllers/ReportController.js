@@ -31,7 +31,23 @@ exports.quotationBackLog = function(req, res, next) {
 exports.openServiceCall = function(req, res, next) {
   var sql = 'select "DocNum" from FH_OSCL where "DocStatus" = ' + "'" + 'Open' + "'" + ' and WO = ' + "'" + 'N' + "'" + ' and "SeriesName" like ' + "'%" + 'CONT' + "%'";
 
+  connection.runQuery(res, sql);
+};
 
+exports.outstandingSQ = function(req, res, next) {
+  var sql = 'select "DocNum", "CardName" from oqut where "DocStatus" = ' + "'" + 'O' + "'";
+
+  connection.runQuery(res, sql);
+};
+
+exports.outstandingSO = function(req, res, next) {
+  var sql = 'select "DocNum", "CardName" from ordr where "DocStatus" = ' + "'" + 'O' + "'";
+
+  connection.runQuery(res, sql);
+};
+
+exports.outstandingDO = function(req, res, next) {
+  var sql = 'select "DocNum", "CardName" from odln where "DocStatus" = ' + "'" + 'O' + "'";
 
   connection.runQuery(res, sql);
 };

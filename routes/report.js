@@ -6,5 +6,8 @@ router.get('/SQ', ReportController.SQ);
 router.get('/itemGroupsSold', ReportController.itemGroupsSold);
 router.get('/quotationBackLog', ReportController.quotationBackLog);
 router.get('/openServiceCall', ReportController.openServiceCall);
+router.get('/outstandingSQ', ReportController.outstandingSQ);
+router.get('/outstandingSO', ReportController.outstandingSO);
+router.get('/outstandingDO', ReportController.outstandingDO);
 
 module.exports = router;
