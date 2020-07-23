@@ -18,7 +18,17 @@ exports.show = function(req, res, next) {
 };
 
 exports.customer = function(req, res, next) {
-  var sql = 'select "CardCode", "CardName" from OCRD';
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var sql = 'select "CardCode", "CardName" from OCRD where "CardCode" = ' + "'" + req.query.code + "'";
+
+  connection.runQuery(res, sql);
+};
+
+exports.so = function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var sql = 'select * from ordr where "DocType" = ' + "'" + 'I' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' and CANCELED = ' + "'" + 'N' + "'" + ' and "DocNum" LIKE  ' + "'%" + req.query.code + "%'" + ' order by "DocNum" DESC limit 20';
 
   connection.runQuery(res, sql);
 };

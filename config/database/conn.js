@@ -7,7 +7,7 @@ exports.con = {
   port: 30015,
   user: 'SYSTEM',
   password: 'Delta.123',
-  cs: 'DEV_TEST'
+  cs: 'DB_DELTASINDO'
 }
 
 // run query
