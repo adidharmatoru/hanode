@@ -5,8 +5,8 @@ var connection = require('../config/database/conn');
 var hdbext = require('@sap/hdbext');
 
 // start function
-exports.SQ = function(req, res, next) {
-  var sql = 'select * from DM_WO'
+exports.itemQty = function(req, res, next) {
+  var sql = 'select "ItemCode", "ItemName", "OnHand", "IsCommited", "OnOrder", U_DM_CAPACITY, U_DM_VOLTAGE, U_DM_PHASE, U_DM_TYPE, U_DM_MODEL, U_DM_STATUS, U_DM_BATTERY, U_DM_COO, U_DM_MEASUREMENT from oitm'
 
   connection.runQuery(res, sql);
 };
