@@ -29,25 +29,25 @@ exports.quotationBackLog = function(req, res, next) {
 };
 
 exports.openServiceCall = function(req, res, next) {
-  var sql = 'select "DocNum" from FH_OSCL where "DocStatus" = ' + "'" + 'Open' + "'" + ' and WO = ' + "'" + 'N' + "'" + ' and "SeriesName" like ' + "'%" + 'CONT' + "%'";
+  var sql = 'select ou."DocNum", SUBSTR_BEFORE(ou."createDate", ' + "'" + ' ' + "'" + ') as "DocDate", ou."custmrName" as "CardName", hr."lastName", hr."firstName", hr."middleName" from oscl ou left join ohem hr on hr."userId" = ou."assignee" where ou."status" <> ' + "'" + '-1' + "'"
 
   connection.runQuery(res, sql);
 };
 
 exports.outstandingSQ = function(req, res, next) {
-  var sql = 'select "DocNum", "CardName" from oqut where "DocStatus" = ' + "'" + 'O' + "'";
+  var sql = 'select ou."DocNum", ou."CardName", SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate", hr."lastName", hr."firstName", hr."middleName" from oqut ou join ohem hr on hr."empID" = ou."OwnerCode" where "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'";
 
   connection.runQuery(res, sql);
 };
 
 exports.outstandingSO = function(req, res, next) {
-  var sql = 'select "DocNum", "CardName" from ordr where "DocStatus" = ' + "'" + 'O' + "'";
+  var sql = 'select ou."DocNum", ou."CardName", SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate", hr."lastName", hr."firstName", hr."middleName" from ordr ou join ohem hr on hr."empID" = ou."OwnerCode" where "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'";
 
   connection.runQuery(res, sql);
 };
 
 exports.outstandingDO = function(req, res, next) {
-  var sql = 'select "DocNum", "CardName" from odln where "DocStatus" = ' + "'" + 'O' + "'";
+  var sql = 'select ou."DocNum", ou."CardName", SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate", hr."lastName", hr."firstName", hr."middleName" from odln ou join ohem hr on hr."empID" = ou."OwnerCode" where "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'";
 
   connection.runQuery(res, sql);
 };

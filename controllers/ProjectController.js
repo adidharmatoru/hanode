@@ -51,7 +51,12 @@ exports.contact = function(req, res, next) {
 };
 
 exports.sales = function(req, res, next) {
-  var sql = 'select "SlpName" as "Name" from oslp where "SlpCode" <> -1;';
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select oslp."SlpName" as "Name" from ordr join oslp on ordr."SlpCode" = oslp."SlpCode" where ordr."SlpCode" = ' + "'" + req.query.code + "'";
 
   connection.runQuery(res, sql);
 };
