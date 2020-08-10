@@ -65,7 +65,6 @@ exports.countProject = function(req, res, next) {
   var strDate = new Date();
   var shortYear = strDate.getFullYear();
   var twoDigitYear = shortYear.toString().substr(-2);
-  console.log(twoDigitYear)
   var sql = 'select count(*) as "ProjectCount" from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'";
 
   connection.runQuery(res, sql);
