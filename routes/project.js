@@ -8,6 +8,8 @@ router.get('/customer', ProjectController.customer);
 router.get('/contact', ProjectController.contact);
 router.get('/sales', ProjectController.sales);
 router.get('/so', ProjectController.so);
+router.get('/contactPerson', ProjectController.contactPerson);
+router.get('/countProject', ProjectController.countProject);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);

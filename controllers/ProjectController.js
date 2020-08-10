@@ -50,6 +50,27 @@ exports.contact = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.contactPerson = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "CntctCode" as "ContactCode", "Name", "Tel1" as "Phone", "Address" from ocpr where "CntctCode" =  ' + "'" + req.query.code + "'";
+
+  connection.runQuery(res, sql);
+};
+
+exports.countProject = function(req, res, next) {
+  var strDate = new Date();
+  var shortYear = strDate.getFullYear();
+  var twoDigitYear = shortYear.toString().substr(-2);
+  console.log(twoDigitYear)
+  var sql = 'select count(*) as "ProjectCount" from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'";
+
+  connection.runQuery(res, sql);
+};
+
 exports.sales = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
