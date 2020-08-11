@@ -11,5 +11,6 @@ router.get('/outstandingSO', ReportController.outstandingSO);
 router.get('/outstandingDO', ReportController.outstandingDO);
 router.get('/purchaseOrderPerProject', ReportController.purchaseOrderPerProject);
 router.get('/salesOrderPerProject', ReportController.salesOrderPerProject);
+router.get('/listingPenawaran', ReportController.listingPenawaran);
 
 module.exports = router;

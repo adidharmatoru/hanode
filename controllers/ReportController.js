@@ -63,3 +63,9 @@ exports.purchaseOrderPerProject = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.listingPenawaran = function(req, res, next) {
+  var sql = 'SELECT * from DM_WO';
+
+  connection.runQuery(res, sql);
+};
