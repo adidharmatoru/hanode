@@ -34,7 +34,7 @@ exports.so = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select * from ordr where "DocType" = ' + "'" + 'I' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' and CANCELED = ' + "'" + 'N' + "'" + ' and "DocNum" LIKE  ' + "'%" + req.query.code + "%'" + ' order by "DocNum" DESC limit 20';
+  var sql = 'select * from ordr join nnm1 on ordr."Series" = nnm1."Series" where LENgth(nnm1."SeriesName") = 4 and ordr."DocType" = ' + "'" + 'I' + "'" + ' and ordr."DocStatus" = ' + "'" + 'O' + "'" + ' and ordr.CANCELED = ' + "'" + 'N' + "'" + ' and ordr."DocNum" LIKE  ' + "'%" + req.query.code + "%'" + ' order by ordr."DocNum" DESC limit 20';
 
   connection.runQuery(res, sql);
 };
