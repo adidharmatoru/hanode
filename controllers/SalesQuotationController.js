@@ -8,7 +8,7 @@ exports.index = function(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "DocNum" as "docnum", "DocEntry" as "dockey" from oqut where CANCELED = ' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' and "OwnerCode" =  ' + "'" + req.query.uid + "'" + 'order by "DocNum" DESC';
+  var sql = 'select "DocNum" as "docnum", "DocEntry" as "dockey", SUBSTR_BEFORE("DocDate", ' + "'" + '.' + "'" + ') as "DocDate" from oqut where CANCELED = ' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' and "OwnerCode" =  ' + "'" + req.query.uid + "'" + 'order by "DocNum" DESC';
 
   connection.runQuery(res, sql);
 };
