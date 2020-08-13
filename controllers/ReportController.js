@@ -6,7 +6,7 @@ var hdbext = require('@sap/hdbext');
 
 // start function
 exports.itemQty = function(req, res, next) {
-  var sql = 'select "ItemCode", "ItemName", "OnHand", "IsCommited", "OnOrder", U_DM_CAPACITY, U_DM_VOLTAGE, U_DM_PHASE, U_DM_TYPE, U_DM_MODEL, U_DM_STATUS, U_DM_BATTERY, U_DM_COO, U_DM_MEASUREMENT from oitm'
+  var sql = 'select a."ItemCode", a."ItemName", a."OnHand", a."IsCommited", a."OnOrder", a.U_DM_CAPACITY, a.U_DM_VOLTAGE, a.U_DM_PHASE, a.U_DM_TYPE, a.U_DM_MODEL, a.U_DM_STATUS, a.U_DM_BATTERY, a.U_DM_COO, a.U_DM_MEASUREMENT, a."DfltWH", b."WhsCode" from oitm a inner join oitw b on a."ItemCode" = b."ItemCode"'
 
   connection.runQuery(res, sql);
 };
