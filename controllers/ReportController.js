@@ -64,3 +64,15 @@ exports.listingPenawaran = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.dailyIncome = function(req, res, next) {
+  var sql = 'select left("DocDate", 10) as "Date", sum("DocTotal") as "Income", "DocCurr" from orct group by "DocDate", "DocCurr" order by "DocDate"';
+
+  connection.runQuery(res, sql);
+};
+
+exports.dailyOutcome = function(req, res, next) {
+  var sql = 'select left("DocDate", 10) as "Date", sum("NoDocSum") as "Outcome", "DocCurr" from ovpm group by "DocDate", "DocCurr" order by "DocDate"';
+
+  connection.runQuery(res, sql);
+};

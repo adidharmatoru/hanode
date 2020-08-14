@@ -12,5 +12,7 @@ router.get('/outstandingDO', ReportController.outstandingDO);
 router.get('/purchaseOrderPerProject', ReportController.purchaseOrderPerProject);
 router.get('/salesOrderPerProject', ReportController.salesOrderPerProject);
 router.get('/listingPenawaran', ReportController.listingPenawaran);
+router.get('/dailyIncome', ReportController.dailyIncome);
+router.get('/dailyOutcome', ReportController.dailyOutcome);
 
 module.exports = router;
