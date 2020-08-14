@@ -66,13 +66,13 @@ exports.listingPenawaran = function(req, res, next) {
 };
 
 exports.monthlyIncome = function(req, res, next) {
-  var sql = 'select MONTHNAME("DocDate") as "Month", sum("DocTotal") as "Income", "DocCurr" from orct where left("DocDate", 4) = 2020 group by MONTHNAME("DocDate"), "DocCurr", MONTH("DocDate") order by MONTH("DocDate")';
+  var sql = 'select MONTHNAME("DocDate") as "Month", sum("DocTotal") as "Income", "InCurr" from orct where left("DocDate", 4) = 2020 group by MONTHNAME("DocDate"), "DocCurr", MONTH("DocDate") order by MONTH("DocDate")';
 
   connection.runQuery(res, sql);
 };
 
 exports.monthlyOutcome = function(req, res, next) {
-  var sql = 'select MONTHNAME("DocDate") as "Month", sum("NoDocSum") as "Outcome", "DocCurr" from ovpm where left("DocDate", 4) = 2020 group by MONTHNAME("DocDate"), MONTH("DocDate"), "DocCurr" order by MONTH("DocDate")';
+  var sql = 'select MONTHNAME("DocDate") as "Month", sum("NoDocSum") as "Outcome", "OutCurr" from ovpm where left("DocDate", 4) = 2020 group by MONTHNAME("DocDate"), MONTH("DocDate"), "DocCurr" order by MONTH("DocDate")';
 
   connection.runQuery(res, sql);
 };
