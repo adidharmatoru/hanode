@@ -78,13 +78,13 @@ exports.monthlyOutcome = function(req, res, next) {
 };
 
 exports.potentialMonthlyIncome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Income" from oinv where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate") desc limit 1000';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Income" from oinv where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
 
   connection.runQuery(res, sql);
 };
 
 exports.potentialMonthlyOutcome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Outcome" from opch where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate") desc limit 1000';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Outcome" from opch where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
 
   connection.runQuery(res, sql);
 };
