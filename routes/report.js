@@ -14,5 +14,7 @@ router.get('/salesOrderPerProject', ReportController.salesOrderPerProject);
 router.get('/listingPenawaran', ReportController.listingPenawaran);
 router.get('/monthlyIncome', ReportController.monthlyIncome);
 router.get('/monthlyOutcome', ReportController.monthlyOutcome);
+router.get('/potentialMonthlyIncome', ReportController.potentialMonthlyIncome);
+router.get('/potentialMonthlyOutcome', ReportController.potentialMonthlyOutcome);
 
 module.exports = router;
