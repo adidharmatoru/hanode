@@ -66,14 +66,14 @@ exports.listingPenawaran = function(req, res, next) {
 };
 
 exports.monthlyIncome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Income" from oinv where "DocDueDate" <= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Income" from oinv where "DocDueDate" <= now() and left("DocDueDate", 4) = 2020 and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
   //var sql = 'SELECT MONTHNAME(T0."RefDate") as "Month",sum(T0."Credit") as "Income" from JDT1 T0 Left JOIN OACT T1 ON T1."AcctCode"= T0."ShortName" where T0."TransType"=24 AND T0."Credit" > 0 and left(T0."RefDate", 4) = 2020 group by MONTHNAME(T0."RefDate"), MONTH(T0."RefDate") Order By  MONTH(T0."RefDate")';
 
   connection.runQuery(res, sql);
 };
 
 exports.monthlyOutcome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Outcome" from opch where "DocDueDate" <= now() and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "Outcome" from opch where "DocDueDate" <= now() and left("DocDueDate", 4) = 2020 and CANCELED =' + "'" + 'N' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
   //var sql = 'SELECT MONTHNAME(T0."RefDate") as "Month",sum(T0."Debit") as "Outcome" from JDT1 T0 Left JOIN OACT T1 ON T1."AcctCode"= T0."ShortName" where T0."TransType"=46 AND T0."Debit" > 0 and left(T0."RefDate", 4) = 2020 group by MONTHNAME(T0."RefDate"), MONTH(T0."RefDate") Order By  MONTH(T0."RefDate")';
 
   connection.runQuery(res, sql);
