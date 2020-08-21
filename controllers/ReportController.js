@@ -86,13 +86,13 @@ exports.monthlyOutcome = function(req, res, next) {
 };
 
 exports.potentialMonthlyIncome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "pIncome" from oinv where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal") as "pIncome" from oinv where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
 
   connection.runQuery(res, sql);
 };
 
 exports.potentialMonthlyOutcome = function(req, res, next) {
-  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal" * "DocRate") as "pOutcome" from opch where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
+  var sql = 'Select MONTHNAME("DocDueDate") as "Month", sum("DocTotal") as "pOutcome" from opch where "DocDueDate" >= now() and CANCELED =' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'O' + "'" + ' group by MONTHNAME("DocDueDate"), MONTH("DocDueDate")Order By  MONTH("DocDueDate")';
 
   connection.runQuery(res, sql);
 };
