@@ -11,6 +11,12 @@ exports.itemQty = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.perWarehouse = function(req, res, next) {
+  var sql = 'select a."ItemCode", a."ItemName", a."OnHand", a."IsCommited", a."OnOrder", a."BuyUnitMsr", a.U_DM_CAPACITY, a.U_DM_VOLTAGE, a.U_DM_PHASE, a.U_DM_TYPE, a.U_DM_MODEL, a.U_DM_STATUS, a.U_DM_BATTERY, a.U_DM_COO, a.U_DM_MEASUREMENT, b."WhsCode", b."OnHand" as "BOnHand" from oitm a right join oitw b on a."ItemCode" = b."ItemCode" WHERE b."WhsCode" like ' + "'%" + 'KTB' + "%'" + ' and b."OnHand" > ' + "'" + '0' + "'"
+
+  connection.runQuery(res, sql);
+};
+
 exports.itemGroupsSold = function(req, res, next) {
   var sql = 'SELECT T3."ItmsGrpNam" as "Item Group", Sum(T1."Quantity") as "Qty Sold", Sum(T1."LineTotal")-sum(T1."GrssProfit") as "Cost of Sold Qty", Sum(T1."GrssProfit")  as "Gross Profit" FROM OINV T0 INNER JOIN INV1 T1 ON T0."DocEntry" = T1."DocEntry" INNER JOIN OITM T2 ON T1."ItemCode" = T2."ItemCode" INNER JOIN OITB T3 ON T2."ItmsGrpCod" = T3."ItmsGrpCod" WHERE T0.CANCELED = ' + "'" + 'N' + "'" + ' and T1."TargetType"<>14 and left(T0."DocDate", 4) >= ' + "'" + '2017' + "'" + ' and left(T0."DocDate", 4) <= ' + "'" + '2019' + "'" + ' GROUP BY T3."ItmsGrpNam"';
 
