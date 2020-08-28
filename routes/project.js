@@ -10,6 +10,8 @@ router.get('/sales', ProjectController.sales);
 router.get('/so', ProjectController.so);
 router.get('/contactPerson', ProjectController.contactPerson);
 router.get('/countProject', ProjectController.countProject);
+router.get('/primarySoldItems', ProjectController.primarySoldItems);
+router.get('/secondarySoldItems', ProjectController.secondarySoldItems);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
