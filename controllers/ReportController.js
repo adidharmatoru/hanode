@@ -103,7 +103,7 @@ exports.pdcaProject = function(req, res, next) {
   var strDate = new Date();
   var shortYear = strDate.getFullYear();
   var twoDigitYear = shortYear.toString().substr(-2);
-  var sql = 'select * from oprj where left("PrjCode", 2) = ' + "'20-BIMAS-021" + "'" + 'and "U_StartDate" is not null';
+  var sql = 'select * from oprj where "PrjCode" = ' + "'20-BIMAS-021" + "'" + 'and "U_StartDate" is not null';
 
   connection.runQuery(res, sql);
 };
