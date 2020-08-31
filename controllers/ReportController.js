@@ -103,7 +103,7 @@ exports.pdcaProject = function(req, res, next) {
   var strDate = new Date();
   var shortYear = strDate.getFullYear();
   var twoDigitYear = shortYear.toString().substr(-2);
-  var sql = 'select * from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'" + 'and "U_StartDate" is not null';
+  var sql = 'select * from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'" + 'and "U_StartDate" is not null limit 1';
 
   connection.runQuery(res, sql);
 };
