@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const SalesOrderController = require('../controllers/SalesOrderController');
+const DeliveryOrderController = require('../controllers/DeliveryOrderController');
 
-router.get('/', SalesOrderController.index);
-router.get('/close', SalesOrderController.close);
+router.get('/', DeliveryOrderController.index);
+router.get('/close', DeliveryOrderController.close);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
