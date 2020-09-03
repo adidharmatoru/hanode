@@ -30,7 +30,7 @@ exports.close = function(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "DocEntry" from oqut where "DocStatus" = ' + "'" + 'O' + "'" + ' and "DocNum" in  (' + req.query.code + ')';
+  var sql = 'select "DocEntry", "DocNum" from oqut where "DocStatus" = ' + "'" + 'O' + "'" + ' and "DocNum" in  (' + req.query.code + ')';
 
   connection.runQuery(res, sql);
 };

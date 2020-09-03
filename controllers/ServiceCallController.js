@@ -16,7 +16,7 @@ exports.close = function(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "callID" from oscl where "DocStatus" = ' + "'" + 'O' + "'" + ' and "DocNum" in  (' + req.query.code + ')';
+  var sql = 'select "callID" as "DocEntry", "DocNum" from oscl where "DocStatus" = ' + "'" + 'O' + "'" + ' and "DocNum" in  (' + req.query.code + ')';
 
   connection.runQuery(res, sql);
 };
