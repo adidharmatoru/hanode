@@ -4,38 +4,59 @@ const connection = require('../config/database/conn');
 
 // start function
 exports.index = function(req, res) {
-  var docnum = req.query.docnum || "'%'";
-  var sql = 'select "CardName", "DocNum", "NumAtCard", "DocDate", "DocCur", "OwnerCode", round("DocTotal", 2) as "DocTotal" from ordr a where "DocNum" like ' + docnum
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select * from ordr where "DocNum" LIKE  ' + "'%" + req.query.code + "%'" + ' order by ordr."DocNum" DESC limit 20';
 
   connection.runQuery(res, sql);
 };
 
 // start function
-exports.adjustedAmmount_create = function(req, res) {
-  var sql = ''
+exports.selectAdjustedAmount = function(req, res) {
+  var sql = 'select * from ORDR';
 
-  // open hana connection
-  connection.runQuery(res, sql);
+  connection.runQuery2(res, sql);
 };
 
 // start function
-exports.adjustedAmmount_update = function(req, res) {
-  var docnum = req.body.docnum;
-  var doctotal = req.body.doctotal;
-  var sql = 'update ordr set "DocTotal" = ' + doctotal + ' where "DocNum" like ' + docnum
+exports.createAdjustedAmount = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  // open hana connection
-  connection.runQuery(res, sql);
+  var sql = 'insert into ORDR values (' + req.body.docnum + ', ' + req.body.value + ')';
+
+  connection.runQuery2(res, sql);
 };
 
 // start function
-exports.adjustedAmmount_delete = function(req, res) {
-  var docnum = req.body.docnum;
-  var sql = 'delete from ordr where "DocNum" like ' + docnum
+exports.updateAdjustedAmount = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  // open hana connection
-  connection.runQuery(res, sql);
+  var sql = 'update ordr set "DocTotal" = ' + req.query.doctotal + ' where "DocNum" = ' + req.query.docnum
+
+  connection.runQuery2(res, sql);
 };
+
+// start function
+exports.deleteAdjustedAmount = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'DELETE FROM ORDR WHERE DOCNUM = ' + req.body.docnum;
+
+  connection.runQuery2(res, sql);
+};
+
 
 exports.close = function(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

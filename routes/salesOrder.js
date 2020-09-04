@@ -6,8 +6,9 @@ router.get('/', SalesOrderController.index);
 router.get('/close', SalesOrderController.close);
 
 // adjustedAmmount
-// router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
+router.get('/adjustedAmount', SalesOrderController.selectAdjustedAmount);
+router.post('/adjustedAmount', SalesOrderController.createAdjustedAmount);
+router.post('/adjustedAmount/delete', SalesOrderController.deleteAdjustedAmount);
 // router.put('/adjustedAmmount', SalesOrderController.adjustedAmmount_update);
-// router.delete('/adjustedAmmount', SalesOrderController.adjustedAmmount_delete);
 
 module.exports = router;
