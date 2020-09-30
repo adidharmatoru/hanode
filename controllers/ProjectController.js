@@ -64,8 +64,9 @@ exports.contactPerson = function(req, res, next) {
 exports.countProject = function(req, res, next) {
   var strDate = new Date();
   var shortYear = strDate.getFullYear();
-  var twoDigitYear = shortYear.toString().substr(-2);
-  var sql = 'select count(*) as "ProjectCount" from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'" + 'and "U_StartDate" is not null';
+  var shortMonth = ("0" + (strDate.getMonth() + 1)).slice(-2);
+
+  var sql = 'select count(*) as "ProjectCount" from oprj where (left("U_StartDate", 4) = ' + "'" + shortYear + "'" + ' and substring("U_StartDate", 6,2) = ' + "'" + shortMonth + "'" + ') and "U_StartDate" is not null';
 
   connection.runQuery(res, sql);
 };
