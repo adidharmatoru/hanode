@@ -171,7 +171,7 @@ exports.documentReport = function(req, res) {
   var owner = req.query.OwnerCode || '';
   var doctype = req.query.DocType || 'oqut';
 
-  var sql = 'select distinct concat(hr."lastName" , hr."firstName") "Name",doc."OwnerCode",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'O' + "'" + ' then doc."DocTotal" end) as "Outstanding Total",sum(CASE WHEN doc."CANCELED" = ' + "'" + 'Y' + "'" + ' then doc."DocTotal" end) as "Canceled Total",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'C' + "'" + ' and doc."CANCELED" = ' + "'" + 'N' + "'" + ' then doc."DocTotal" end) as "Closed Total",sum(doc."DocTotal") as "Total" FROM ' + doctype + ' doc join ohem hr on hr."empID" = doc."OwnerCode" where doc."OwnerCode" like ' + "'" + '%'+owner + "'" + ' and left(doc."DocDate", 4) like ' + "'" + '%'+year + "'" + ' group by doc."OwnerCode", hr."lastName", hr."firstName", hr."middleName"'
+  var sql = 'select distinct concat(hr."lastName" , hr."firstName") "name",doc."OwnerCode" as "owner_code",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'O' + "'" + ' then doc."DocTotal" end) as "outstanding_total",sum(CASE WHEN doc."CANCELED" = ' + "'" + 'Y' + "'" + ' then doc."DocTotal" end) as "canceled_total",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'C' + "'" + ' and doc."CANCELED" = ' + "'" + 'N' + "'" + ' then doc."DocTotal" end) as "closed_total",sum(doc."DocTotal") as "total" FROM ' + doctype + ' doc join ohem hr on hr."empID" = doc."OwnerCode" where doc."OwnerCode" like ' + "'" + '%'+owner + "'" + ' and left(doc."DocDate", 4) like ' + "'" + '%'+year + "'" + ' group by doc."OwnerCode", hr."lastName", hr."firstName", hr."middleName"'
 
   connection.runQuery(res, sql);
 }
