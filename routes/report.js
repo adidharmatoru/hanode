@@ -6,6 +6,8 @@ router.get('/itemQty', ReportController.itemQty);
 router.get('/perWarehouse', ReportController.perWarehouse);
 router.get('/itemGroupsSold', ReportController.itemGroupsSold);
 router.get('/quotationBackLog', ReportController.quotationBackLog);
+router.get('/maintenanceBackLog', ReportController.maintenanceBackLog);
+router.get('/maintenanceNextBackLog', ReportController.maintenanceNextBackLog);
 router.get('/inhsBackLog', ReportController.inhsBackLog);
 router.get('/inhsNextBackLog', ReportController.inhsNextBackLog);
 router.get('/onstBackLog', ReportController.onstBackLog);
