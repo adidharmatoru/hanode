@@ -48,6 +48,17 @@ exports.maintenanceNextBackLog = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.maintenanceNextServiceBackLog = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select distinct scl4."SrcvCallID" as "SC_CALLID", left(ordr."DocDate", 10) as "PO_DATE", left(odln."DocDate", 10) as "DO_DATE" from scl4 scl4 join ordr ordr on ordr."DocNum" = scl4."DocNumber" and scl4."Object" = 17 left join rdr1 rdr1 on rdr1."DocEntry" = ordr."DocEntry" left join dln1 dln1 on dln1."BaseEntry" = rdr1."DocEntry" left join odln odln on dln1."DocEntry" = odln."DocEntry" where scl4."SrcvCallID" in (' + req.query.sc + ') and (ordr."DocType" = ' + "'" + 'S' + "'" + ') order by scl4."SrcvCallID" asc';
+
+  connection.runQuery(res, sql);
+};
+
 exports.inhsBackLog = function(req, res, next) {
   var sql = 'select sq."DocNum" as "docnum",  sq."DocTotal" as "DocTotal", sq."CardName" as "Customer", sc."ItemBrand" as "Brand", ct."CntrcTmplt" as "ContractType", ct."ContractID" as "ContractID", left(ct."EndDate", 10) as "ContractEndDate", sc."ItemType" as "Type", sc."ItemCapacity" as "Capacity", sc."ItemMeasurement" as "Measurement", sc."ItemLocation" as Location,sc."ItemCode",left(sc."DocDate", 10) as "EntryDate",left(sq."DocDate", 10)  as "LeaveDate",sc."WODate" as WO_DATE, left(so."DocDate", 10)  as PO_DATE, left(so."DocDueDate", 10)  as SO_DATE, sc."DocStatus" as SC_Status, ddo."DocNum" as DO_DOCNUM, left(ddo."DocDate", 10)  as DO_DATE,inv."DocNum" as INV_DOCNUM,	 sc."Reason" as REJECT_REASON,	 sc."ItemName" as Item, sc."DocSubject" as "Subject",	 sc."ItemSN" as Serial,	 sc."SeriesName" as Series,	 sc."callID" as SC_CallID,	 sc."DocNum" as SC_DocNum,	 sc."ContractID" as Contract,	 sq."DocEntry" as SQ_DocEntry,	 sq."DocNum" as SQ_DOCNUM ,	 left(sq."DocDate", 10) as SQ_DATE, hr."lastName", hr."firstName", hr."middleName" from oqut sq full join scl4 sc4 on sc4."DocAbs" = sq."DocEntry" full join FH_OSCL sc on sc."callID" = sc4."SrcvCallID" left join ordr so on so."DocEntry" = sq."DocEntry" full join octr ct on ct."ContractID" = sc."ContractID" left join odln ddo on ddo."DocEntry" = sq."DocEntry" left join oinv inv on inv."DocEntry" = sq."DocEntry" join ohem hr on hr."empID" = sq."OwnerCode" where sq."OwnerCode" IN (609,579) and (SUBSTR("SeriesName", 3, 4)) =  ' + "'" + 'INHS' + "'" + ' order by sc."callID" asc';
 
