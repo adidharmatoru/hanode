@@ -29,5 +29,6 @@ router.get('/potentialMonthlyOutcome', ReportController.potentialMonthlyOutcome)
 router.get('/pdcaProject', ReportController.pdcaProject);
 router.get('/pdcaSales', ReportController.pdcaSales);
 router.get('/documentReport', ReportController.documentReport);
+router.get('/outstandingBigSales', ReportController.outstandingBigSales);
 
 module.exports = router;
