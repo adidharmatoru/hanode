@@ -169,10 +169,6 @@ exports.potentialMonthlyOutcome = function(req, res, next) {
 };
 
 exports.pdcaProject = function(req, res, next) {
-  var strDate = new Date();
-  var shortYear = strDate.getFullYear();
-  var twoDigitYear = shortYear.toString().substr(-2);
-  // var sql = 'select * from oprj where left("PrjCode", 2) = ' + "'" + twoDigitYear + "'" + 'and "U_StartDate" is not null';
   var sql = 'select * from oprj where left("PrjCode", 2) in (' + req.query.year + ') or SUBSTRING("U_StartDate", 3, 2) in  (' + req.query.year + ')';
 
   connection.runQuery(res, sql);
@@ -208,6 +204,22 @@ exports.documentReport = function(req, res) {
   var doctype = req.query.DocType || 'oqut';
 
   var sql = 'select distinct concat(hr."lastName" , hr."firstName") "name",doc."OwnerCode" as "owner_code",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'O' + "'" + ' then doc."DocTotal" end) as "outstanding_total",sum(CASE WHEN doc."CANCELED" = ' + "'" + 'Y' + "'" + ' then doc."DocTotal" end) as "canceled_total",sum(CASE WHEN doc."DocStatus" = ' + "'" + 'C' + "'" + ' and doc."CANCELED" = ' + "'" + 'N' + "'" + ' then doc."DocTotal" end) as "closed_total",sum(doc."DocTotal") as "total" FROM ' + doctype + ' doc join ohem hr on hr."empID" = doc."OwnerCode" where doc."OwnerCode" like ' + "'" + '%'+owner + "'" + ' and left(doc."DocDate", 4) like ' + "'" + '%'+year + "'" + ' group by doc."OwnerCode", hr."lastName", hr."firstName", hr."middleName"'
+
+  connection.runQuery(res, sql);
+}
+
+exports.purchaseOrderInternalReport = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var startDatePO = req.query.startDatePO || '';
+  var endDatePO = req.query.endDatePO || '';
+  var startDateGRPO = req.query.startDateGRPO || '';
+  var endDateGRPO = req.query.endDateGRPO || '';
+
+  var sql = 'select opor."DocNum" as "PO Num", opor."DocDate" as "PO Date", opor."CardName" as "Supplier", por1."ItemCode" as "Item Code", por1."Dscription" as "Item Description", por1."Currency" as "Item Currency",por1."Price" as "Item Price", por1."Quantity" as "Item Quantity", opdn."DocNum" as "GRPO DocNum",opdn."DocDate" as "GRPO Date",por1."WhsCode" as "Received Warehouse Code",  opch."DocNum" as "Invoice Number" from opor join por1 on opor."DocEntry" = por1."DocEntry" left join pdn1 on opor."DocEntry" = pdn1."BaseEntry" and pdn1."BaseLine" = por1."LineNum"left join opdn on pdn1."DocEntry" = opdn."DocEntry"left join opch on pdn1."TrgetEntry" = opch."DocEntry"where opor."DocDate" BETWEEN '+ "'" + startDatePO + "'" +' and '+ "'" + endDatePO + "'" +' and opdn."DocDate" BETWEEN '+ "'" + startDateGRPO + "'" +' and '+ "'" + endDateGRPO + "'" +' order by opor."DocDate" desc'
 
   connection.runQuery(res, sql);
 }
