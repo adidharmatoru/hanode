@@ -64,3 +64,7 @@ exports.runQuery2 = function(res, sql) {
     }
   })
 }
+
+exports.printQuery = function(res, sql) {
+  response.success(sql, res);
+}
