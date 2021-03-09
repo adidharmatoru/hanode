@@ -236,3 +236,17 @@ exports.serialNumberService = function(req, res) {
 
   connection.runQuery(res, sql);
 }
+
+exports.pdcaFinanceServices = function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var startDate = req.query.startDate || '';
+  var endDate = req.query.endDate || '';
+
+  var sql='select ordr."CardName" as "Customer Name", ordr."DocNum" as "Document Number", ordr."DocDate" as "Date", ordr."NumAtCard" as "PO", ordr."U_VIT_TOPY" as "Term of Payment", ordr."DocTotal" as "Total", odln."DocNum" as "Nomor DO" from ordr left join rdr1 on rdr1."DocEntry" = ordr."DocEntry" left join dln1 on dln1."BaseEntry" = rdr1."DocEntry"left join odln on dln1."DocEntry" = odln."DocEntry" left join inv1 on inv1."BaseEntry" = dln1."DocEntry" left join oinv on inv1."DocEntry" = oinv."DocEntry" where ordr."DocType" = ' + "'" + 'S' + "'" + ' and (rdr1."TargetType" is null or oinv."DocNum" is null) and ordr."DocDate" BETWEEN '+ "'" + startDate + "'" +' AND '+ "'" + endDate + "'" +' order by ordr."DocDate"'
+
+  connection.runQuery(res, sql);
+}
