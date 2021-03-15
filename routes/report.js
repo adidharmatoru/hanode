@@ -33,5 +33,6 @@ router.get('/outstandingBigSales', ReportController.outstandingBigSales);
 router.get('/purchaseOrderInternalReport', ReportController.purchaseOrderInternalReport);
 router.get('/serialNumberService', ReportController.serialNumberService);
 router.get('/pdcaFinanceServices', ReportController.pdcaFinanceServices);
+router.get('/alternateItemReport', ReportController.alternateItemReport);
 
 module.exports = router;
