@@ -254,7 +254,7 @@ exports.pdcaFinanceServices = function (req, res) {
 
 exports.alternateItemReport = function (req, res) {
 
-  var sql='select oali."OrigItem" as "Original Item Code", oali."AltItem" as "Alternative Item Code", oitm."OnHand", oitm."IsCommited", oitm."OnOrder" from oali left join oitm on oali."AltItem" = oitm."ItemCode" union select distinct oali."OrigItem", oali."OrigItem", oitm."OnHand", oitm."IsCommited", oitm."OnOrder" from oali left join oitm on oali."OrigItem" = oitm."ItemCode" order by "Original Item Code"'
+  var sql='select oali."OrigItem" as "Original Item Code", oali."AltItem" as "Alternative Item Code",oitm."ItemName" as "Item Description", oitm."OnHand" as "Qty On Hand", oitm."IsCommited" as "Qty Is Commited", oitm."OnOrder" as "Qty On Order" from oali left join oitm on oali."AltItem" = oitm."ItemCode" union select distinct oali."OrigItem", oali."OrigItem", oitm."ItemName", oitm."OnHand", oitm."IsCommited", oitm."OnOrder" from oali left join oitm on oali."OrigItem" = oitm."ItemCode" order by "Original Item Code"'
 
   connection.runQuery(res, sql);
 }
