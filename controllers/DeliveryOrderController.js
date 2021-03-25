@@ -20,3 +20,14 @@ exports.close = function(req, res) {
 
   connection.runQuery(res, sql);
 };
+
+exports.findDocEntry = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "DocEntry" from odln where "DocNum" in  (' + req.query.code + ')';
+
+  connection.runQuery(res, sql);
+};

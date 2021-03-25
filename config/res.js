@@ -17,6 +17,7 @@ exports.err = function(values, res) {
     'data': values
   };
   res.json(data);
+  res.end();
 };
 
 exports.notFound = function(res) {
