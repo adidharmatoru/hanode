@@ -112,6 +112,12 @@ exports.outstandingSQ = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.outstandingSQbyEmpID = function(req, res, next) {
+  var sql = 'select SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ')  as "DocDate", n."SeriesName", ou."DocNum" as "SQ Number", ou."CardName", bp1."Name", bp."Phone1", ou."CardCode", ou1."Dscription",  ou1."Quantity", ou1."Price", (ou1."Quantity" * ou1."Price") as "TotalHargaBarang",  ou."VatSum", (ou."DocTotal"  + ou."DiscSum" - ou."VatSum") as "TotalHargaSebelumDisc", ou."DocTotal", ou."DiscSum", hr."lastName", hr."firstName", hr."middleName",  os."SlpName" from oqut ou join ohem hr on hr."empID" = ou."OwnerCode" left join oslp os on os."SlpCode" = ou."SlpCode" left join qut1 ou1 on ou1."DocEntry" = ou."DocEntry" left join ocpr bp1 on bp1."CntctCode" = ou."CntctCode" left join ocrd bp on bp."CardCode" = ou."CardCode" left join nnm1 n on ou."Series" = n."Series" where hr."empID" in (' + req.query.empID + ') AND "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'"; 
+
+  connection.runQuery(res, sql);
+};
+
 exports.outstandingSO = function(req, res, next) {
   var sql = 'select ou."DocNum", ou."CardName", n."SeriesName" as "Series", SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate", hr."lastName", hr."firstName", hr."middleName" from ordr ou join ohem hr on hr."empID" = ou."OwnerCode" left join nnm1 n on ou."Series" = n."Series" where "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'";
 

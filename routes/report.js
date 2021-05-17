@@ -17,6 +17,7 @@ router.get('/contBackLog', ReportController.contBackLog);
 router.get('/otherBackLog', ReportController.otherBackLog);
 router.get('/openServiceCall', ReportController.openServiceCall);
 router.get('/outstandingSQ', ReportController.outstandingSQ);
+router.get('/outstandingSQbyEmpID', ReportController.outstandingSQbyEmpID);
 router.get('/outstandingSO', ReportController.outstandingSO);
 router.get('/outstandingDO', ReportController.outstandingDO);
 router.get('/purchaseOrderPerProject', ReportController.purchaseOrderPerProject);
