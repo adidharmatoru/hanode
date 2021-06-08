@@ -265,7 +265,7 @@ exports.alternateItemReport = function (req, res) {
   connection.runQuery(res, sql);
 }
 
-exports.itemsReadyForSales = function (req, res) {
+exports.itemReadyForSales = function (req, res) {
   var sql = 'select "ItemCode", "ItemName", "OnHand", "IsCommited", "OnOrder", U_DM_CAPACITY, U_DM_VOLTAGE, U_DM_PHASE, U_DM_TYPE, U_DM_MODEL, U_DM_STATUS, U_DM_BATTERY, U_DM_COO, U_DM_MEASUREMENT from oitm'
   connection.runQuery(res, sql);
 }
