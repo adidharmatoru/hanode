@@ -113,7 +113,7 @@ exports.outstandingSQ = function(req, res, next) {
 };
 
 exports.outstandingSQbyEmpID = function(req, res, next) {
-  var sql = 'select SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ')  as "DocDate", n."SeriesName", ou."DocNum" as "SQ Number", ou."CardName", bp1."Name", bp."Phone1", ou."CardCode", ou1."Dscription",  ou1."Quantity", ou1."Price", (ou1."Quantity" * ou1."Price") as "TotalHargaBarang",  ou."VatSum", (ou."DocTotal"  + ou."DiscSum" - ou."VatSum") as "TotalHargaSebelumDisc", ou."DocTotal", ou."DiscSum", hr."lastName", hr."firstName", hr."middleName",  os."SlpName" from oqut ou join ohem hr on hr."empID" = ou."OwnerCode" left join oslp os on os."SlpCode" = ou."SlpCode" left join qut1 ou1 on ou1."DocEntry" = ou."DocEntry" left join ocpr bp1 on bp1."CntctCode" = ou."CntctCode" left join ocrd bp on bp."CardCode" = ou."CardCode" left join nnm1 n on ou."Series" = n."Series" where hr."empID" in (' + req.query.empID + ') AND "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'"; 
+  var sql = 'select SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ')  as "DocDate", n."SeriesName", ou."DocNum" as "SQ Number", ou."CardName", bp1."Name", bp."Phone1", ou."CardCode", ou1."Dscription",  ou1."Quantity", ou1."Price", (ou1."Quantity" * ou1."Price") as "TotalHargaBarang",  ou."VatSum", (ou."DocTotal"  + ou."DiscSum" - ou."VatSum") as "TotalHargaSebelumDisc", ou."DocTotal", ou."DiscSum", hr."lastName", hr."firstName", hr."middleName",  os."SlpName" from oqut ou join ohem hr on hr."empID" = ou."OwnerCode" left join oslp os on os."SlpCode" = ou."SlpCode" left join qut1 ou1 on ou1."DocEntry" = ou."DocEntry" left join ocpr bp1 on bp1."CntctCode" = ou."CntctCode" left join ocrd bp on bp."CardCode" = ou."CardCode" left join nnm1 n on ou."Series" = n."Series" where hr."empID" in (' + req.query.empID + ') AND "DocStatus" = ' + "'" + 'O' + "'" + 'and CANCELED = ' + "'" + 'N' + "'";
 
   connection.runQuery(res, sql);
 };
@@ -263,4 +263,8 @@ exports.alternateItemReport = function (req, res) {
   var sql='select oali."OrigItem" as "Original Item Code", oali."AltItem" as "Alternative Item Code",oitm."ItemName" as "Item Description", oitm."U_DM_MODEL" as "Model" ,oitm."U_DM_CAPACITY" || oitm."U_DM_MEASUREMENT" as "Kapasitas", oitm."OnHand" as "Qty On Hand", oitm."IsCommited" as "Qty Is Commited", oitm."OnOrder" as "Qty On Order" from oali left join oitm on oali."AltItem" = oitm."ItemCode" union select distinct oali."OrigItem", oali."OrigItem", oitm."ItemName", oitm."U_DM_MODEL", oitm."U_DM_CAPACITY", oitm."OnHand", oitm."IsCommited", oitm."OnOrder" from oali left join oitm on oali."OrigItem" = oitm."ItemCode" order by "Original Item Code"'
 
   connection.runQuery(res, sql);
+}
+
+exports.itemsReadyForSales = function (req, res) {
+  var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHand", oitm."IsCommited", oitm."OnOrder", oitm."OnHand" - oitm."IsCommited" as "Available" from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ')'
 }
