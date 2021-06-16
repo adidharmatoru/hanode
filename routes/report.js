@@ -36,5 +36,7 @@ router.get('/serialNumberService', ReportController.serialNumberService);
 router.get('/pdcaFinanceServices', ReportController.pdcaFinanceServices);
 router.get('/alternateItemReport', ReportController.alternateItemReport);
 router.get('/itemReadyForSales', ReportController.itemReadyForSales);
+router.get('/sqCPRecapProgressOpenbyYear', ReportController.sqCPRecapProgressOpenbyYear);
+router.get('/pdcaSalesServices', ReportController.pdcaSalesServices);
 
 module.exports = router;
