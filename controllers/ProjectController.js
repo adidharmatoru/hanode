@@ -35,6 +35,7 @@ exports.so = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   var sql = 'select * from ordr join nnm1 on ordr."Series" = nnm1."Series" where LENgth(nnm1."SeriesName") = 4 and ordr."DocStatus" = ' + "'" + 'O' + "'" + ' and ordr.CANCELED = ' + "'" + 'N' + "'" + ' and ordr."DocNum" LIKE  ' + "'%" + req.query.code + "%'" + ' order by ordr."DocNum" DESC limit 20';
+  // var sql = 'select * from ordr DESC limit 5';
 
   connection.runQuery(res, sql);
 };
@@ -117,6 +118,42 @@ exports.primarySoldItems1 = function(req, res, next) {
   // var sql = 'SELECT distinct T0."Project" as "PrjCode", T1."DocNum" as "SO DocNum", left(T0."DocDate", 10) as "SO Date",T2."SlpName" as "SalesPerson",T1."CardName" as "Customer",T1."NumAtCard" as "PO",T0."ItemCode" as "ItemCode",T0."Dscription" as "ItemName",dln1."Quantity",dln1."Price",T0."LineTotal", T1."U_VIT_TOPY", dln."DocNum" as "Delivery", left(dln."DocDate", 10) as "DeliveryDate", dln."U_VIT_DIOL" as "Receiver"FROM RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" left join dln1 dln1 on T0."Dscription" = dln1."Dscription" and T0."Project" = dln1."Project" left join odln dln on dln1."DocEntry" = dln."DocEntry" left join oinv inv on T1."DocEntry" = inv."DocEntry" left JOIN OSLP T2 ON T2."SlpCode" = T1."SlpCode" left join oprj prj on T0."Project" = prj."PrjCode" where T0."Project" is not null and T0."Project" != ' + "'" + "'" +' and (T0."Dscription" LIKE  ' + "'%EATON" + "%'" + ' or T0."Dscription" LIKE  ' + "'%LKPP" + "%'" + ' or T0."Dscription" LIKE  ' + "'%PENGIRIMAN" + "%'" + ' or T0."Dscription" LIKE  ' + "'%PANEL" + "%'" + ') and year(left(prj."U_StartDate", 4)) = year(CURRENT_DATE) and dln."CANCELED" != ' + "'Y" + "'" +' order by T0."Project"';
 
   var sql = 'SELECT  T0."Project" as "PrjCode",  T1."DocNum" as "SODocNum", left(T1."DocDate", 10) as "SO Date", T2."SlpName" as "SalesPerson", T1."CardName" as "Customer", T1."NumAtCard" as "PO", T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName", T0."Quantity", T0."Price", T0."LineTotal",  T1."U_VIT_TOPY", nnm1."BeginStr" || ' + "'-'" + ' || dln."DocNum" as "Delivery No", dln."U_VIT_NPAN" as "Delivery Address", left(dln."DocDate", 10) as "DeliveryDate", dln."U_VIT_DIOL" as "Receiver" FROM RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" left join dln1 dln1 on T0."DocEntry" = dln1."BaseEntry" and T0."LineNum" = dln1."BaseLine" and T0."Project" = dln1."Project" left join odln dln on dln1."DocEntry" = dln."DocEntry" left join oinv inv on T1."DocEntry" = inv."DocEntry" left JOIN OSLP T2 ON T2."SlpCode" = T1."SlpCode" left join nnm1 on dln."Series" = nnm1."Series" left join oprj prj on T0."Project" = prj."PrjCode" where T0."Project" in (' + req.query.prj + ') and T0."Price" > 0 order by T0."Project"';
+
+  connection.runQuery(res, sql);
+};
+
+exports.bastINS = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select * from oprj where "PrjName" LIKE  ' + "'%" + req.query.code + "%'" + ' order by oprj."PrjCode" DESC limit 20';
+  // var sql = 'select * from oprj limit 5';
+
+  connection.runQuery(res, sql);
+};
+
+exports.bastMNT = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
+  var sql = 'select * from octr Where "CstmrName" LIKE ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" limit 5';
+
+  connection.runQuery(res, sql);
+};
+
+exports.bastDO = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
+  var sql = 'select * from odln Where "CardName" LIKE ' + "'%" + req.query.code + "%'" + ' order by odln."DocNum" limit 5';
 
   connection.runQuery(res, sql);
 };
