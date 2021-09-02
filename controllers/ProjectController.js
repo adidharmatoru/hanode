@@ -142,7 +142,7 @@ exports.bastMNT = function(req, res, next) {
 
   // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
   var sql = 'select * from octr Where "CstmrName" LIKE ' + "'%"  + req.query.code + "%'" + ' order by octr."ContractID" limit 5';
-
+ 
   connection.runQuery(res, sql);
 };
 
