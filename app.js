@@ -12,6 +12,7 @@ var employeeRouter = require('./routes/employee');
 var reportRouter = require('./routes/report');
 var salesOrderRouter = require('./routes/salesOrder');
 var projectRouter = require('./routes/project');
+var marketingRouter = require('./routes/marketing');
 var deliveryOrder = require('./routes/deliveryOrder');
 var serviceCall = require('./routes/serviceCall');
 
@@ -40,6 +41,7 @@ app.use('/employee', employeeRouter);
 app.use('/report', reportRouter);
 app.use('/salesOrder', salesOrderRouter);
 app.use('/project', projectRouter);
+app.use('/marketing', marketingRouter);
 app.use('/deliveryOrder', deliveryOrder);
 app.use('/serviceCall', serviceCall);
 
