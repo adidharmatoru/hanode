@@ -16,6 +16,7 @@ router.get('/secondarySoldItems', ProjectController.secondarySoldItems);
 router.get('/bastINS', ProjectController.bastINS);
 router.get('/bastMNT', ProjectController.bastMNT);
 router.get('/bastDO', ProjectController.bastDO);
+router.get('/bastCM', ProjectController.bastCM);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
