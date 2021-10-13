@@ -141,7 +141,7 @@ exports.bastMNT = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
-  var sql = 'select * from octr Where "CstmrName" LIKE ' + "'%"  + req.query.code + "%'" + ' and "ContractID" LIKE ' + "'%"  + req.query.code + "%'" + ' order by octr."ContractID"';
+  var sql = 'select * from octr Where "ContractID" LIKE ' + "'%"  + req.query.code + "%'" + ' order by octr."ContractID"';
 
   connection.runQuery(res, sql);
 };
@@ -165,7 +165,7 @@ exports.bastCM = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
-var sql =  'select * from ordr where "CardName" LIKE ' + "'%"  + req.query.code + "%'" + ' and "DocNum" LIKE ' + "'%"  + req.query.code + "%'" + ' order by ordr."DocNum"';
+var sql =  'select * from ordr where "DocNum" LIKE ' + "'%"  + req.query.code + "%'" + ' order by ordr."DocNum"';
 
   connection.runQuery(res, sql);
 };
