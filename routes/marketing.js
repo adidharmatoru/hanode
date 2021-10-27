@@ -6,17 +6,17 @@ router.get('/', MarketingController.index);
 router.get('/show', MarketingController.show);
 router.get('/customer', MarketingController.customer);
 router.get('/contact', MarketingController.contact);
-router.get('/sales', MarketingController.sales);
 router.get('/so', MarketingController.so);
 router.get('/contactPerson', MarketingController.contactPerson);
 router.get('/countProject', MarketingController.countProject);
 router.get('/scon', MarketingController.scon);
-router.get('/items', MarketingController.items);
-router.get('/serialNumber', MarketingController.serialNumber);
-
-// adjustedAmmount
-// router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
-// router.put('/adjustedAmmount', SalesOrderController.adjustedAmmount_update);
-// router.delete('/adjustedAmmount', SalesOrderController.adjustedAmmount_delete);
+router.get('/items', MarketingController.itemCode);
+router.get('/teknisi', MarketingController.teknisi);
+router.get('/ServiceContract', MarketingController.ServiceContract);
+router.get('/SconItem', MarketingController.SconItem);
+router.get('/Scall', MarketingController.Scall);
+router.get('/Inv', MarketingController.Inv);
+router.get('/serialNum', MarketingController.serialNum);
+router.get('/attachment', MarketingController.attachment);
 
 module.exports = router;

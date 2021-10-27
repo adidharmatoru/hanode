@@ -23,7 +23,7 @@ exports.customer = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CardCode", "CardName" from OCRD where "CardCode" = ' + "'" + req.query.code + "'";
+  var sql = 'select "CardCode", "CardName", "Phone1" from OCRD where "CardCode" = ' + "'" + req.query.code + "'";
 
   connection.runQuery(res, sql);
 };
@@ -128,7 +128,7 @@ exports.bastINS = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select * from oprj where "PrjName" LIKE  ' + "'%" + req.query.code + "%'" + ' order by oprj."PrjCode" DESC limit 20';
+  var sql = 'select * from oprj where "PrjCode" LIKE  ' + "'%" + req.query.code + "%'" + ' order by oprj."PrjCode"';
   // var sql = 'select * from oprj limit 5';
 
   connection.runQuery(res, sql);
@@ -153,7 +153,7 @@ exports.bastDO = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
-  var sql = 'select * from odln Where "CardName" LIKE ' + "'%" + req.query.code + "%'" + ' order by odln."DocNum"';
+  var sql = 'select * from odln Where "DocNum" LIKE ' + "'%" + req.query.code + "%'" + ' order by odln."DocNum"';
 
   connection.runQuery(res, sql);
 };
@@ -176,7 +176,7 @@ exports.CMitems = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' order by octr."ContractID" DESC limit 20';
-var sql =  'SELECT  T1."DocNum" as "SODocNum", left(T1."DocDate", 10) as "SO Date", T1."CardName" as "Customer",T1."NumAtCard" as "PO",T1."CardCode" as "CustomerCode", T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName", T0."Quantity",T0."Price", T0."LineTotal", T1."U_VIT_TOPY", dln."DocNum" as "Delivery No", dln."U_VIT_NPAN" as "Delivery Address", left(dln."DocDate", 10) as "DeliveryDate",	dln."U_VIT_DIOL" as "Receiver" , T0."SerialNum" as "SerialNumber" FROM RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" left join dln1 dln1 on T0."DocEntry" = dln1."BaseEntry" and T0."LineNum" = dln1."BaseLine" and T0."Project" = dln1."Project" left join odln dln on dln1."DocEntry" = dln."DocEntry" where T1."DocNum" in (' + req.query.docnum + ') order by T1."DocNum"';
+var sql =  'SELECT  T1."DocNum" as "SODocNum", left(T1."DocDate", 10) as "SO Date", T1."CardName" as "Customer",T1."NumAtCard" as "PO",T1."CardCode" as "CustomerCode", T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName", T0."Quantity",T0."Price", T0."LineTotal", T1."U_VIT_TOPY", dln."DocNum" as "Delivery No", dln."U_VIT_NPAN" as "Delivery Address", left(dln."DocDate", 10) as "DeliveryDate",	dln."U_VIT_DIOL" as "Receiver" ,dln."Series" as "Series", T0."SerialNum" as "SerialNumber" FROM RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" left join dln1 dln1 on T0."DocEntry" = dln1."BaseEntry" and T0."LineNum" = dln1."BaseLine" and T0."Project" = dln1."Project" left join odln dln on dln1."DocEntry" = dln."DocEntry" where T1."DocNum" in (' + req.query.docnum + ') order by T1."DocNum"';
 
   connection.runQuery(res, sql);
 };
