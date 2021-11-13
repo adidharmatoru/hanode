@@ -79,7 +79,7 @@ exports.sconDetail = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from oitm T1 Where "ItemName" LIKE ' + "'%"  + req.query.code + "%'" + ' order by T1."ItemCode" limit 5';
-  var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date", "CstmrName", "EndDate", "U_FH_SO_DOCNUM" as "NoSO", "U_FH_ADDRESS" as "Address", "U_FH_CTR_NUM" as "ContractNum" from octr where "ContractID"= ' + "'" + req.query.code + "'"';
+  var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date", "CstmrName", "EndDate", "U_FH_SO_DOCNUM" as "NoSO", "U_FH_ADDRESS" as "Address", "U_FH_CTR_NUM" as "ContractNum" from octr where "ContractID"=  ' + "'" + req.query.code + "'";
   connection.runQuery(res, sql);
 };
 
