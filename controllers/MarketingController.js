@@ -72,6 +72,17 @@ exports.scon = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.sconDetail = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  // var sql = 'select * from oitm T1 Where "ItemName" LIKE ' + "'%"  + req.query.code + "%'" + ' order by T1."ItemCode" limit 5';
+  var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date", "CstmrName", "EndDate", "U_FH_SO_DOCNUM" as "NoSO", "U_FH_ADDRESS" as "Address", "U_FH_CTR_NUM" as "ContractNum" from octr where "ContractID"= ' + "'" + req.query.code + "'"';
+  connection.runQuery(res, sql);
+};
+
 exports.itemCode = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed

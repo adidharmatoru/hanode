@@ -10,6 +10,7 @@ router.get('/so', MarketingController.so);
 router.get('/contactPerson', MarketingController.contactPerson);
 router.get('/countProject', MarketingController.countProject);
 router.get('/scon', MarketingController.scon);
+router.get('/sconDetail', MarketingController.sconDetail);
 router.get('/items', MarketingController.itemCode);
 router.get('/teknisi', MarketingController.teknisi);
 router.get('/ServiceContract', MarketingController.ServiceContract);
