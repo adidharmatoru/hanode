@@ -40,6 +40,18 @@ exports.so = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.docTotal = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "CardCode","DocEntry","DocNum","DocTotal" from ordr where "Series"= ' + "'1674'" + ' and "DocNum"=' + "'" + req.query.code + "'" + ' order by "DocNum" DESC';
+  // var sql = 'select * from ordr DESC limit 5';
+
+  connection.runQuery(res, sql);
+};
+
 exports.contactPerson = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed

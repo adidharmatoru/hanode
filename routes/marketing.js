@@ -7,6 +7,7 @@ router.get('/show', MarketingController.show);
 router.get('/customer', MarketingController.customer);
 router.get('/contact', MarketingController.contact);
 router.get('/so', MarketingController.so);
+router.get('/docTotal', MarketingController.docTotal);
 router.get('/contactPerson', MarketingController.contactPerson);
 router.get('/countProject', MarketingController.countProject);
 router.get('/scon', MarketingController.scon);
