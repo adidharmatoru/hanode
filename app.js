@@ -13,6 +13,7 @@ var reportRouter = require('./routes/report');
 var salesOrderRouter = require('./routes/salesOrder');
 var projectRouter = require('./routes/project');
 var marketingRouter = require('./routes/marketing');
+var items = require('./routes/items');
 var deliveryOrder = require('./routes/deliveryOrder');
 var serviceCall = require('./routes/serviceCall');
 
@@ -44,6 +45,7 @@ app.use('/project', projectRouter);
 app.use('/marketing', marketingRouter);
 app.use('/deliveryOrder', deliveryOrder);
 app.use('/serviceCall', serviceCall);
+app.use('/items', items);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
