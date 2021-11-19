@@ -91,7 +91,7 @@ exports.sconDetail = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
   // var sql = 'select * from oitm T1 Where "ItemName" LIKE ' + "'%"  + req.query.code + "%'" + ' order by T1."ItemCode" limit 5';
-  var sql = 'select "ContractID" as "ID Contract", SUBSTRING("StartDate",1,10) as "Start Date", "CstmrName", SUBSTRING("EndDate",1,10) as "EndDate", "U_FH_SO_DOCNUM" as "NoSO", "U_FH_ADDRESS" as "Address", "U_FH_CTR_NUM" as "ContractNum" from octr where "ContractID"=  ' + "'" + req.query.code + "'";
+  var sql = 'select T0."ContractID" as "ContractNo", T0."CstmrCode" as "CustomerCode", T0."CstmrName" as "Name", SUBSTRING(T0."StartDate", 1,10) as "StartDate", SUBSTRING(T0."EndDate",1,10) as "EndDate", T0."CreateDate",T0."Remarks1" as "Comment",T0."Remarks2" as "Remarks",T0."U_FH_TERM" as "Term",SUBSTRING(T0."U_FH_CTR_START_DATE",1,10) as "ContractStartDate",T0."U_FH_CTR_DATE" as "ContractDate", SUBSTRING(T0."U_FH_CTR_END_DATE",1,10) as "ContractEndDate",T0."U_FH_SO_DOCNUM" as "no_so", T0."Descriptio" as "PO", SUBSTRING(T0."U_FH_PO_DATE",1,10) as "PODate", T0."CntctCode" as "codeContact",T0."CntrcTmplt" as "Type Contract",T0."U_FH_CTR_NUM" as "NomorContract", T1."Name" as "contactName", T1."Tel1" as "contactPhone", T1."Address" as "Address" from octr T0 join ocpr T1 ON T0."CntctCode" = T1."CntctCode" where "ContractID"=  ' + "'" + req.query.code + "'";
   connection.runQuery(res, sql);
 };
 
