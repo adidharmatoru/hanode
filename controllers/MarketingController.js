@@ -112,7 +112,7 @@ exports.serialNum = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "internalSN","customer","contactCod",""itemName"" from oins Where "customer" in (' + "'" + req.query.code + "'" + ') AND "status"='+"'A'"+' order by "internalSN"';
+  var sql = 'select "internalSN","customer","contactCod","itemName" from oins Where "customer" in (' + "'" + req.query.code + "'" + ') AND "status"='+"'A'"+' order by "internalSN"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
