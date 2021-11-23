@@ -101,7 +101,7 @@ exports.itemCode = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "itemName", "itemCode","insID" from oins Where "internalSN" =' + "'" + req.query.code + "'" + ' AND "status"='+"'A'"+' order by "itemCode"';
+  var sql = 'select "itemName", "itemCode","insID","instLction" from oins Where "internalSN" =' + "'" + req.query.code + "'" + ' AND "status"='+"'A'"+' order by "itemCode"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
@@ -111,7 +111,7 @@ exports.serialNum = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-  
+
   var sql = 'select "internalSN","customer","contactCod","itemName" from oins Where "customer" LIKE  ' + "'%" + req.query.code + "%'" + ' AND "status"='+"'A'"+' order by "internalSN"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
