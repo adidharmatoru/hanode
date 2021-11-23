@@ -101,7 +101,7 @@ exports.itemCode = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "itemName", "itemCode","insID","internalSN","instLction","customer","contactCod" from oins Where "customer" in (' + "'" + req.query.code + "'" + ') AND "status"='+"'A'"+' order by "itemCode"';
+  var sql = 'select "itemName", "itemCode","insID" from oins Where "internalSN" =' + "'" + req.query.code + "'" + ' AND "status"='+"'A'"+' order by "itemCode"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
@@ -112,7 +112,7 @@ exports.serialNum = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "internalSN" from oins Where "status"='+"'A'"+' and "itemCode" in (' + "'" + req.query.code + "'" + ') and "customer" in (' + "'" + req.query.cust + "'" + ') order by "itemCode"';
+  var sql = 'select "internalSN","customer","contactCod" from oins Where "customer" in (' + "'" + req.query.code + "'" + ') AND "status"='+"'A'"+' order by "internalSN"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
@@ -135,7 +135,7 @@ exports.contact = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CntctCode", "Name","Tel1","Tel2","Address","Cellolar","E_MailL" from ocpr Where "CntctCode" in (' + "'" + req.query.code + "'" + ') order by "CntctCode"';
+  var sql = 'select "CntctCode", "Name","Tel1","Tel2","Address","Cellolar","E_MailL" from ocpr Where "CardCode" in (' + "'" + req.query.code + "'" + ') order by "CntctCode"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
