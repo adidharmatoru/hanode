@@ -101,7 +101,7 @@ exports.itemCode = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "itemName", "itemCode","insID","instLction" from oins Where "internalSN" =' + "'" + req.query.code + "'" + ' AND "status"='+"'A'"+' order by "itemCode"';
+  var sql = 'select T0."itemName" as "itemName", T0."itemCode" as "itemCode",T0."insID" as "insID", T0."instLction" as "instLction",T1."Name" as "Name", T1."Tel1" as "phone",T1."E_MailL" as "E_mail" from oins T0 join ocpr T1 ON T0."contactCod"=T1."CntctCode" Where "internalSN" =' + "'" + req.query.code + "'" + ' AND "status"='+"'A'"+' order by "itemCode"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
@@ -135,7 +135,7 @@ exports.contact = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CntctCode", "Name","Tel1","Tel2","Address","Cellolar","E_MailL" from ocpr Where "CardCode" in (' + "'" + req.query.code + "'" + ') order by "CntctCode"';
+  var sql = 'select "CntctCode", "Name","Tel1","Tel2","Address","Cellolar","E_MailL" from ocpr Where "CardCode" LIKE  ' + "'%" + req.query.code + "%'" + ' order by "CntctCode"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
