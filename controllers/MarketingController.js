@@ -148,7 +148,7 @@ exports.teknisi = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
   // var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date" from octr order by "StartDate" desc';
 
-  var sql = 'select "empID", "lastName" as "LastName","firstName" as "FirstName", "jobTitle" as "JobTitle" from ohem where "jobTitle" in (' + "'TEKNISI'" + ',' + "'TEKNISI SOLO'" + ',' + "'TEKNISI MAINTENANCE'" + ',' + "'TEKNISI INSTALASI'" + ',' + "'TEKNISI REPAIR'" + ') WHERE "Active"='+ "'Y'" +' order by "jobTitle" asc';
+  var sql = 'select "empID", "lastName" as "LastName","firstName" as "FirstName", "jobTitle" as "JobTitle" from ohem where "jobTitle" in (' + "'TEKNISI'" + ',' + "'TEKNISI SOLO'" + ',' + "'TEKNISI MAINTENANCE'" + ',' + "'TEKNISI INSTALASI'" + ',' + "'TEKNISI REPAIR'" + ') AND "Active"='+ "'Y'" +' order by "jobTitle" asc';
 
   connection.runQuery(res, sql);
 };
