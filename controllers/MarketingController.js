@@ -172,7 +172,7 @@ exports.ServiceContract = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
   // var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date" from octr order by "StartDate" desc';
 
-  var sql = 'select T0."ContractID" as "ContractNo", T0."CstmrCode" as "CustomerCode", T0."CstmrName" as "Name", SUBSTRING(T0."StartDate", 1,10) as "StartDate", SUBSTRING(T0."EndDate",1,10) as "EndDate", SUBSTRING(T0."CreateDate",1,10) as "CreateDate",T0."Remarks1" as "Comment",T0."Remarks2" as "Remarks",T0."U_FH_TERM" as "Term",SUBSTRING(T0."U_FH_CTR_START_DATE",1,10) as "ContractStartDate",SUBSTRING(T0."U_FH_CTR_DATE",1,10) as "ContractDate", SUBSTRING(T0."U_FH_CTR_END_DATE",1,10) as "ContractEndDate",T0."U_FH_SO_DOCNUM" as "no_so", T0."Descriptio" as "PO", SUBSTRING(T0."U_FH_PO_DATE",1,10) as "PODate", T0."CntctCode" as "codeContact",T0."CntrcTmplt" as "Type Contract",T0."U_FH_CTR_NUM" as "NomorContract", T1."Name" as "contactName", T1."Tel1" as "contactPhone" from octr T0 join ocpr T1 ON T0."CntctCode" = T1."CntctCode" where SUBSTRING(T0."StartDate",3, 2) in (' + req.query.year + ') and T0."TermDate" IS NULL ORDER BY T0."ContractID" desc';
+  var sql = 'select T0."ContractID" as "ContractNo", T0."CstmrCode" as "CustomerCode", T0."CstmrName" as "Name", SUBSTRING(T0."StartDate", 1,10) as "StartDate", SUBSTRING(T0."EndDate",1,10) as "EndDate", SUBSTRING(T0."CreateDate",1,10) as "CreateDate",T0."Remarks1" as "Comment",T0."Remarks2" as "Remarks",T0."U_FH_TERM" as "Term",SUBSTRING(T0."U_FH_CTR_START_DATE",1,10) as "ContractStartDate",SUBSTRING(T0."U_FH_CTR_DATE",1,10) as "ContractDate", SUBSTRING(T0."U_FH_CTR_END_DATE",1,10) as "ContractEndDate",T0."U_FH_SO_DOCNUM" as "no_so", T0."Descriptio" as "PO", SUBSTRING(T0."U_FH_PO_DATE",1,10) as "PODate", T0."CntctCode" as "codeContact",T0."CntrcTmplt" as "Type Contract",T0."U_FH_CTR_NUM" as "NomorContract", T1."Name" as "contactName", T1."Tel1" as "contactPhone" from octr T0 join ocpr T1 ON T0."CntctCode" = T1."CntctCode" where "StartDate" BETWEEN  ' + "'" + req.query.year + "'" + ' AND  ' + "'" + req.query.yer + "'" + ' AND T0."TermDate" IS NULL ORDER BY T0."ContractID" desc';
 
   connection.runQuery(res, sql);
 };
@@ -210,6 +210,18 @@ exports.Inv = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
   var sql = 'SELECT T0."U_FH_SO_DOCNUM" as "SO_no", T2."DocNum" as "no_inv", T4."U_VIT_TOPY" as "pelunasan", SUBSTRING(T2."DocDate",1,10) as "inv_date", T1."U_VIT_TOT" as "TotPrice" FROM octr T0 join inv1 T1 on T1."BaseRef" = T0."U_FH_SO_DOCNUM" left join oinv T2 on T2."DocEntry" = T1."DocEntry" left join ordr T4 on T0."DocNum" = T4."DocNum" where T0."U_FH_SO_DOCNUM" in (' + req.body.cid + ') order by T0."U_FH_SO_DOCNUM"';
+  // var sql = 'SELECT T1."DocNum",T1."DocDate",T1."DocEntry"from octr T0 join ordr T1 on T1."DocNum" = T0."U_FH_SO_DOCNUM" where T0."U_FH_SO_DOCNUM" in (' + req.body.cid + ') order by T0."U_FH_SO_DOCNUM"';
+
+  connection.runQuery(res, sql);
+};
+
+exports.CorrectiveMaintenance = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
+
+  var sql = 'select T1."DocStatus",T1."DocNum",T1."CardName",T1."NumAtCard",SUBSTR_BEFORE(T1."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate",T1."U_VIT_TOPY",T1."DocTotal",T1."Address",T1."Address2",T2."ItemCode",T2."Dscription" from ordr T1 join rdr1 T2 on T1."DocEntry"=T2."DocEntry" where T1."Series" in (' + "1675" + ',' + "2068" + ') and T1."DocStatus"=' + "'O'" + '';
   // var sql = 'SELECT T1."DocNum",T1."DocDate",T1."DocEntry"from octr T0 join ordr T1 on T1."DocNum" = T0."U_FH_SO_DOCNUM" where T0."U_FH_SO_DOCNUM" in (' + req.body.cid + ') order by T0."U_FH_SO_DOCNUM"';
 
   connection.runQuery(res, sql);
