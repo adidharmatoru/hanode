@@ -21,5 +21,6 @@ router.get('/Scall', MarketingController.Scall);
 router.get('/Inv', MarketingController.Inv);
 router.get('/serialNum', MarketingController.serialNum);
 router.get('/attachment', MarketingController.attachment);
+router.get('/scallcreated', MarketingController.scallcreated);
 
 module.exports = router;
