@@ -272,7 +272,7 @@ var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHa
   // connection.printQuery(res, sql);
 }
 exports.itemReadyPO = function (req, res) {
-var sql = 'select por1."Quantity", por1."ShipDate",por1."ItemCode" from por1 where "ItemCode" in (' + req.query.code + ')';
+var sql = 'select por1."Quantity",SUBSTRING(por1."ShipDate",1,10) as "ShipDate",por1."ItemCode" from por1 where "ItemCode" in (' + req.query.code + ')';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
