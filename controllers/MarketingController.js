@@ -203,6 +203,19 @@ exports.Scall = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.ScallDetail = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  // var sql = 'SELECT distinct T0."Project" as "PrjCode", T1."DocNum" as "SO DocNum", left(T0."DocDate", 10) as "SO Date",T2."SlpName" as "SalesPerson",T1."CardName" as "Customer",T1."NumAtCard" as "PO",T0."ItemCode" as "ItemCode",T0."Dscription" as "ItemName",dln1."Quantity",dln1."Price",T0."LineTotal", T1."U_VIT_TOPY", dln."DocNum" as "Delivery", left(dln."DocDate", 10) as "DeliveryDate", dln."U_VIT_DIOL" as "Receiver"FROM RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" left join dln1 dln1 on T0."Dscription" = dln1."Dscription" and T0."Project" = dln1."Project" left join odln dln on dln1."DocEntry" = dln."DocEntry" left join oinv inv on T1."DocEntry" = inv."DocEntry" left JOIN OSLP T2 ON T2."SlpCode" = T1."SlpCode" left join oprj prj on T0."Project" = prj."PrjCode" where T0."Project" is not null and T0."Project" != ' + "'" + "'" +' and (T0."Dscription" NOT LIKE  ' + "'%EATON" + "%'" + ' or T0."Dscription" NOT LIKE  ' + "'%LKPP" + "%'" + 'or T0."Dscription" NOT LIKE  ' + "'%PENGIRIMAN" + "%'" + 'or T0."Dscription" NOT LIKE  ' + "'%PANEL" + "%'" + ') and left(prj."U_StartDate", 4) = year(CURRENT_DATE) and dln."CANCELED" != ' + "'Y" + "'" +'order by T0."Project"';
+
+  var sql = 'select T0."custmrName" as "Name",T0."BPShipAddr" as "Address",T0."internalSN" as "SerialNum",T0."itemCode" as "ItemCode",T0."itemName" as "ItemName",T0."U_VIT_BMRK" as "MerkBatterai",T0."U_VIT_BMOD" as "ModelBatterai",T0."U_VIT_BDAT" as "DateBatterai",T0."U_VIT_BPCS" as "BatteraiPCS",T0."U_VIT_TINR" as "Tegangan in R",T0."U_VIT_TINS" as "Tegangan in S",T0."U_VIT_TINT" as "Tegangan in T",T0."U_VIT_TOUR" as "Tegangan out R",T0."U_VIT_TOUS" as "Tegangan out S",T0."U_VIT_TOUT" as "Tegangan out T",T1."StartDate" as "StartDate",T1."EndDate" as "EndDate" from oscl T0 join octr T1 on T0."contractID"=T1."ContractID"  where T0."callID" = ' + "'" + req.query.code + "'" + '';
+
+  connection.runQuery(res, sql);
+};
+
 exports.Inv = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
