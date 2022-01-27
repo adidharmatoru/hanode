@@ -266,7 +266,8 @@ exports.alternateItemReport = function (req, res) {
 }
 
 exports.itemReadyForSales = function (req, res) {
-var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHand", oitm."IsCommited", oitm."OnOrder", oitm."OnHand" - oitm."IsCommited" as "Available" from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and (oitm."OnHand" - oitm."IsCommited" > 0)';
+// var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHand", oitm."IsCommited", oitm."OnOrder", oitm."OnHand" - oitm."IsCommited" as "Available" from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and (oitm."OnHand" - oitm."IsCommited" > 0)';
+var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHand", oitm."IsCommited", oitm."OnOrder", oitm."OnHand" - oitm."IsCommited" as "Available" from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ')';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
