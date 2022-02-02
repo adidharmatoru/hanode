@@ -16,6 +16,7 @@ var marketingRouter = require('./routes/marketing');
 var items = require('./routes/items');
 var deliveryOrder = require('./routes/deliveryOrder');
 var serviceCall = require('./routes/serviceCall');
+var scheduling = require('./routes/scheduling');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/marketing', marketingRouter);
 app.use('/deliveryOrder', deliveryOrder);
 app.use('/serviceCall', serviceCall);
 app.use('/items', items);
+app.use('/scheduling', scheduling);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
