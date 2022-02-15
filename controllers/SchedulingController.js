@@ -30,7 +30,7 @@ exports.serialNumOnCall = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select T0."ContractID" as "ContractID", T1."ItemName" as "ItemName",T0."CstmrName" as "CustomerName",T0."Descriptio" as "NomorPO",T2."instLction" as "Location",T1."ItemCode" as "ItemCode",T0."Remarks2"as "Remarks", T1."InternalSN" as "SerialNum", T2."status" as "Status", T0."CntrcTmplt" as "ContractTemplate", T3."Name" as "ContactName", T3."Tel1" as "Telpn" from octr T0 join ctr1 T1 on T0."ContractID"=T1."ContractID" join oins T2 on T1."InsID" = T2."insID" join ocpr T3 on T2."contactCod" = T3."CntctCode" where  T1."TermDate" is null and now() < T1."EndDate" and T2."status" = ' + "'" + 'A' + "'" + ' and T0."CntrcTmplt" in (' + "'" + 'OnCall' + "'" + ')';
+    var sql = 'select T0."ContractID" as "ContractID", T1."ItemName" as "ItemName",T0."CstmrName" as "CustomerName",T0."Descriptio" as "NomorPO",T2."instLction" as "Location",T1."ItemCode" as "ItemCode",T0."Remarks2"as "Remarks", T0."U_FH_TERM" as "TOP", T1."InternalSN" as "SerialNum", T2."status" as "Status", T0."CntrcTmplt" as "ContractTemplate", T3."Name" as "ContactName", T3."Tel1" as "Telpn" from octr T0 join ctr1 T1 on T0."ContractID"=T1."ContractID" join oins T2 on T1."InsID" = T2."insID" join ocpr T3 on T2."contactCod" = T3."CntctCode" where  T1."TermDate" is null and now() < T1."EndDate" and T2."status" = ' + "'" + 'A' + "'" + ' and T0."CntrcTmplt" in (' + "'" + 'OnCall' + "'" + ')';
 
   connection.runQuery(res, sql);
 };
@@ -41,7 +41,7 @@ exports.serialNumOnCallLegacy = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select T0."ContractID" as "ContractID", T1."ItemName" as "ItemName",T0."CstmrName" as "CustomerName",T0."Descriptio" as "NomorPO",T2."instLction" as "Location",T1."ItemCode" as "ItemCode",T0."Remarks2"as "Remarks", T1."InternalSN" as "SerialNum", T2."status" as "Status", T0."CntrcTmplt" as "ContractTemplate", T3."Name" as "ContactName", T3."Tel1" as "Telpn" from octr T0 join ctr1 T1 on T0."ContractID"=T1."ContractID" join oins T2 on T1."InsID" = T2."insID" join ocpr T3 on T2."contactCod" = T3."CntctCode"  where  T1."TermDate" is null and now() > T1."EndDate" and T2."status" = ' + "'" + 'A' + "'" + ' and T0."CntrcTmplt" in (' + "'" + 'OnCall' + "'" + ')';
+    var sql = 'select T0."ContractID" as "ContractID", T1."ItemName" as "ItemName",T0."CstmrName" as "CustomerName",T0."Descriptio" as "NomorPO",T2."instLction" as "Location",T1."ItemCode" as "ItemCode",T0."Remarks2"as "Remarks", T0."U_FH_TERM" as "TOP", T1."InternalSN" as "SerialNum", T2."status" as "Status", T0."CntrcTmplt" as "ContractTemplate", T3."Name" as "ContactName", T3."Tel1" as "Telpn" from octr T0 join ctr1 T1 on T0."ContractID"=T1."ContractID" join oins T2 on T1."InsID" = T2."insID" join ocpr T3 on T2."contactCod" = T3."CntctCode"  where  T1."TermDate" is null and now() > T1."EndDate" and T2."status" = ' + "'" + 'A' + "'" + ' and T0."CntrcTmplt" in (' + "'" + 'OnCall' + "'" + ')';
 
   connection.runQuery(res, sql);
 };
