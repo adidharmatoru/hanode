@@ -7,5 +7,6 @@ router.get('/serialNumContractLegacy', SchedulingController.serialNumContractLeg
 router.get('/serialNumOnCall', SchedulingController.serialNumOnCall);
 router.get('/serialNumOnCallLegacy', SchedulingController.serialNumOnCallLegacy);
 router.get('/serialNumTerminated', SchedulingController.serialNumTerminated);
+router.get('/fh_oscl', SchedulingController.fh_oscl);
 
 module.exports = router;
