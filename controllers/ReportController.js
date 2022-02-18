@@ -279,7 +279,7 @@ var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as 
   // connection.printQuery(res, sql);
 }
 exports.itemReadySO = function (req, res) {
-var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode"from rdr1 T0 join ordr T1 on T0."DocEntry" = T1."DocEntry"  where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + '';
+var sql = 'select T0."DocEntry",T1."NumAtCard" as "NomorPO", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode"from rdr1 T0 join ordr T1 on T0."DocEntry" = T1."DocEntry"  where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + '  and T0."LineStatus"=' + "'" + 'O' + "'" + ' and T0."InvntSttus"=' + "'" + 'O' + "'" + ' and T0."LnExcised"=' + "'" + 'O' + "'" + '';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
