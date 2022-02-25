@@ -16,6 +16,7 @@ router.get('/items', MarketingController.itemCode);
 router.get('/teknisi', MarketingController.teknisi);
 router.get('/CorrectiveMaintenance', MarketingController.CorrectiveMaintenance);
 router.get('/ServiceContract', MarketingController.ServiceContract);
+router.get('/ServiceContractTerm', MarketingController.ServiceContractTerm);
 router.get('/SconItem', MarketingController.SconItem);
 router.get('/Scall', MarketingController.Scall);
 router.get('/ScallDetail', MarketingController.ScallDetail);
