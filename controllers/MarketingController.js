@@ -183,7 +183,7 @@ exports.ServiceContractTerm = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
   // var sql = 'select "ContractID" as "ID Contract", "StartDate" as "Start Date" from octr order by "StartDate" desc';
 
-  var sql = 'select T0."ContractID" as "ContractNo", T0."CstmrCode" as "CustomerCode", T0."CstmrName" as "Name", SUBSTRING(T0."StartDate", 1,10) as "StartDate", SUBSTRING(T0."EndDate",1,10) as "EndDate", SUBSTRING(T0."CreateDate",1,10) as "CreateDate",T0."Remarks1" as "Comment",T0."Remarks2" as "Remarks",T0."U_FH_TERM" as "Term",SUBSTRING(T0."U_FH_CTR_START_DATE",1,10) as "ContractStartDate",SUBSTRING(T0."U_FH_CTR_DATE",1,10) as "ContractDate", SUBSTRING(T0."U_FH_CTR_END_DATE",1,10) as "ContractEndDate",T0."U_FH_SO_DOCNUM" as "no_so", T0."Descriptio" as "PO", SUBSTRING(T0."U_FH_PO_DATE",1,10) as "PODate",SUBSTRING(T0."TermDate",1,10) as "TermDate", T0."CntctCode" as "codeContact",T0."CntrcTmplt" as "Type Contract",T0."U_FH_CTR_NUM" as "NomorContract", T1."Name" as "contactName", T1."Tel1" as "contactPhone" from octr T0 join ocpr T1 ON T0."CntctCode" = T1."CntctCode" where "StartDate" =  ' + "'" + req.query.year + "'" + ' AND T0."TermDate" IS not NULL ORDER BY T0."ContractID" desc';
+  var sql = 'select T0."ContractID" as "ContractNo", T0."CstmrCode" as "CustomerCode", T0."CstmrName" as "Name", SUBSTRING(T0."StartDate", 1,10) as "StartDate", SUBSTRING(T0."EndDate",1,10) as "EndDate", SUBSTRING(T0."CreateDate",1,10) as "CreateDate",T0."Remarks1" as "Comment",T0."Remarks2" as "Remarks",T0."U_FH_TERM" as "Term",SUBSTRING(T0."U_FH_CTR_START_DATE",1,10) as "ContractStartDate",SUBSTRING(T0."U_FH_CTR_DATE",1,10) as "ContractDate", SUBSTRING(T0."U_FH_CTR_END_DATE",1,10) as "ContractEndDate",T0."U_FH_SO_DOCNUM" as "no_so", T0."Descriptio" as "PO", SUBSTRING(T0."U_FH_PO_DATE",1,10) as "PODate",SUBSTRING(T0."TermDate",1,10) as "TermDate", T0."CntctCode" as "codeContact",T0."CntrcTmplt" as "Type Contract",T0."U_FH_CTR_NUM" as "NomorContract", T1."Name" as "contactName", T1."Tel1" as "contactPhone" from octr T0 join ocpr T1 ON T0."CntctCode" = T1."CntctCode" where SUBSTRING(T0."StartDate", 3,2) in (' + req.body.year + ') AND T0."TermDate" IS not NULL ORDER BY T0."ContractID" desc';
 
   connection.runQuery(res, sql);
 };
@@ -274,7 +274,7 @@ exports.fh_oscl = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select distinct coalesce("ItemFull", "ItemName") AS "ItemFullName","ItemCapacity", CONCAT("ItemBrand","ItemModel") as "Items", "ItemType" from fh_oscl T4 where T4."ItemType" is not null and T4."ItemCapacity" is not null and T4."ItemSN"=' + "'" + req.query.req + "'" + '';
+    var sql = 'select distinct coalesce("ItemFull", "ItemName") AS "ItemFullName","ItemCapacity", CONCAT("ItemBrand","ItemModel") as "Items", "ItemType","ItemMeasurement" from fh_oscl T4 where T4."ItemType" is not null and T4."ItemCapacity" is not null and T4."ItemSN"=' + "'" + req.query.req + "'" + '';
 
   connection.runQuery(res, sql);
 };
