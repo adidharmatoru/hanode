@@ -34,6 +34,7 @@ router.get('/outstandingBigSales', ReportController.outstandingBigSales);
 router.get('/purchaseOrderInternalReport', ReportController.purchaseOrderInternalReport);
 router.get('/serialNumberService', ReportController.serialNumberService);
 router.get('/pdcaFinanceServices', ReportController.pdcaFinanceServices);
+router.get('/seriesnameSOproject', ReportController.seriesnameSOproject);
 router.get('/alternateItemReport', ReportController.alternateItemReport);
 router.get('/itemReadyForSales', ReportController.itemReadyForSales);
 router.get('/itemReadyPO', ReportController.itemReadyPO);

@@ -258,6 +258,17 @@ exports.pdcaFinanceServices = function (req, res) {
   connection.runQuery(res, sql);
 }
 
+exports.seriesnameSOproject = function(req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select distinct ordr."Series", nnm1."SeriesName" from ordr join nnm1 on ordr."Series"=nnm1."Series" where nnm1."SeriesName" LIKE ' + "'" +  'SOMRK%' + "'" + ' or nnm1."SeriesName" LIKE ' + "'" +  'SOSS%' + "'" + ' or nnm1."SeriesName" in (' + "'SO16'" + ',' + "'SO17'" + ',' + "'SO18'" + ',' + "'SO19'" + ',' + "'SO20'" + ',' + "'SO21'" + ',' + "'SO22'" + ') order by nnm1."SeriesName"'
+
+  connection.runQuery(res, sql);
+}
+
 exports.alternateItemReport = function (req, res) {
 
   var sql='select oali."OrigItem" as "Original Item Code", oali."AltItem" as "Alternative Item Code",oitm."ItemName" as "Item Description", oitm."U_DM_MODEL" as "Model" ,oitm."U_DM_CAPACITY" || oitm."U_DM_MEASUREMENT" as "Kapasitas", oitm."OnHand" as "Qty On Hand", oitm."IsCommited" as "Qty Is Commited", oitm."OnOrder" as "Qty On Order" from oali left join oitm on oali."AltItem" = oitm."ItemCode" union select distinct oali."OrigItem", oali."OrigItem", oitm."ItemName", oitm."U_DM_MODEL", oitm."U_DM_CAPACITY", oitm."OnHand", oitm."IsCommited", oitm."OnOrder" from oali left join oitm on oali."OrigItem" = oitm."ItemCode" order by "Original Item Code"'
