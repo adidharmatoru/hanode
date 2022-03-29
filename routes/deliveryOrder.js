@@ -5,6 +5,7 @@ const DeliveryOrderController = require('../controllers/DeliveryOrderController'
 router.get('/', DeliveryOrderController.index);
 router.get('/close', DeliveryOrderController.close);
 router.get('/findDocEntry', DeliveryOrderController.findDocEntry);
+router.get('/trackingSN', DeliveryOrderController.trackingserialNumber);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);

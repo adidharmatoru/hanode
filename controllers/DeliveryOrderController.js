@@ -31,3 +31,11 @@ exports.findDocEntry = function(req, res) {
 
   connection.runQuery(res, sql);
 };
+
+exports.trackingserialNumber = function(req, res){
+
+
+  var sql = 'select	A."ItemCode",	A."itemName",	A."DistNumber",	D."Name" AS "Doc Type",	C."DocNum",	C."DocDate",	C."CardCode",	C."CardName",	CASE WHEN C."DocQty" < 0 THEN ' + "'" + "OUT" + "'" + ' ELSE ' + "'" + "IN" + "'" + ' END AS "MutationType",	E."WhsCode",	F."U_VIT_WGSA",	F."U_VIT_WGBA",A."MnfDate" as "Mfr End Date Batt",A."GrntExp" as "Mfr Warranty End UPS",A."Notes"from OSRN A INNER JOIN ITL1 B ON A."ItemCode" = B."ItemCode" AND A."SysNumber" = B."SysNumber"INNER JOIN OITL C ON B."LogEntry" = C."LogEntry" INNER JOIN "@VIT_OT" D ON C."DocType" = D."Code" INNER JOIN OWHS E ON C."LocCode" = E."WhsCode" AND C."LocType" = 64 LEFT JOIN (	SELECT	X."LineNum", Y.*	FROM ODLN Y INNER JOIN DLN1 X ON X."DocEntry" = Y."DocEntry") F ON C."DocType" = F."ObjType" AND C."DocEntry" = F."DocEntry" AND C."DocLine" = F."LineNum" WHERE A."DistNumber" =  ' + "'" + req.query.code + "'" + ' ORDER BY C."ItemCode", A."DistNumber",C."LogEntry", C."DocNum"';
+
+  connection.runQuery(res, sql);
+}
