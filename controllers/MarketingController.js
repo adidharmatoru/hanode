@@ -272,7 +272,7 @@ exports.fh_oscl = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select distinct coalesce("ItemFull", "ItemName") AS "ItemFullName","ItemCapacity", CONCAT("ItemBrand","ItemModel") as "Items", "ItemType","ItemMeasurement" from fh_oscl T4 where T4."ItemType" is not null and T4."ItemCapacity" is not null and T4."ItemSN"=' + "'" + req.query.req + "'" + '';
+    var sql = 'select distinct coalesce("ItemFull", "ItemName") AS "ItemFullName","ItemCapacity", CONCAT("ItemBrand","ItemModel") as "Items", "ItemType","ItemMeasurement","ItemSN" from fh_oscl T4 where T4."ItemType" is not null and T4."ItemCapacity" is not null and T4."ItemSN"=' + "'" + req.query.req + "'" + '';
 
   connection.runQuery(res, sql);
 };
