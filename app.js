@@ -17,6 +17,7 @@ var items = require('./routes/items');
 var deliveryOrder = require('./routes/deliveryOrder');
 var serviceCall = require('./routes/serviceCall');
 var scheduling = require('./routes/scheduling');
+var reporting = require('./routes/reporting');
 var sales = require('./routes/sales');
 
 var app = express();
@@ -46,6 +47,7 @@ app.use('/salesOrder', salesOrderRouter);
 app.use('/project', projectRouter);
 app.use('/marketing', marketingRouter);
 app.use('/deliveryOrder', deliveryOrder);
+app.use('/reporting', reporting);
 app.use('/serviceCall', serviceCall);
 app.use('/items', items);
 app.use('/scheduling', scheduling);
