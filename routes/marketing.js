@@ -22,6 +22,7 @@ router.get('/SconItem', MarketingController.SconItem);
 router.get('/Scall', MarketingController.Scall);
 router.get('/ScallDetail', MarketingController.ScallDetail);
 router.get('/Inv', MarketingController.Inv);
+router.get('/InvBA', MarketingController.InvBA);
 router.get('/serialNum', MarketingController.serialNum);
 router.get('/attachment', MarketingController.attachment);
 router.get('/scallcreated', MarketingController.scallcreated);
