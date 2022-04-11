@@ -8,6 +8,7 @@ router.get('/serialNumOnCall', SchedulingController.serialNumOnCall);
 router.get('/serialNumOnCallLegacy', SchedulingController.serialNumOnCallLegacy);
 router.get('/serialNumTerminated', SchedulingController.serialNumTerminated);
 router.get('/fh_oscl', SchedulingController.fh_oscl);
+router.get('/oscl_listing', SchedulingController.oscl_listing);
 router.get('/warranty', SchedulingController.warranty);
 
 module.exports = router;
