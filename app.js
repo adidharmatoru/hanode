@@ -19,6 +19,7 @@ var serviceCall = require('./routes/serviceCall');
 var scheduling = require('./routes/scheduling');
 var reporting = require('./routes/reporting');
 var sales = require('./routes/sales');
+var corrective = require('./routes/correctivemaintenance');
 
 var app = express();
 
@@ -52,6 +53,7 @@ app.use('/serviceCall', serviceCall);
 app.use('/items', items);
 app.use('/scheduling', scheduling);
 app.use('/sales', sales);
+app.use('/correctivemaintenance', corrective);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
