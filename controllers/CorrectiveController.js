@@ -33,7 +33,7 @@ exports.salesOrder= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select T3."DocNum" as "DocNum",T3."NumAtCard" as "NoPO",T3."DocDueDate" as SUBSTRING(T3."DocDueDate",1,10),T3."DocDate" as SUBSTRING(T3."DocDate",1,10) from rdr1 T2 left join ordr T3 on T2."DocEntry"=T3."DocEntry" where T3."DocStatus"=' + "O" + ' and T2."BaseEntry" in (' + req.body.so + ')';
+  var sql = 'select T3."DocNum" as "DocNum",T3."NumAtCard" as "NoPO",T3."DocDueDate" as SUBSTRING(T3."DocDueDate",1,10),T3."DocDate" as SUBSTRING(T3."DocDate",1,10) from rdr1 T2 left join ordr T3 on T2."DocEntry"=T3."DocEntry" where T2."BaseEntry" in (' + req.body.so + ')';
 
   connection.runQuery(res, sql);
 };
