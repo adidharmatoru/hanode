@@ -44,7 +44,7 @@ exports.Inv = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-  var sql = 'select T0."DocNum" as "SO_no", T2."DocNum" as "no_inv", T0."U_VIT_TOPY" as "pelunasan",SUBSTRING(T2."DocDate",1,10) as "inv_date", T1."U_VIT_TOT" as "TotPrice" from ordr T0 join inv1 T1 on T1."DocEntry"=T0."DocEntry" left join oinv T2 on T0."DocEntry"=T1."DocEntry" where T0."DocNum" in (' + req.body.inv + ') order by T0."DocNum"';
+  var sql = 'select T0."DocNum" as "SO_no" from ordr T0 join inv1 T1 on T1."DocEntry"=T0."DocEntry" left join oinv T2 on T0."DocEntry"=T1."DocEntry" where T0."DocNum" in (' + req.body.inv + ') order by T0."DocNum"';
 
   connection.runQuery(res, sql);
 };
