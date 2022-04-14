@@ -4,4 +4,5 @@ const CorrectiveController = require('../controllers/CorrectiveController');
 
 router.get('/pdcacorrective', CorrectiveController.corrective);
 router.get('/salesQuotation', CorrectiveController.salesQuotation);
+router.get('/salesOrder', CorrectiveController.salesOrder);
 module.exports = router;
