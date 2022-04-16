@@ -33,7 +33,7 @@ exports.salesQuotation = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."DocEntry" in (' + req.body.sq + ')';
+  var sql = 'select T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry", T3."DocEntry" as "DocEntry" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."DocEntry" in (' + req.body.sq + ')';
 
   connection.runQuery(res, sql);
 };
