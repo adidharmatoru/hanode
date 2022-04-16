@@ -22,7 +22,7 @@ exports.relationscall = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "SrcvCallID","DocAbs" from scl4 where "SrcvCallID" = ' + "'" + req.query.code + "'" + '';
+  var sql = 'select "SrcvCallID","DocAbs" from scl4 where "SrcvCallID" in (' + req.body.so + ')';
 
   connection.runQuery(res, sql);
 };
