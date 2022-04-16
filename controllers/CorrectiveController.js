@@ -22,7 +22,7 @@ exports.relationscall = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "SrcvCallID","DocAbs" from scl4 where "SrcvCallID" in (' + req.body.so + ')';
+  var sql = 'select "SrcvCallID","DocAbs" from scl4 where "SrcvCallID" in (' + req.body.code + ')';
 
   connection.runQuery(res, sql);
 };
@@ -33,7 +33,7 @@ exports.salesQuotation = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."DocEntry" in (' + req.body.code + ')';
+  var sql = 'select T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."DocEntry" in (' + req.body.sq + ')';
 
   connection.runQuery(res, sql);
 };
