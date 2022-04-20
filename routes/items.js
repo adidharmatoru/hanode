@@ -4,6 +4,7 @@ const ItemsController = require('../controllers/ItemsController');
 
 router.get('/masterItems',ItemsController.masterItems);
 router.get('/itemsgroup',ItemsController.itemsgroup);
+router.get('/equipmentcard',ItemsController.equipmentcard);
 
 
 module.exports = router;

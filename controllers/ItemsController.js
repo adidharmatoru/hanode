@@ -21,3 +21,10 @@ exports.itemsgroup = function(req,res,next) {
   var sql = 'select oitm."ItmsGrpCod",oitb."ItmsGrpNam" from oitm join oitb on oitm."ItmsGrpCod"=oitb."ItmsGrpCod"';
   connection.runQuery(res, sql);
 }
+
+exports.equipmentcard = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "customer","custmrName","internalSN","wrrntyStrt","wrrntyEnd","itemCode","itemName","instLction" from oins where "status" = '+ "'A'" +' order by "insID" desc';
+  connection.runQuery(res, sql);
+}
