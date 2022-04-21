@@ -28,3 +28,10 @@ exports.equipmentcard = function(req,res,next) {
   var sql = 'select "customer","custmrName","internalSN","wrrntyStrt","wrrntyEnd","itemCode","itemName","instLction" from oins where "status" = '+ "'A'" +' order by "insID" desc';
   connection.runQuery(res, sql);
 }
+
+exports.itemsAll = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "ItemCode","ItemName" from oitm where "ItemCode" LIKE  ' + "'%" + req.query.code + "%'" + ' order by "ItemCode" DESC';
+  connection.runQuery(res, sql);
+}
