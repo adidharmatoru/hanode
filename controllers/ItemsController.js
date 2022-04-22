@@ -35,3 +35,10 @@ exports.itemsAll = function(req,res,next) {
   var sql = 'select "ItemCode","ItemName" from oitm where "ItemName" LIKE  ' + "'%" + req.query.code + "%'" + ' order by "ItemName" DESC';
   connection.runQuery(res, sql);
 }
+
+exports.itemName = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "ItemCode","ItemName" from oitm where "ItemCode"  =' + "'" + req.query.code + "'" + ' order by "ItemName" DESC';
+  connection.runQuery(res, sql);
+}
