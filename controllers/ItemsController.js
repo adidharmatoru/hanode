@@ -25,7 +25,7 @@ exports.itemsgroup = function(req,res,next) {
 exports.equipmentcard = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select "customer","custmrName","internalSN","wrrntyStrt","wrrntyEnd","itemCode","itemName","instLction" from oins where "status" = '+ "'A'" +' order by "insID" desc';
+  var sql = 'select "custmrName" as "Customer Name","internalSN" as "Serial Number","wrrntyStrt" as "Start Warranty","wrrntyEnd" as "End Warranty","itemCode" as "Item Code","itemName" as "Item Name","instLction" as "Location" from oins where "status" = '+ "'A'" +' order by "insID" desc';
   connection.runQuery(res, sql);
 }
 
