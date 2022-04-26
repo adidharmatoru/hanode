@@ -66,7 +66,7 @@ exports.delivery= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql = 'select distinct T3."DocNum" as "DocNum", T3."DocEntry" as "DocEntry",T4."SrcvCallID" as "callID" from dln1 T2 left join odln T3 on T2."DocEntry"=T3."DocEntry" left join scl4 T4 on T2."BaseEntry"=T4."DocAbs" where and Series in ('+"'1963'"+','+"'1615'"+','+"'1346'"+') T2."DocEntry" in (' + req.body.dlv + ')';
+    var sql = 'select distinct T3."DocNum" as "DocNum", T3."DocEntry" as "DocEntry",T4."SrcvCallID" as "callID" from dln1 T2 left join odln T3 on T2."DocEntry"=T3."DocEntry" left join scl4 T4 on T2."BaseEntry"=T4."DocAbs" where Series in ('+"'1963'"+','+"'1615'"+','+"'1346'"+') and T2."DocEntry" in (' + req.body.dlv + ')';
 
   connection.runQuery(res, sql);
 };
