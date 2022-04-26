@@ -7,4 +7,5 @@ router.get('/relationscall', CorrectiveController.relationscall);
 router.get('/salesQuotation', CorrectiveController.salesQuotation);
 router.get('/salesOrder', CorrectiveController.salesOrder);
 router.get('/Inv', CorrectiveController.Inv);
+router.get('/delivery', CorrectiveController.delivery);
 module.exports = router;
