@@ -33,7 +33,7 @@ exports.salesQuotation = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select distinct T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry", T3."DocEntry" as "DocEntry" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."Series"in ('+"'1720'"+','+ "'2149'"+') and T3."DocEntry" in (' + req.body.sq + ')';
+  var sql = 'select distinct T3."DocNum" as "DocNum", T2."TrgetEntry" as "TargetEntry", T3."DocEntry" as "DocEntry",SUBSTRING(T3."CreateDate",1,10) as "CreateDate" from qut1 T2 left join oqut T3 on T2."DocEntry"=T3."DocEntry" where T3."Series"in ('+"'1720'"+','+ "'2149'"+') and T3."DocEntry" in (' + req.body.sq + ')';
 
   connection.runQuery(res, sql);
 };
@@ -44,7 +44,7 @@ exports.salesOrder= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql = 'select distinct T3."DocNum" as "DocNum",T3."NumAtCard" as "NoPO",SUBSTRING(T3."TaxDate",1,10) as "TaxDate" ,SUBSTRING(T3."DocDueDate",1,10) as "DocDueDate" , SUBSTRING(T3."DocDate",1,10) as "DocDate", T2."BaseEntry" as "BaseEntry",T4."SrcvCallID" as "callID" from rdr1 T2 left join ordr T3 on T2."DocEntry"=T3."DocEntry" left join scl4 T4 on T2."BaseEntry"=T4."DocAbs" where T2."BaseEntry" in (' + req.body.so + ')';
+    var sql = 'select distinct T3."DocNum" as "DocNum",T3."NumAtCard" as "NoPO",SUBSTRING(T3."TaxDate",1,10) as "TaxDate" ,SUBSTRING(T3."DocDueDate",1,10) as "DocDueDate" , SUBSTRING(T3."DocDate",1,10) as "DocDate", T2."BaseEntry" as "BaseEntry",T4."SrcvCallID" as "callID",SUBSTRING(T3."CreateDate",1,10) as "CreateDate" from rdr1 T2 left join ordr T3 on T2."DocEntry"=T3."DocEntry" left join scl4 T4 on T2."BaseEntry"=T4."DocAbs" where T2."BaseEntry" in (' + req.body.so + ')';
 
   connection.runQuery(res, sql);
 };
