@@ -29,6 +29,34 @@ exports.equipmentcard = function(req,res,next) {
   connection.runQuery(res, sql);
 }
 
+exports.ecDetail = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "insID" as "idEC", "custmrName" as "Customer Name","internalSN" as "Serial Number","wrrntyStrt" as "Start Warranty","wrrntyEnd" as "End Warranty","itemCode" as "Item Code","itemName" as "Item Name","instLction" as "Location",SUBSTRING("createDate",1,10) as "createDate",SUBSTRING("dlvryDate",1,10) as "delivery Date","deliveryNo","street","block","zip","city","county","country","state" from oins where "internalSN" =' + "'" + req.query.code + "'" + '';
+  connection.runQuery(res, sql);
+}
+
+exports.ecScall = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "callID","createDate","subject", from oscl where "internalSN"=' + "'" + req.query.code + "'" + '';
+  connection.runQuery(res, sql);
+}
+
+exports.ecScon = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "ContractID","StartDate","EndDate","TermDate","SrvcType" from octr left join ctr1 on octr."ContractID"=ctr1."ContractID" where ctr1."InternalSN"=' + "'" + req.query.code + "'" + '';
+  connection.runQuery(res, sql);
+}
+
+exports.ecTransaction = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select distinct T0."ItemCode",T2."LogEntry",T2."DocNum",SUBSTRING(T2."DocDate",1,10) as "DocDate",T2."LocCode",T2."CardCode",T2."CardName",T2."DocType" from osrn T0 left join itl1 T1 on T0."AbsEntry"=T1."MdAbsEntry" left join oitl T2 on T1."LogEntry"=T2."LogEntry" where T0."DistNumber"=' + "'" + req.query.code + "'" + '';
+  connection.runQuery(res, sql);
+}
+
 exports.itemsAll = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
