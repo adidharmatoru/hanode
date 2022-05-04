@@ -63,7 +63,7 @@ exports.fh_oscl = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select distinct T4."ItemType" as "Model",T4."ItemCapacity" as "Capacity",T4."ItemFull" as "Item", T4."ItemCode" as "ItemCode",T4."ItemType" as "Type",T4."ItemMeasurement" as "Measurement",T4."ItemSN" as "serialNum",T3."ContractID" as "ContractID" from fh_oscl T4 join CTR1 T1 on T1."InternalSN"=T4."ItemSN"join OCTR T3 on T1."ContractID"=T3."ContractID"join oins T0 on T1."InsID"=T0."insID" where T4."ItemType" is not null and T4."ItemCapacity" is not null and T0."status"=' + "'" + 'A' + "'" + ' and T3."ContractID"=' + "'" + req.query.cid + "'" + '';
+    var sql = 'select distinct T4."ItemType" as "Model",T4."ItemCapacity" as "Capacity",T4."ItemFull" as "Item", T4."ItemCode" as "ItemCode",T4."ItemType" as "Type",T4."ItemMeasurement" as "Measurement",T4."ItemSN" as "serialNum",T3."ContractID" as "ContractID" from fh_oscl T4 join CTR1 T1 on T1."InternalSN"=T4."ItemSN"join OCTR T3 on T1."ContractID"=T3."ContractID"join oins T0 on T1."InsID"=T0."insID" where T4."ItemType" is not null and T4."ItemCapacity" is not null and T0."status"=' + "'" + 'A' + "'" + ' and T3."ContractID"=' + "'" + req.query.cid + "'" + ' order by T4."ItemSN"';
 
   connection.runQuery(res, sql);
 };
@@ -74,7 +74,7 @@ exports.fh_oscl_one = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-    var sql = 'select distinct T4."ItemType" as "Model",T4."ItemCapacity" as "Capacity",T4."ItemFull" as "Item", T4."ItemCode" as "ItemCode",T4."ItemType" as "Type",T4."ItemMeasurement" as "Measurement",T4."ItemSN" as "serialNum",T3."ContractID" as "ContractID" from fh_oscl T4 join CTR1 T1 on T1."InternalSN"=T4."ItemSN"join OCTR T3 on T1."ContractID"=T3."ContractID"join oins T0 on T1."InsID"=T0."insID" where T4."ItemType" is not null and T4."ItemCapacity" is not null and T0."status"=' + "'" + 'A' + "'" + ' and T3."ContractID" in (' + req.body.cid + ') and T4."ItemSN" in (' + req.body.code + ')';
+    var sql = 'select distinct T4."ItemType" as "Model",T4."ItemCapacity" as "Capacity",T4."ItemFull" as "Item", T4."ItemCode" as "ItemCode",T4."ItemType" as "Type",T4."ItemMeasurement" as "Measurement",T4."ItemSN" as "serialNum",T3."ContractID" as "ContractID" from fh_oscl T4 join CTR1 T1 on T1."InternalSN"=T4."ItemSN"join OCTR T3 on T1."ContractID"=T3."ContractID"join oins T0 on T1."InsID"=T0."insID" where T4."ItemType" is not null and T4."ItemCapacity" is not null and T0."status"=' + "'" + 'A' + "'" + ' and T3."ContractID" =' + "'" + req.query.cid + "'" + ' and T4."ItemSN" =' + "'" + req.query.code + "'" + '';
 
   connection.runQuery(res, sql);
 };
