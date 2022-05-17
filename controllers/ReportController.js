@@ -252,7 +252,7 @@ exports.pdcaFinanceServices = function (req, res) {
   var startDate = req.query.startDate || '';
   var endDate = req.query.endDate || '';
 
-  var sql='select distinct ordr."CardName" as "Customer Name", nnm1."SeriesName" as "Series", ordr."DocNum" as "Document Number", ordr."DocDate" as "Date", ordr."NumAtCard" as "PO", ordr."U_VIT_TOPY" as "Term of Payment", ordr."DocTotal" as "Total", odln."DocNum" as "Nomor DO",ordr."DocStatus" as "Status", rdr1."Project" as "CodeProject" from ordr left join rdr1 on rdr1."DocEntry" = ordr."DocEntry" left join dln1 on dln1."BaseEntry" = rdr1."DocEntry"left join odln on dln1."DocEntry" = odln."DocEntry" left join inv1 on inv1."BaseEntry" = dln1."DocEntry" left join oinv on inv1."DocEntry" = oinv."DocEntry" left join nnm1 on ordr."Series" = nnm1."Series" where nnm1."Series" in (' + req.query.series + ') and (rdr1."TargetType" = -1 or dln1."TargetType" = -1) and ordr."DocDate" BETWEEN '+ "'" + startDate + "'" +' AND '+ "'" + endDate + "'" +' and ordr."CANCELED" != ' + "'" + 'Y' + "'" + ' order by ordr."DocDate"'
+  var sql='select distinct ordr."CardName" as "Customer Name", nnm1."SeriesName" as "Series", ordr."DocNum" as "Document Number", SUBSTRING(ordr."DocDate",1,10) as "Date", ordr."NumAtCard" as "PO", ordr."U_VIT_TOPY" as "Term of Payment", ordr."DocTotal" as "Total", odln."DocNum" as "Nomor DO",ordr."DocStatus" as "Status", rdr1."Project" as "CodeProject" from ordr left join rdr1 on rdr1."DocEntry" = ordr."DocEntry" left join dln1 on dln1."BaseEntry" = rdr1."DocEntry"left join odln on dln1."DocEntry" = odln."DocEntry" left join inv1 on inv1."BaseEntry" = dln1."DocEntry" left join oinv on inv1."DocEntry" = oinv."DocEntry" left join nnm1 on ordr."Series" = nnm1."Series" where nnm1."Series" in (' + req.query.series + ') and (rdr1."TargetType" = -1 or dln1."TargetType" = -1) and ordr."DocDate" BETWEEN '+ "'" + startDate + "'" +' AND '+ "'" + endDate + "'" +' and ordr."CANCELED" != ' + "'" + 'Y' + "'" + ' order by ordr."DocDate"'
 
   connection.runQuery(res, sql);
 }
@@ -283,13 +283,13 @@ var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHa
   // connection.printQuery(res, sql);
 }
 exports.itemReadyPO = function (req, res) {
-var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode",T1."DocNum" as "NomorPO" from por1 T0 join opor T1 on T0."DocEntry" = T1."DocEntry" where "ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + ' and T0."LineStatus"= ' + "'" + 'O' + "'" + '';
+var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode",T1."DocNum" as "NomorPO",T2."SlpName" as "SalesName" from por1 T0 join opor T1 on T0."DocEntry" = T1."DocEntry" left join oslp T2 on T1."SlpCode"=T2."SlpCode" where "ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + ' and T0."LineStatus"= ' + "'" + 'O' + "'" + '';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
 }
 exports.itemReadySO = function (req, res) {
-var sql = 'select T0."DocEntry",T1."NumAtCard" as "NomorPO", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode"from rdr1 T0 join ordr T1 on T0."DocEntry" = T1."DocEntry"  where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + '  and T0."LineStatus"=' + "'" + 'O' + "'" + ' and T0."InvntSttus"=' + "'" + 'O' + "'" + ' and T0."LnExcised"=' + "'" + 'O' + "'" + '';
+var sql = 'select T0."DocEntry",T1."NumAtCard" as "NomorPO", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode", T2."SlpName" as "SalesName" from rdr1 T0 join ordr T1 on T0."DocEntry" = T1."DocEntry" left join oslp T2 on T1."SlpCode"=T2."SlpCode" where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + '  and T0."LineStatus"=' + "'" + 'O' + "'" + ' and T0."InvntSttus"=' + "'" + 'O' + "'" + ' and T0."LnExcised"=' + "'" + 'O' + "'" + '';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
