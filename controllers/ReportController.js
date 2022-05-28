@@ -295,6 +295,13 @@ var sql = 'select T1."DocNum" as "DocNum", T0."DocEntry",T1."NumAtCard" as "Nomo
   // connection.printQuery(res, sql);
 }
 
+exports.itemReadyWarehouse = function (req, res) {
+var sql = 'select T1."ItemCode",T2."WhsCode",T1."OnHand",T1."IsCommited",T1."OnOrder" from oitw T1 join owhs T2 on T1."WhsCode"=T2."WhsCode" where T1."ItemCode" in (' + req.query.code + ') and T2."WhsCode" in (' + "'BITRFS'" + ',' + "'PIKRFSNB'" + ',' + "'PIKRFS'" + ',' + "'KTBRFS'" + ',' + "'BMSRFS'" + ',' + "'BMSRFSNB'" + ',' + "'CBTRFS'" + ')';
+
+  connection.runQuery(res, sql);
+  // connection.printQuery(res, sql);
+}
+
 exports.sqCPRecapProgressOpenbyYear = function (req, res) {
   var sql = 'select SUBSTR_BEFORE(ou."DocDate", ' + "'" + ' ' + "'" + ') as "DocDate", n."SeriesName", ou."DocNum" as "SQ Number", ou."CardName", bp1."Name", bp."Phone1", bp1."Tel1", bp1."Cellolar", bp1."E_MailL", ou."Address", ou1."Dscription", ou1."Quantity", tb."ItmsGrpNam" from oqut ou join ohem hr on hr."empID" = ou."OwnerCode" left join oslp os on os."SlpCode" = ou."SlpCode" left join qut1 ou1 on ou1."DocEntry" = ou."DocEntry" left join ocpr bp1 on bp1."CntctCode" = ou."CntctCode" left join ocrd bp on bp."CardCode" = ou."CardCode" left join nnm1 n on ou."Series" = n."Series" left join oitm tm on tm."ItemCode" = ou1."ItemCode" left JOIN OITB tb ON tb."ItmsGrpCod" = tm."ItmsGrpCod" where hr."empID" in (' + req.query.empID + ') AND "DocStatus" = ' + "'" + 'O' + "'" + ' and CANCELED = ' + "'" + 'N' + "'" + ' and tb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and left(ou."DocDate", 4) in (' + req.query.year + ')';
 
