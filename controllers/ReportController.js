@@ -143,7 +143,7 @@ exports.purchaseOrderPerProject = function(req, res, next) {
 };
 
 exports.listingPenawaran = function(req, res, next) {
-  var sql = 'SELECT * from DM_WO';
+  var sql = 'SELECT * from DM_WO order by "CREATE_DATE" DESC';
 
   connection.runQuery(res, sql);
 };
