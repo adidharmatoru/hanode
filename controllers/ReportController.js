@@ -143,7 +143,7 @@ exports.purchaseOrderPerProject = function(req, res, next) {
 };
 
 exports.listingPenawaran = function(req, res, next) {
-  var sql = 'SELECT * from DM_WO order by "CREATE_DATE" DESC';
+  var sql = 'select t1."CardCode",t1."CUSTOMER",t1."LOCATION",t1."ItemCode",t1."DocStatus",t1."WO_DATE",t1."REJECT_REASON",t1."ITEM",t1."SERIAL",t1."SERIES",t1."SC_CALLID",t1."SC_DOCNUM",t1."CONTRACT",t1."CREATE_DATE",t1."SQ_DOCENTRY",t1."SQ_DOCNUM",t1."SQ_DATE",t1."SERIESTYPE",t1."ATCENTRY",atc."FileExt",atc."FileName",atc."trgtPath" from DM_WO t1 left join atc1 atc on t1."ATCENTRY"=atc."AbsEntry" order by t1."CREATE_DATE" DESC';
 
   connection.runQuery(res, sql);
 };
