@@ -6,6 +6,7 @@ router.get('/', DeliveryOrderController.index);
 router.get('/close', DeliveryOrderController.close);
 router.get('/findDocEntry', DeliveryOrderController.findDocEntry);
 router.get('/trackingSN', DeliveryOrderController.trackingserialNumber);
+router.get('/cekwarranty', DeliveryOrderController.cekwarranty);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
