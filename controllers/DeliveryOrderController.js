@@ -38,6 +38,12 @@ exports.trackingserialNumber = function(req, res){
   connection.runQuery(res, sql);
 }
 
+exports.serialnumber = function(req, res){
+  var sql = 'select   "DistNumber",   "ItemCode" from   osrn Where   "DistNumber" LIKE ' + "' % " + req.query.code + " % '" + '   AND "status" = '+"' A '"+' order by   "DistNumber"';
+
+  connection.runQuery(res,sql);
+}
+
 exports.cekwarranty = function(req,res)
 {
   res.setHeader('Access-Control-Allow-Origin', '*');
