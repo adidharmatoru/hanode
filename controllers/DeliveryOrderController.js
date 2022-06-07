@@ -48,8 +48,8 @@ exports.serialnumber = function(req, res){
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); //
-  
-  var sql = 'select "DistNumber", "ItemCode" from osrn Where "DistNumber" LIKE ' + "' % " + req.query.code + " % '" + ' order by "DistNumber"';
+
+  var sql = 'select "DistNumber", "ItemCode" from osrn Where "DistNumber" LIKE ' + "'%" + req.query.code + "%'" + ' order by "DistNumber"';
 
   connection.runQuery(res,sql);
 };
