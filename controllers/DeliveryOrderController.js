@@ -39,7 +39,7 @@ exports.trackingserialNumber = function(req, res){
 }
 
 exports.serialnumber = function(req, res){
-  var sql = 'select   "DistNumber",   "ItemCode" from   osrn Where   "DistNumber" LIKE ' + "' % " + req.query.code + " % '" + '   AND "status" = '+"' A '"+' order by   "DistNumber"';
+  var sql = 'select "DistNumber", "ItemCode" from osrn Where "DistNumber" LIKE ' + "' % " + req.query.code + " % '" + ' AND "Status" = '+"' A '"+' order by "DistNumber"';
 
   connection.runQuery(res,sql);
 }
