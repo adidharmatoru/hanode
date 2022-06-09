@@ -26,6 +26,7 @@ router.get('/serialNum', MarketingController.serialNum);
 router.get('/attachment', MarketingController.attachment);
 router.get('/scallcreated', MarketingController.scallcreated);
 router.get('/scalldone', MarketingController.reportscalldone);
+router.get('/listingPenawaran', MarketingController.reportlistingPenawaran);
 router.get('/fh_oscl', MarketingController.fh_oscl);
 
 module.exports = router;
