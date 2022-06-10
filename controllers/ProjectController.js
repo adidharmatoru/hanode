@@ -197,7 +197,7 @@ exports.addwarranty = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-var sql =  'select A."DistNumber",A."ItemCode",A."itemName",SUBSTRING(Y."DocDate",1,10) as "DoDate",Y."DocNum" as "NoDO",SUBSTRING(F."DocDate",1,10) as "SoDate", F."DocNum" as "NoSO" from OSRN A   INNER JOIN ITL1 B ON A."ItemCode" = B."ItemCode"   AND A."SysNumber" = B."SysNumber" INNER JOIN OITL C ON B."LogEntry" = C."LogEntry"  INNER JOIN odln Y on  C."DocType" = Y."ObjType" AND C."DocEntry" = Y."DocEntry"   INNER JOIN dln1 X on X."DocEntry" = Y."DocEntry" AND C."DocLine" = X."LineNum"  INNER JOIN rdr1 Z on X."BaseEntry" = Z."DocEntry"  INNER JOIN ordr F on Z."DocEntry" = F."DocEntry" where X."Project"= ' + "'" + req.query.prj + "'" + '';
+var sql =  'select   A."DistNumber",   A."ItemCode",   A."itemName",   SUBSTRING(Y."DocDate", 1, 10) as "DoDate",   Y."DocNum" as "NoDO",   SUBSTRING(F."DocDate", 1, 10) as "SoDate",   F."DocNum" as "NoSO",   Y."U_VIT_WGSA" as "Warranty-SparePart",   Y."U_VIT_WGBA" as "Warranty-Battery" from   OSRN A   INNER JOIN ITL1 B ON A."ItemCode" = B."ItemCode"   AND A."SysNumber" = B."SysNumber"   INNER JOIN OITL C ON B."LogEntry" = C."LogEntry"   INNER JOIN odln Y on C."DocType" = Y."ObjType"   AND C."DocEntry" = Y."DocEntry"   INNER JOIN dln1 X on X."DocEntry" = Y."DocEntry"   AND C."DocLine" = X."LineNum"   INNER JOIN rdr1 Z on X."BaseEntry" = Z."DocEntry"   INNER JOIN ordr F on Z."DocEntry" = F."DocEntry" where   X."Project" = ' + "'" + req.query.prj + "'" + '';
 
   connection.runQuery(res, sql);
 }
