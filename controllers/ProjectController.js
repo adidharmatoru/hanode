@@ -197,7 +197,7 @@ exports.addwarranty = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-var sql =  'select A."DistNumber",A."ItemCode",A."itemName" from OSRN A INNER JOIN ITL1 B ON A."ItemCode" = B."ItemCode" AND A."SysNumber" = B."SysNumber" INNER JOIN OITL C ON B."LogEntry" = C."LogEntry" INNER JOIN odln Y on C."DocType" = Y."ObjType" AND C."DocEntry" = Y."DocEntry" INNER JOIN dln1 X on X."DocEntry" = Y."DocEntry" AND C."DocLine" = X."LineNum" where X."Project"= ' + req.query.prj + '';
+var sql =  'select A."DistNumber",A."ItemCode",A."itemName" from OSRN A INNER JOIN ITL1 B ON A."ItemCode" = B."ItemCode" AND A."SysNumber" = B."SysNumber" INNER JOIN OITL C ON B."LogEntry" = C."LogEntry" INNER JOIN odln Y on C."DocType" = Y."ObjType" AND C."DocEntry" = Y."DocEntry" INNER JOIN dln1 X on X."DocEntry" = Y."DocEntry" AND C."DocLine" = X."LineNum" where X."Project"= ' + "'" + req.query.prj + "'" + '';
 
   connection.runQuery(res, sql);
 }
