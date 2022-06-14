@@ -303,7 +303,7 @@ var sql = 'select T1."ItemCode",T2."WhsCode",T1."OnHand",T1."IsCommited",T1."OnO
 }
 
 exports.itemReadyWarehousetest = function (req, res) {
-var sql = '  select   T1."ItemCode",   T2."WhsCode",   T1."OnHand",   T1."IsCommited",   T1."OnOrder",   a."BuyUnitMsr" from   oitm a   right join oitw T1 on a."ItemCode" = T1."ItemCode"   join owhs T2 on T1."WhsCode" = T2."WhsCode" where   T1."ItemCode" in (' + req.query.code + ')  T2."WhsCode" in ('  + req.query.whscode + ')  and T1."OnHand" != ' + "' " + '0' + " '" + '   or T1."ItemCode" in (' + req.query.code + ')   T2."WhsCode" in ('  + req.query.whscode + ')  and T1."IsCommited" != ' + "' " + '0' + " '" + '   or T1."ItemCode" in (' + req.query.code + ')   T2."WhsCode" in ('  + req.query.whscode + ')  and T1."OnOrder" != ' + "' " + '0' + " '" + '';
+var sql = '  select   T1."ItemCode",   T2."WhsCode",   T1."OnHand",   T1."IsCommited",   T1."OnOrder",   a."BuyUnitMsr" from   oitm a   right join oitw T1 on a."ItemCode" = T1."ItemCode"   join owhs T2 on T1."WhsCode" = T2."WhsCode" where   T1."ItemCode" in (' + req.query.code + ') and T2."WhsCode" in ('  + req.query.whscode + ')  and T1."OnHand" != ' + "' " + '0' + " '" + '   or T1."ItemCode" in (' + req.query.code + ') and  T2."WhsCode" in ('  + req.query.whscode + ')  and T1."IsCommited" != ' + "' " + '0' + " '" + '   or T1."ItemCode" in (' + req.query.code + ') and  T2."WhsCode" in ('  + req.query.whscode + ')  and T1."OnOrder" != ' + "' " + '0' + " '" + '';
 
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
