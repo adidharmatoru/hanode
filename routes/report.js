@@ -40,7 +40,7 @@ router.get('/itemReadyForSales', ReportController.itemReadyForSales);
 router.get('/itemReadyPO', ReportController.itemReadyPO);
 router.get('/itemReadySO', ReportController.itemReadySO);
 router.get('/itemReadyWarehouse', ReportController.itemReadyWarehouse);
-router.get('/itemReadyWarehousetest', ReportController.itemReadyWarehousetest);
+router.get('/itemReadyWarehousesales', ReportController.itemReadyWarehousesales);
 router.get('/sqCPRecapProgressOpenbyYear', ReportController.sqCPRecapProgressOpenbyYear);
 router.get('/pdcaSalesServices', ReportController.pdcaSalesServices);
 
