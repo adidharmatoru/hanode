@@ -46,7 +46,7 @@ exports.ecScall = function(req,res,next) {
 exports.ecScon = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select octr."ContractID",octr."StartDate",octr."EndDate",octr."TermDate",octr."SrvcType" from octr left join ctr1 on octr."ContractID"=ctr1."ContractID" where ctr1."InternalSN"=' + "'" + req.query.code + "'" + '';
+  var sql = ' select octr."ContractID", SUBSTRING( octr."StartDate", 1, 10) as "StartDate", SUBSTRING( octr."EndDate", 1, 10) as "EndDate",  octr."TermDate", octr."SrvcType" from octr left join ctr1 on octr."ContractID" = ctr1."ContractID" where ctr1."InternalSN" = ' + "' " + req.query.code + " '" + '';
   connection.runQuery(res, sql);
 }
 
