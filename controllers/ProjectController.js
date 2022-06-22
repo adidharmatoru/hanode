@@ -128,7 +128,7 @@ exports.bastINS = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select * from oprj where "PrjCode" LIKE  ' + "'%" + req.query.code + "%'" + ' and "U_ContactCode" is not null and "U_CloseDate" is null order by oprj."PrjCode"';
+  var sql = 'select * from oprj where "PrjCode" LIKE  ' + "'%" + req.query.code + "%'" + ' and "U_ContactCode" is not null and and "U_Status" != ' + "'" + 'D' + "'" + ' order by oprj."PrjCode"';
   // var sql = 'select * from oprj limit 5';
 
   connection.runQuery(res, sql);
