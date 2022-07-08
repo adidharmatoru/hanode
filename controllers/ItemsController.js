@@ -22,6 +22,13 @@ exports.itemsgroup = function(req,res,next) {
   connection.runQuery(res, sql);
 }
 
+exports.equipmentcard = function(req,res,next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select distinct a."insID" as "idEC", a."custmrName" as "Customer Name", a."internalSN" as "Serial Number", SUBSTRING(b."DocDate",1,10) as "Start Warranty", a."wrrntyEnd" as "End Warranty", a."itemCode" as "Item Code", a."itemName" as "Item Name", a."instLction" as "Location" from oins a left join dln1 b on a."delivery"=b."DocEntry"where "status" = ' + "'" + 'A' + "'" + ' order by "insID" desc limit 20';
+  connection.runQuery(res, sql);
+}
+
 exports.ecDetail = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
