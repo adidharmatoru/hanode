@@ -36,6 +36,7 @@ exports.relationscall = function(req, res, next) {
 
   var sql = 'select distinct "SrcvCallID","DocAbs" from scl4 where "SrcvCallID" in (' + req.body.code + ')';
 
+
   connection.runQuery(res, sql);
 };
 
