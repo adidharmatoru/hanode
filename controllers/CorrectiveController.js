@@ -90,7 +90,7 @@ exports.deliveryktb= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql = 'select distinct t1."Price", d1."Dscription",d1."ItemCode" from dln1 d1 left join qut1 t1 on d1."DocEntry" = t1."TrgetEntry" and d1."BaseLine"=t1."LineNum" where d1."DocEntry" = ' + "'" + req.query.code + "'";
+    var sql = 'select distinct t1."Price", d1."Dscription",d1."ItemCode", t1."DocNum" as "NomorSQKTB", d1."DocNum" as "NomorDOKTB" from dln1 d1 left join qut1 t1 on d1."DocEntry" = t1."TrgetEntry" and d1."BaseLine"=t1."LineNum" where d1."DocEntry" = ' + "'" + req.query.code + "'";
 
   connection.runQuery(res, sql);
 };
