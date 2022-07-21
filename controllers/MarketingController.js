@@ -34,7 +34,7 @@ exports.customerall = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CardCode", "CardName","Phone1" from OCRD where "CardName" order by "CardName" DESC';
+  var sql = 'select "CardCode", "CardName","Phone1" from OCRD order by "CardName" DESC';
 
   connection.runQuery(res, sql);
 };
