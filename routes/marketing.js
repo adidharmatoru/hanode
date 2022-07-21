@@ -5,6 +5,7 @@ const MarketingController = require('../controllers/MarketingController');
 router.get('/', MarketingController.index);
 router.get('/show', MarketingController.show);
 router.get('/customer', MarketingController.customer);
+router.get('/customerall', MarketingController.customerall);
 router.get('/contact', MarketingController.contact);
 router.get('/so', MarketingController.so);
 router.get('/docTotal', MarketingController.docTotal);

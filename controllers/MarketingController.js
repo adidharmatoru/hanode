@@ -28,6 +28,17 @@ exports.customer = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.customerall = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "CardCode", "CardName","Phone1" from OCRD where "CardName" order by "CardName" DESC';
+
+  connection.runQuery(res, sql);
+};
+
 exports.so = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
