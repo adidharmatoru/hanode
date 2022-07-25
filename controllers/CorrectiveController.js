@@ -90,7 +90,7 @@ exports.deliveryktb= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql = 'select distinct t1."Price", d1."Dscription",d1."ItemCode", t1."Dscription" as "ItemNameSQ",t1."ItemCode" as "ItemCodeSQ", t1."Quantity" as "qtySQ", d1."Quantity", t2."DocNum" as "NomorSQKTB", d2."DocNum" as "NomorDOKTB" from dln1 d1 full join qut1 t1 on d1."DocEntry" = t1."TrgetEntry" and d1."BaseLine"=t1."LineNum" left join oqut t2 on t1."DocEntry"=t2."DocEntry" left join odln d2 on d1."DocEntry" = d2."DocEntry" where d1."DocEntry" = ' + "'" + req.query.code + "'" + ' or t1."DocEntry" = ' + "'" + req.query.docentrysq + "'";
+    var sql = 'select distinct t1."Price" as "unitprice", d1."Dscription",d1."ItemCode", t1."Dscription" as "ItemNameSQ",t1."ItemCode" as "ItemCodeSQ", t1."Quantity" as "qtySQ", d1."Quantity", t2."DocNum" as "NomorSQKTB", d2."DocNum" as "NomorDOKTB" from dln1 d1 full join qut1 t1 on d1."DocEntry" = t1."TrgetEntry" and d1."BaseLine"=t1."LineNum" left join oqut t2 on t1."DocEntry"=t2."DocEntry" left join odln d2 on d1."DocEntry" = d2."DocEntry" where d1."DocEntry" = ' + "'" + req.query.code + "'" + ' or t1."DocEntry" = ' + "'" + req.query.docentrysq + "'";
 
   connection.runQuery(res, sql);
 };
