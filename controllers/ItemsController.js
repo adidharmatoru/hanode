@@ -11,7 +11,7 @@ exports.masterItems = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select distinct "ItemName" as "Name","ItemCode" as "Code","U_DM_CAPACITY" as "Capacity","U_DM_VOLTAGE" as "Voltage","U_DM_PHASE" as "Phase","U_DM_TYPE" as "Type","U_DM_MODEL" as "Model","U_DM_STATUS" as "Status","U_DM_BATTERY" as "Battery","U_DM_COO" as "Coo","U_DM_MEASUREMENT" as "Measurement","ItmsGrpCod" from oitm WHERE "ItmsGrpCod" in (' + req.query.ItmsGrpNam + ')';
+    var sql = 'select distinct "ItemName" as "Name","ItemCode" as "Code","U_DM_CAPACITY" as "Capacity","U_DM_VOLTAGE" as "Voltage","U_DM_PHASE" as "Phase","U_DM_TYPE" as "Type","U_DM_MODEL" as "Model","U_DM_STATUS" as "Status","U_DM_BATTERY" as "Battery","U_DM_COO" as "Coo","U_DM_MEASUREMENT" as "Measurement","ItmsGrpCod" from oitm WHERE "ItmsGrpCod" in (' + req.query.ItmsGrpNam + ')';
   connection.runQuery(res, sql);
 };
 
