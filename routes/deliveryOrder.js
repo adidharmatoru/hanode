@@ -8,6 +8,7 @@ router.get('/findDocEntry', DeliveryOrderController.findDocEntry);
 router.get('/trackingSN', DeliveryOrderController.trackingserialNumber);
 router.get('/cekwarranty', DeliveryOrderController.cekwarranty);
 router.get('/serialnumber', DeliveryOrderController.serialnumber);
+router.get('/serialNum', DeliveryOrderController.serialNum);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);

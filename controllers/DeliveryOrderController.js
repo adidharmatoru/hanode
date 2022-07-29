@@ -65,3 +65,15 @@ exports.cekwarranty = function(req,res)
 
   connection.runQuery(res, sql);
 };
+
+exports.serialNum = function(req, res)
+{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql ='select "customer","custmrName", "instLction","internalSN" from oins where LIKE  ' + "'%" + req.query.code + "%'" + ' and "status"='+ "'A'" +'';
+
+  connection.runQuery(res, sql);
+}
