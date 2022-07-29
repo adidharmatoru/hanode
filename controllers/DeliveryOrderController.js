@@ -73,7 +73,7 @@ exports.serialNum = function(req, res)
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql ='select "customer","custmrName", "instLction","internalSN" from oins where LIKE  ' + "'%" + req.query.code + "%'" + ' and "status"='+ "'A'" +'';
+  var sql ='select "customer","custmrName", "instLction","internalSN" from oins where LIKE  ' + "'%" + req.query.code + "%'" + '';
 
   connection.runQuery(res, sql);
 }
