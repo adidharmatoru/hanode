@@ -73,7 +73,7 @@ exports.serialNum = function(req, res)
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql ='select ns."customer",ns."custmrName", ns."instLction",ns."itemName",ns.itemCode,ns."internalSN",pr."CntctCode",pr."Tel1",pr."Name" from oins ns left join ocpr pr on ns."customer"=pr."CardCode" where "internalSN" LIKE  ' + "'%" + req.query.code + "%'" + '';
+  var sql ='select ns."customer",ns."custmrName", ns."instLction",ns."itemName",ns."itemCode",ns."internalSN",pr."CntctCode",pr."Tel1",pr."Name" from oins ns left join ocpr pr on ns."customer"=pr."CardCode" where "internalSN" LIKE  ' + "'%" + req.query.code + "%'" + '';
 
   connection.runQuery(res, sql);
 }
