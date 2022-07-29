@@ -73,7 +73,7 @@ exports.serialNum = function(req, res)
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql ='select ns."customer",ns."custmrName", ns."instLction",ns."itemName",ns."itemCode",ns."internalSN",pr."CntctCode",pr."Tel1",pr."Name" from oins ns left join ocpr pr on ns."customer"=pr."CardCode" where "internalSN" LIKE  ' + "'%" + req.query.code + "%'" + '';
+  var sql ='  select   ns."customer",   ns."custmrName",   ns."instLction",   ns."itemName",   ns."itemCode",   ns."internalSN",   ns."delivery",  ns."deliveryNo",  d1."U_VIT_WGSA" as "WarrantySparePart",   d1."U_VIT_WGBA" as "WarrantyBattery",  SUBSTRING(d1."DocDate", 1, 10) as "PostingDate",   pr."CntctCode",   pr."Tel1",   pr."Name" from   oins ns   left join ocpr pr on ns."customer" = pr."CardCode"   left join odln d1 on ns."delivery" = d1."DocEntry"where   "internalSN" LIKE ' + "'%" + req.query.code + "%'" + '';
 
   connection.runQuery(res, sql);
 }
