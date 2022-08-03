@@ -11,4 +11,5 @@ router.get('/Inv', CorrectiveController.Inv);
 router.get('/delivery', CorrectiveController.delivery);
 router.get('/deliveryktb', CorrectiveController.deliveryktb);
 router.get('/downpayment', CorrectiveController.DownPayment);
+router.get('/scallinhouse', CorrectiveController.scallinhouse);
 module.exports = router;

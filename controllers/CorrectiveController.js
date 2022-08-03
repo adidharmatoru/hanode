@@ -105,3 +105,14 @@ exports.deliveryktb= function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.scallinhouse = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    var sql = 'select "DocNum","callID" from oscl where "Series" ='+ "'2475'" +' order by "DocNum" DESC';
+
+  connection.runQuery(res, sql);
+};
