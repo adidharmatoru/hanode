@@ -20,6 +20,7 @@ router.get('/ServiceContract', MarketingController.ServiceContract);
 router.get('/ServiceContractTerm', MarketingController.ServiceContractTerm);
 router.get('/SconItem', MarketingController.SconItem);
 router.get('/Scall', MarketingController.Scall);
+router.get('/mencaricallid', MarketingController.mencaricallid);
 router.get('/ScallDetail', MarketingController.ScallDetail);
 router.get('/Inv', MarketingController.Inv);
 router.get('/InvBA', MarketingController.InvBA);
