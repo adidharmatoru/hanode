@@ -32,7 +32,7 @@ exports.equipmentcard = function(req,res,next) {
 exports.ecDetail = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select "insID" as "idEC", "custmrName" as "Customer Name","internalSN" as "Serial Number","wrrntyStrt" as "Start Warranty","wrrntyEnd" as "End Warranty","itemCode" as "Item Code","itemName" as "Item Name","instLction" as "Location",SUBSTRING("createDate",1,10) as "createDate",SUBSTRING("dlvryDate",1,10) as "delivery Date","deliveryNo","street","block","zip","city","county","country","state" from oins where "internalSN" =' + "'" + req.query.code + "'" + '';
+  var sql = 'select oins."insID" as "idEC", oins."custmrName" as "Customer Name","internalSN" as "Serial Number",oins."wrrntyStrt" as "Start Warranty",oins"wrrntyEnd" as "End Warranty",oins."itemCode" as "Item Code",oins."itemName" as "Item Name",oins."instLction" as "Location",SUBSTRING(oins."createDate",1,10) as "createDate",SUBSTRING(oins."dlvryDate",1,10) as "delivery Date",oins."deliveryNo","street",oins."block",oins."zip",oins."city",oins."county",oins."country",oins."state", odln."U_VIT_WGSA" as "WarrantySparePart",   odln."U_VIT_WGBA" as "WarrantyBattery" from oins left join odln on oins."delivery" = odln."DocEntry"  where "internalSN" =' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql);
 }
 
