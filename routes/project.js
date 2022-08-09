@@ -21,6 +21,7 @@ router.get('/CMitems', ProjectController.CMitems);
 router.get('/CM', ProjectController.CM);
 router.get('/addwarranty', ProjectController.addwarranty);
 router.get('/itemmonitoring', ProjectController.itemmonitoring);
+router.get('/itemmonitoringPO', ProjectController.itemmonitoringPO);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
