@@ -319,7 +319,7 @@ exports.mencaricallid = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-  var sql = 'select "callID" from oscl where "DocNum"= ' + "'" + req.query.req + "'" + '';
+  var sql = 'select "callID" from oscl where "DocNum"= ' + "'" + req.query.req + "'" + ' or "DocEntry" = ' + "'" + req.query.req + "'" + '';
 
 connection.runQuery(res, sql);
 }
