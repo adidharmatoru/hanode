@@ -11,7 +11,7 @@ exports.masterItems = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   distinct   oi."ItemName" as "Name",   oi."ItemCode" as "Code",   oi."U_DM_CAPACITY" as "Capacity",   oi."U_DM_VOLTAGE" as "Voltage",   oi."U_DM_PHASE" as "Phase",   oi."U_DM_TYPE" as "Type",   oi."U_DM_MODEL" as "Model",   oi."U_DM_STATUS" as "Status",   oi."U_DM_BATTERY" as "Battery",   oi."U_DM_COO" as "Coo",   oi."U_DM_MEASUREMENT" as "Measurement",   oi."ItmsGrpCod",  t1."Price"from   oitm oi left join itm1 t1 on t1."ItemCode" = oi."ItemCode" where "ItmsGrpCod" in (' + req.query.ItmsGrpNam + ')';
+  var sql = 'select   distinct   oi."ItemName" as "Name",   oi."ItemCode" as "Code",   oi."U_DM_CAPACITY" as "Capacity",   oi."U_DM_VOLTAGE" as "Voltage",   oi."U_DM_PHASE" as "Phase",   oi."U_DM_TYPE" as "Type",   oi."U_DM_MODEL" as "Model",   oi."U_DM_STATUS" as "Status",   oi."U_DM_BATTERY" as "Battery",   oi."U_DM_COO" as "Coo",   oi."U_DM_MEASUREMENT" as "Measurement",   oi."ItmsGrpCod",  t1."Price" from   oitm oi left join itm1 t1 on t1."ItemCode" = oi."ItemCode" where "ItmsGrpCod" in (' + req.query.ItmsGrpNam + ')';
   connection.runQuery(res, sql);
 };
 
