@@ -20,3 +20,14 @@ exports.close = function(req, res) {
 
   connection.runQuery(res, sql);
 };
+
+exports.series = function(req,res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "Series", right("SeriesName" , 2) as "SeriesName", "SeriesName" from nnm1 where right("SeriesName" , 2)= ' + "'" + req.body.year + "'" + ' and left("SeriesName" , 2)= ' + "'" + 'SC' + "'" + '';
+
+  connection.runQuery(res, sql);
+}
