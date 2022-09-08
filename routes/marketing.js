@@ -28,6 +28,7 @@ router.get('/serialNum', MarketingController.serialNum);
 router.get('/attachment', MarketingController.attachment);
 router.get('/scallcreated', MarketingController.scallcreated);
 router.get('/scalldone', MarketingController.reportscalldone);
+router.get('/reportscallsolo', MarketingController.reportscallsolo);
 router.get('/listingPenawaran', MarketingController.listingPenawaran);
 router.get('/fh_oscl', MarketingController.fh_oscl);
 
