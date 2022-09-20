@@ -27,7 +27,7 @@ exports.series = function(req,res){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "Series", right("SeriesName" , 2) as "SeriesName", "SeriesName" from nnm1 where right("SeriesName" , 2)= ' + "'" + req.query.year + "'" + ' and left("SeriesName" , 2)= ' + "'" + 'SC' + "'" + '';
+  var sql = 'select "Series", right("SeriesName" , 2) as "SeriesName", "SeriesName" from nnm1 where right("SeriesName" , 2)= ' + "'" + req.query.year + "'" + ' and left("SeriesName" , 2)= ' + "'" + 'SC' + "'" + ' order by "Series" desc';
 
   connection.runQuery(res, sql);
 }
