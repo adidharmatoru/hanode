@@ -38,7 +38,7 @@ exports.salesQuotation = function(req,res){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "DocNum" from oqut where "DocStatus" = ' + "'" + '0' + "'" + ' and "OwnerCode" in (' + req.query.code + ')';
+  var sql = 'select "DocNum" from oqut where "DocStatus" = ' + "'" + '0' + "'" + ' and "OwnerCode" in ('+"'579'"+','+ "'609'"+','+ "'648'"+')';
 
   connection.runQuery(res, sql);
 }
