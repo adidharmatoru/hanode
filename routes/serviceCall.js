@@ -5,6 +5,7 @@ const ServiceCallController = require('../controllers/ServiceCallController');
 router.get('/', ServiceCallController.index);
 router.get('/close', ServiceCallController.close);
 router.get('/series', ServiceCallController.series);
+router.get('/salesquotation', ServiceCallController.salesQuotation);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);

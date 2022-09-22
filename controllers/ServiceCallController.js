@@ -31,3 +31,14 @@ exports.series = function(req,res){
 
   connection.runQuery(res, sql);
 }
+
+exports.salesQuotation = function(req,res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "DocNum" from oqut where "DocStatus" = ' + "'" + '0' + "'" + ' and "OwnerCode" in (' + req.query.code + ')';
+
+  connection.runQuery(res, sql);
+}
