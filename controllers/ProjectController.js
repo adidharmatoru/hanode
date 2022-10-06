@@ -67,7 +67,7 @@ exports.countProject = function(req, res, next) {
   var shortYear = strDate.getFullYear();
   var shortMonth = ("0" + (strDate.getMonth() + 1)).slice(-2);
 
-  var sql = 'select count(*) as "ProjectCount", "PrjCode" from oprj where (left("U_StartDate", 4) = ' + "'" + shortYear + "'" + ' and substring("U_StartDate", 6,2) = ' + "'" + shortMonth + "'" + ') and "U_StartDate" is not null';
+  var sql = 'select count(*) as "ProjectCount" from oprj where (left("U_StartDate", 4) = ' + "'" + shortYear + "'" + ' and substring("U_StartDate", 6,2) = ' + "'" + shortMonth + "'" + ') and "U_StartDate" is not null';
 
   connection.runQuery(res, sql);
 };
