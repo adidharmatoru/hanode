@@ -77,3 +77,10 @@ exports.itemName = function(req,res,next) {
   var sql = 'select "ItemCode","ItemName" from oitm where "ItemCode"  =' + "'" + req.query.code + "'" + ' order by "ItemName" DESC';
   connection.runQuery(res, sql);
 }
+
+exports.fh_osclvalidation = function(req,res,next){
+res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'SELECT "internalSN", "custmrName" FROM oins where "status"=' + "'" + 'A' + "'" + ' and "internalSN" in (SELECT "internalSN"  FROM oins GROUP BY "internalSN" HAVING count(*) > 1)'
+    connection.runQuery(res, sql);
+}
