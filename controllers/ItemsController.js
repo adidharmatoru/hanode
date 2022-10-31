@@ -81,6 +81,6 @@ exports.itemName = function(req,res,next) {
 exports.fh_osclvalidation = function(req,res,next){
 res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'SELECT "internalSN", "custmrName" FROM oins where "status"=' + "'" + 'A' + "'" + ' and "internalSN" in (SELECT "internalSN"  FROM oins where "status"=' + "'" + 'A' + "'" + ' GROUP BY "internalSN" HAVING count(*) > 1)'
+  var sql = 'SELECT "internalSN", "custmrName","status" FROM oins where "status"=' + "'" + 'A' + "'" + ' and "internalSN" in (SELECT "internalSN"  FROM oins where "status"=' + "'" + 'A' + "'" + ' GROUP BY "internalSN" HAVING count(*) > 1)'
     connection.runQuery(res, sql);
 }
