@@ -12,7 +12,6 @@ router.get('/serialNumDetail',ItemsController.ecDetail);
 router.get('/serialNumScall',ItemsController.ecScall);
 router.get('/serialNumContract',ItemsController.ecScon);
 router.get('/serialNumTransaction',ItemsController.ecTransaction);
-router.get('/fh_osclvalidation',ItemsController.fh_osclvalidation);
 
 
 module.exports = router;
