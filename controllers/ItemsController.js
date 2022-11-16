@@ -95,7 +95,7 @@ res.setHeader('Access-Control-Allow-Origin', '*');
 exports.materialbantu = function(req,res,next){
 res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'SELECT distinct T0."Project" as "PrjCode",  T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName",  T0."Quantity",  T0."UomCode" from RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" where T0."Price" = 0 AND T0."Project" = ' + "'" + req.query.code + "'" + '  order by T0."Project"'
+  var sql = 'SELECT distinct T0."Project" as "PrjCode",  T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName",  T0."Quantity",  T0."UomCode",T0."WhsCode" from RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" where T0."Price" = 0 AND T0."Project" = ' + "'" + req.query.code + "'" + '  order by T0."Project"'
     connection.runQuery(res, sql);
 }
 
