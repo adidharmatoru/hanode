@@ -13,6 +13,8 @@ router.get('/serialNumScall',ItemsController.ecScall);
 router.get('/serialNumContract',ItemsController.ecScon);
 router.get('/serialNumTransaction',ItemsController.ecTransaction);
 router.get('/fh_osclvalidation',ItemsController.fh_osclvalidation);
+router.get('/locationwhs',ItemsController.locationwhs);
+router.get('/materialbantu',ItemsController.materialbantu);
 
 
 module.exports = router;

@@ -84,3 +84,17 @@ res.setHeader('Access-Control-Allow-Origin', '*');
   var sql = 'SELECT "internalSN", "custmrName","status" FROM oins where "status"=' + "'" + 'A' + "'" + ' and "internalSN" in (SELECT "internalSN"  FROM oins where "status"=' + "'" + 'A' + "'" + ' GROUP BY "internalSN" HAVING count(*) > 1)'
     connection.runQuery(res, sql);
 }
+
+exports.locationwhs = function(req,res,next){
+res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "WhsCode" as "WarehouseCode", "WhsName" as "WarehouseName","StreetNo"  from owhs'
+    connection.runQuery(res, sql);
+}
+
+exports.materialbantu = function(req,res,next){
+res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'SELECT distinct T0."Project" as "PrjCode",  T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName",  T0."Quantity",  T0."UomCode" from RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" where T0."Price" = 0 AND T0."Project" = ' + "'" + req.query.code + "'" + '  order by T0."Project"'
+    connection.runQuery(res, sql);
+}
