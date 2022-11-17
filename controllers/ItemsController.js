@@ -102,6 +102,6 @@ res.setHeader('Access-Control-Allow-Origin', '*');
 exports.itemsProject = function(req,res,next){
 res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'SELECT distinct T0."Project" as "PrjCode",  T0."ItemCode" as "ItemCode", T0."Dscription" as "ItemName",  T0."Quantity",  T0."UomCode", T1."CardName", T1."DocNum" from RDR1 T0 JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry" where T0."Price" != 0 AND T0."Project" = ' + "'" + req.query.code + "'" + ' and NOT T0."ItemCode"= ' + "'" + 'IM' + "'" + ' AND NOT T0."ItemCode" =' + "'" + 'IC' + "'" + ' AND NOT T0."ItemCode" =' + "'" + 'SC' + "'" + ' AND NOT T0."ItemCode" =' + "'" + 'KG' + "'" + ' AND NOT T0."ItemCode" =' + "'" + 'CABLE NI' + "'" + ' order by T0."Project"'
+  var sql = 'SELECT   distinct T4."PrjCode" as "PrjCode",   T0."ItemCode" as "ItemCode",   T0."Dscription" as "ItemName",   T0."Quantity",   T0."UomCode",  T1."NumAtCard" as "Nomor PO",  T1."CardName",  T1."DocNum" ,  T1."CreateDate",  T1."DocDueDate",  T1."U_VIT_TOPY" as "TOP",  T0."WhsCode",  T3."ItmsGrpNam",  concat(T5."lastName",T5."firstName") "NameSales"from RDR1 T0   JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry"  left join oitm T2 on T0."ItemCode" = T2."ItemCode"  left join oitb T3 on T2."ItmsGrpCod" = T3."ItmsGrpCod"  left join oprj T4 on T0."Project" = T4."PrjCode"  left join ohem T5 on T1."OwnerCode" = T5."empID" where   T4."PrjCode" is not null  AND NOT T0."ItemCode" =' + "'" + 'SC' + "'" + ' and not T0."ItemCode"=' + "'" + 'KG' + "'" + '  order by T4."PrjCode" desc  '
     connection.runQuery(res, sql);
 }
