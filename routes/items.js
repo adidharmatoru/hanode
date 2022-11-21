@@ -15,6 +15,7 @@ router.get('/serialNumTransaction',ItemsController.ecTransaction);
 router.get('/fh_osclvalidation',ItemsController.fh_osclvalidation);
 router.get('/locationwhs',ItemsController.locationwhs);
 router.get('/materialbantu',ItemsController.materialbantu);
+router.get('/KodeProject',ItemsController.KodeProject);
 router.get('/itemsProject',ItemsController.itemsProject);
 
 
