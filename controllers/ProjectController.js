@@ -245,3 +245,25 @@ exports.scall = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.budgetingDraftPO = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select distinct  RF."DocNum",  RF."DocEntry",  RF."DocTotal",  RF3."PrjCode",  RF."WddStatus"from   odrf RF   left join por1 RF1 on RF."DocEntry" = RF1."DocEntry"   left join oprj RF3 on RF1."Project" = RF3."PrjCode" where   RF3."U_Status" != ' + "'" + 'D' + "'" + '   and RF."DocStatus" != ' + "'" + 'C' + "'" + '   and RF."WddStatus" != ' + "'" + 'N' + "'" + '  and RF."DocTotal" != 0 order by RF3."PrjCode"';
+
+  connection.runQuery(res, sql);
+};
+
+exports.budgetingPO = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select distinct  OP."DocNum",  OP2."PrjCode",  OP."DocTotal"from   opor OP   left join por1 OP1 on OP."DocEntry" = OP1."DocEntry"   left join oprj OP2 on OP1."Project" = OP2."PrjCode" where   OP2."U_Status" != ' + "'" + 'D' + "'" + ' and OP."DocStatus" != ' + "'" + 'C' + "'" + '  and OP."DocTotal" != 0 order by OP2."PrjCode"';
+
+  connection.runQuery(res, sql);
+};
