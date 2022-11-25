@@ -268,13 +268,13 @@ exports.budgetingPO = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
-// exports.budgetingPOCristin = function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
-//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//
-//   var sql = 'SELECT   distinct T0."Project" as "PrjCode",   left(T1."DocDate", 10) as "SO Date",   T1."CardName" as "Customer",   T1."NumAtCard" as "PO",   prj."U_Status" as "Status",  T3."DocTotal",  T3."DocNum" as "DocPO",  T1."DocNum" as "DocSO"FROM   RDR1 T0   JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry"   left join oprj prj on T0."Project" = prj."PrjCode"  left join por1 T2 on T0."ItemCode" = T2."ItemCode"  left join opor T3 on T2."DocEntry" = T3."DocEntry"where   T0."Price" != 0   and T0."Project" != ''  and prj."U_Status" !=  ' + "'" + 'D' + "'" + '  and T3."DocStatus" != ' + "'" + 'C' + "'" + ' and T3."DocTotal" != 0 order by   T0."Project"';
-//
-//   connection.runQuery(res, sql);
-// };
+exports.budgetingPOCristin = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'SELECT   distinct T0."Project" as "PrjCode",   left(T1."DocDate", 10) as "SO Date",   T1."CardName" as "Customer",   T1."NumAtCard" as "PO",   prj."U_Status" as "Status",  T3."DocTotal",  T3."DocNum" as "DocPO",  T1."DocNum" as "DocSO"FROM   RDR1 T0   JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry"   left join oprj prj on T0."Project" = prj."PrjCode"  left join por1 T2 on T0."ItemCode" = T2."ItemCode"  left join opor T3 on T2."DocEntry" = T3."DocEntry"where   T0."Price" != 0   and T0."Project" != '+ "' '" +'  and prj."U_Status" !=  ' + "'" + 'D' + "'" + '  and T3."DocStatus" != ' + "'" + 'C' + "'" + ' and T3."DocTotal" != 0 order by   T0."Project"';
+
+  connection.runQuery(res, sql);
+};
