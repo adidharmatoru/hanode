@@ -28,7 +28,7 @@ router.get('/scallall', ProjectController.scall);
 router.get('/draftPOProject', ProjectController.budgetingDraftPO);
 router.get('/POProject', ProjectController.budgetingPO);
 router.get('/OPProject', ProjectController.budgetingOP);
-router.get('/budgetingPOCristin', ProjectController.budgetingPOCristin);
+router.get('/PriceSO', ProjectController.PriceSO);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
