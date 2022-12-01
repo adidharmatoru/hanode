@@ -268,6 +268,16 @@ exports.budgetingPO = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.budgetingOP = function(req,res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select    	P1."DocNum" ,   	P1."Series",   	P1."DocTotal",   	P1."PrjCode"   from    	ovpm P1    	join oprj P2 on P1."PrjCode" = P2."PrjCode"   	order by P1."DocNum" desc'
+  connection.runQuery(res, sql);
+}
+
 exports.budgetingPOCristin = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
