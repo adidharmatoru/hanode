@@ -11,7 +11,7 @@ exports.profitandlossOGdetail = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   P1."DocNum",   P1."DocEntry",  P1."Series",   P2."PrjName",  P1."DocTotal",   P1."PrjCode",  P3."AcctCode",  P3."AcctName",  P3."Descrip",  P3."AcctCode",  P3."SumApplied",  P1."DocType"from   ovpm P1   join oprj P2 on P1."PrjCode" = P2."PrjCode"   left join vpm4 P3 on P1."DocEntry"=P3."DocNum"order by   P2."PrjCode" desc';
+  var sql = 'select   P1."DocNum",   P1."DocEntry",  P1."Series",   P2."PrjName",  P1."DocTotal",   P1."PrjCode",  P3."AcctCode",  P3."AcctName",  P3."Descrip",  P3."AcctCode",  P3."SumApplied",  P1."DocType"from   ovpm P1   join oprj P2 on P1."PrjCode" = P2."PrjCode"   left join vpm4 P3 on P1."DocEntry"=P3."DocNum" where P2."PrjCode" = ' + "'" + req.body.code + "'" + ' order by   P2."PrjCode" desc';
 
   connection.runQuery(res, sql);
 };
