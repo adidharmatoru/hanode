@@ -1,0 +1,9 @@
+var express = require('express');
+var router = express.Router();
+const FinanceController = require('../controllers/FinanceController');
+
+router.get('/profitandlossOGdetail', FinanceController.profitandlossOGdetail);
+router.get('/profitandlossOG', FinanceController.profitandlossOG);
+router.get('/profitandlossSO', FinanceController.profitandlossSO);
+
+module.exports = router;
