@@ -26,3 +26,25 @@ exports.detailproductionorder = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.billofmaterial = function(req ,res, nesl ){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select T1."Code",T1."CreateDate",T1."Qauntity",T1."Name",T2."BuyUnitMsr" from oitt T1 join oitm T2 on T1."Code"=T2."ItemCode" where left(T1."CreateDate", 4) = ' + "'" + req.query.year + "'" + ';';
+
+  connection.runQuery(res, sql);
+};
+
+exports.billofmaterialdetail = function(req ,res, nesl ){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "Father", "Code","Quantity","LineText", "Warehouse","Price" from ITT1 where "Father"= = ' + "'" + req.query.code + "'" + ';';
+
+  connection.runQuery(res, sql);
+};
