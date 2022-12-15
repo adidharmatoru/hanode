@@ -44,7 +44,7 @@ exports.billofmaterialdetail = function(req ,res, nesl ){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "Father", "Code","Quantity","LineText", "Warehouse","Price" from ITT1 where "Father"= ' + "'" + req.query.code + "'" + ';';
+  var sql = 'select "Father", "Code","Quantity","LineText", "Warehouse","Price" from ITT1 where "Father"=  ' + "'" + req.query.code + "'" + ';';
 
   connection.runQuery(res, sql);
 };
