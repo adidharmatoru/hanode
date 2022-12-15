@@ -33,7 +33,7 @@ exports.billofmaterial = function(req ,res, nesl ){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select T1."Code" as "Code",SUBSTRING(T1."CreateDate",1,10) as "CreateDate",T1."Qauntity" as "qty",T1."Name" as "Description",T2."BuyUnitMsrser" as "unit" from oitt T1 join oitm T2 on T1."Code"=T2."ItemCode" where SUBSTRING(T1."CreateDate",1,4) =' + "'" + req.query.year + "'" + '';
+  var sql = 'select T1."Code" as "Code",SUBSTRING(T1."CreateDate",1,10) as "CreateDate",T1."Qauntity" as "qty",T1."Name" as "Description",T2."BuyUnitMsrser" as "unit" from oitt T1 join oitm T2 on T1."Code"=T2."ItemCode" where SUBSTRING(T1."CreateDate",1,4) =' + "'" + req.query.year + "'" + ' order by T1."CreateDate" DESC';
 
   connection.runQuery(res, sql);
 };
