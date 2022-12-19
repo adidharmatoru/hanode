@@ -175,7 +175,7 @@ exports.potentialMonthlyOutcome = function(req, res, next) {
 };
 
 exports.pdcaProject = function(req, res, next) {
-  var sql = 'select * from oprj where left("PrjCode", 2) in (' + req.query.year + ') or SUBSTRING("U_StartDate", 3, 2) in  (' + req.query.year + ')';
+  var sql = 'select * from oprj where left("PrjCode", 2) in (' + req.query.year + ') or SUBSTRING("U_StartDate", 3, 2) in  (' + req.query.year + ')  order by "U_Status" desc';
 
   connection.runQuery(res, sql);
 };
