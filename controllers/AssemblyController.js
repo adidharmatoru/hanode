@@ -44,7 +44,7 @@ exports.billofmaterialdetail = function(req ,res, nesl ){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   P1."Father",   P1."Code",   P1."Quantity",   P1."LineText",   P1."Warehouse",   P1."Price",   (P1."Quantity" * P1."Price") as "Total Price",  P2."Code" as "Product Code",   P2."Name" as "Description",  T1."BuyUnitMsr" as "Unit",  P2."Qauntity" as "qty",  T3."UomName" as "UoM",  T2."OnHand" as "Stock",  T3."UomCode"from   ITT1 P1  left join oitt P2 on P1."Father" = P2."Code"  left join oitm T1 on P2."Code"=T1."ItemCode"  join oitm T2 on P1."Code"=T2."ItemCode"  left join ouom T3 on T2."PriceUnit" = T3."UomEntry" where   "Father" =   ' + "'" + req.query.code + "'" + '';
+  var sql = 'select   P1."Father",   P1."Code",   P1."Quantity",   P1."LineText",   P1."Warehouse",   P1."Price",   (P1."Quantity" * P1."Price") as "Total Price",  P2."Code" as "Product Code",   P2."Name" as "Description",  T1."BuyUnitMsr" as "Unit",  P2."Qauntity" as "qty",  T3."UomName" as "UoM",  T2."OnHand" as "Stock",  T3."UomCode"from   ITT1 P1  left join oitt P2 on P1."Father" = P2."Code"  left join oitm T1 on P2."Code"=T1."ItemCode" left join oitm T2 on P1."Code"=T2."ItemCode"  left join ouom T3 on T2."PriceUnit" = T3."UomEntry" where   "Father" =   ' + "'" + req.query.code + "'" + '';
 
   connection.runQuery(res, sql);
 };
