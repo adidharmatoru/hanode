@@ -289,13 +289,13 @@ exports.PriceSO = function(req,res, next){
   connection.runQuery(res, sql);
 }
 
-exports.projectwithso = function(req, res, next){
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
-  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-
-  var sql = 'select distinct prj."PrjCode" as "ProjectCode",rdr."DocNum",rdr."CardName" as "cardname",rdr."NumAtCard" as "NumAtCard" from oprj prj join rdr1 rdr1 on rdr1."Project" = prj."PrjCode" join ordr rdr on rdr1."DocEntry" = rdr."DocEntry" where "PrjCode" = ' + "'" + req.body.code + "'" + ';
-
-  connection.runQuery(res, sql);
-}
+// exports.projectwithso = function(req, res, next){
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+//
+//   var sql = 'select distinct prj."PrjCode" as "ProjectCode",rdr."DocNum",rdr."CardName" as "cardname",rdr."NumAtCard" as "NumAtCard" from oprj prj join rdr1 rdr1 on rdr1."Project" = prj."PrjCode" join ordr rdr on rdr1."DocEntry" = rdr."DocEntry" where "PrjCode" = ' + "'" + req.body.code + "'" + ';
+//
+//   connection.runQuery(res, sql);
+// }
