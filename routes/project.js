@@ -29,6 +29,7 @@ router.get('/draftPOProject', ProjectController.budgetingDraftPO);
 router.get('/POProject', ProjectController.budgetingPO);
 router.get('/OPProject', ProjectController.budgetingOP);
 router.get('/PriceSO', ProjectController.PriceSO);
+router.get('/projectwithso', ProjectController.projectwithso);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
