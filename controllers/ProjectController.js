@@ -252,7 +252,7 @@ exports.ascl = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "callID","subject","createDate","updateDate" from ascl where "callID"= ' + "'" + req.query.code + "'" + '';
+  var sql = 'select "callID","subject",SUBSTRING("createDate", 1, 10) AS "createDate",SUBSTRING("updateDate", 1, 10) AS "updateDate" from ascl where "callID"= ' + "'" + req.query.code + "'" + '';
 
   connection.runQuery(res, sql);
 };
