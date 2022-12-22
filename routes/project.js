@@ -24,6 +24,7 @@ router.get('/itemmonitoring', ProjectController.itemmonitoring);
 router.get('/itemmonitoringPO', ProjectController.itemmonitoringPO);
 router.get('/monitoring', ProjectController.monitoring);
 router.get('/scallall', ProjectController.scall);
+router.get('/ascl', ProjectController.ascl);
 
 router.get('/draftPOProject', ProjectController.budgetingDraftPO);
 router.get('/POProject', ProjectController.budgetingPO);
