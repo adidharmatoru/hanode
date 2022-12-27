@@ -17,6 +17,8 @@ router.get('/locationwhs',ItemsController.locationwhs);
 router.get('/materialbantu',ItemsController.materialbantu);
 router.get('/KodeProject',ItemsController.KodeProject);
 router.get('/itemsProject',ItemsController.itemsProject);
+router.get('/listingpengirimanbattery',ItemsController.listingpengirimanbattery);
+router.get('/seriesnumberall',ItemsController.seriesnumberall);
 
 
 module.exports = router;

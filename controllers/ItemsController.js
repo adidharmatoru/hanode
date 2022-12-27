@@ -112,3 +112,18 @@ res.setHeader('Access-Control-Allow-Origin', '*');
   var sql = 'SELECT   distinct T4."PrjCode" as "PrjCode",   T0."ItemCode" as "ItemCode",   T0."Dscription" as "ItemName",   T0."Quantity",   T0."UomCode",   T1."NumAtCard" as "Nomor PO",   T1."CardName",   T1."DocNum",   SUBSTRING(T1."CreateDate", 1, 10) as "CreateDate",   SUBSTRING(T1."DocDueDate", 1, 10) as "DocDueDate",   T1."U_VIT_TOPY" as "TOP",   T0."WhsCode",   T3."ItmsGrpNam",   T5."lastName" as "lastname",   T5."firstName" as "firstName",   T6."SeriesName" as "Series" from   RDR1 T0   JOIN ORDR T1 ON T1."DocEntry" = T0."DocEntry"   left join oitm T2 on T0."ItemCode" = T2."ItemCode"   left join oitb T3 on T2."ItmsGrpCod" = T3."ItmsGrpCod"   left join oprj T4 on T0."Project" = T4."PrjCode"   left join ohem T5 on T1."OwnerCode" = T5."empID"   left join nnm1 T6 on T1."Series" = T6."Series" where   T4."PrjCode" = ' + "'" + req.query.code + "'" + '  AND NOT T0."ItemCode" = ' + "'" + 'SC' + "'" + '   and not T0."ItemCode" = ' + "'" + 'KG' + "'" + '   and not "U_Status" in ('+ "' D '" +', '+ "' C '" +') order by   T4."PrjCode" desc'
     connection.runQuery(res, sql);
 }
+
+exports.listingpengirimanbattery = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql ='select distinct  D1."DocNum",   D3."Dscription",   D1."Series",  D2."SeriesName",  R2."DocNum",  R2."NumAtCard",  R2."Series"from   odln D1   join dln1 D3 on D1."DocEntry" = D3."DocEntry"   left join nnm1 D2 on D1."Series" = D2."Series"   join rdr1 R1 on D3."BaseEntry" = R1."DocEntry"   left join ordr R2 on R1."DocEntry" = R2."DocEntry" where  	D2."SeriesName"=' + "'" + req.query.code + "'" + ' 	and D1."DocType" =' + "'" + 'I' + "'" + ' 	and D3."ItemCode" != ' + "'" + 'SC' + "'" + ' 	and R2."Series"!=' + "'" + req.query.series + "'" + ''
+  connection.runQuery(res, sql);
+}
+
+exports.seriesnumberall = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select * from nnm1'
+
+  connection.runQuery(res,sql);
+}
