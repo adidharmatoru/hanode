@@ -116,7 +116,7 @@ res.setHeader('Access-Control-Allow-Origin', '*');
 exports.listingpengirimanbattery = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql ='select distinct  D1."DocNum",   D3."Dscription",   D1."Series",  D2."SeriesName",  R2."DocNum",  R2."NumAtCard",  R2."Series"from   odln D1   join dln1 D3 on D1."DocEntry" = D3."DocEntry"   left join nnm1 D2 on D1."Series" = D2."Series"   join rdr1 R1 on D3."BaseEntry" = R1."DocEntry"   left join ordr R2 on R1."DocEntry" = R2."DocEntry" where  	D2."SeriesName"=' + "'" + req.query.code + "'" + ' 	and D1."DocType" =' + "'" + 'I' + "'" + ' 	and D3."ItemCode" != ' + "'" + 'SC' + "'" + ' 	and R2."Series"!=' + "'" + req.query.series + "'" + ''
+  var sql ='select distinct  D1."DocNum",   D3."Dscription",   D1."Series",  D2."SeriesName",  R2."DocNum",  R2."NumAtCard",  R2."Series"from   odln D1   join dln1 D3 on D1."DocEntry" = D3."DocEntry"   left join nnm1 D2 on D1."Series" = D2."Series"   join rdr1 R1 on D3."BaseEntry" = R1."DocEntry"   left join ordr R2 on R1."DocEntry" = R2."DocEntry" where  	D2."SeriesName"=' + "'" + req.query.code + "'" + ' 	and D1."DocType" =' + "'" + 'I' + "'" + ' 	and D3."ItemCode" != ' + "'" + 'SC' + "'" + ' 	and R2."Series"=' + "'" + req.query.series + "'" + ' and D1."CANCELED" = ' + "'" + 'N' + "'" + ' and D1."DocStatus" = ' + "'" + 'O' + "'" + ''
   connection.runQuery(res, sql);
 }
 
