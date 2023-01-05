@@ -46,7 +46,7 @@ exports.ecDetail = function(req,res,next) {
 exports.ecScall = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select "callID","DocNum",SUBSTRING("createDate",1,10) as "createDate","subject" from oscl where "internalSN"=' + "'" + req.query.code + "'" + '';
+  var sql = 'select C1."callID" AS "callID",C1."DocNum" as "DocNum",SUBSTRING(C1."createDate",1,10) as "createDate",C1."subject" as "subject", AT."AbsEntry" as "AbsEntry",AT."FileExt" as "FileExt",AT."FileName" as "FileName", AT."trgtPath" as "targetPath" from oscl C1 left join ATC1 AT on AT."AbsEntry"=C1."AtcEntry" where C1."internalSN"=' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql);
 }
 
