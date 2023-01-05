@@ -46,7 +46,7 @@ exports.ecDetail = function(req,res,next) {
 exports.ecScall = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select C1."callID" AS "callID",C1."DocNum" as "DocNum",SUBSTRING(C1."createDate",1,10) as "createDate",C1."subject" as "subject", AT."AbsEntry" as "AbsEntry",AT."FileExt" as "FileExt",AT."FileName" as "FileName", AT."trgtPath" as "targetPath" from oscl C1 left join ATC1 AT on AT."AbsEntry"=C1."AtcEntry" where C1."internalSN"=' + "'" + req.query.code + "'" + '';
+  var sql = 'select   C1."callID" AS "callID",   C1."DocNum" as "DocNum",   SUBSTRING(C1."createDate", 1, 10) as "createDate",   C1."subject" as "subject",   AT."AbsEntry" as "AbsEntry",   AT."FileExt" as "FileExt",   AT."FileName" as "FileName",   AT."trgtPath" as "targetPath",  C4."DocAbs",   D1."DocNum" as "DocNumDO",   AT2."AbsEntry" as "AbsEntryDO",   AT2."FileExt" as "FileExtDO",   AT2."FileName" as "FileNameDO",   AT2."trgtPath" as "targetPathDO"from   oscl C1   left join ATC1 AT on AT."AbsEntry" = C1."AtcEntry"   left join scl4 C4 on C1."callID" = C4."SrcvCallID"  left join odln D1 on C4."DocAbs" = D1."DocEntry" and C1."customer" = D1."CardCode"  left join ATC1 AT2 on AT2."AbsEntry" = D1."AtcEntry" where   C1."internalSN" =' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql);
 }
 
