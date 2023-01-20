@@ -318,7 +318,7 @@ exports.projectrental = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = ' SELECT  	distinct  T4."DocNum",   T4."DocDate",   T4."CardCode",   T4."CardName",   T4."Filler",   T3."ItemCode",   T3."Dscription",   CASE When T2."AbsEntry" is null Then T3."Quantity" ELSE 1 END QTY,   T3."WhsCode",   T2."DistNumber",  T4."JrnlMemo",  T5."DocNum"FROM   OITL T0   INNER JOIN ITL1 T1 ON T0."LogEntry" = T1."LogEntry"  left outer JOIN OSRN T2 on T1."MdAbsEntry" = T2."AbsEntry"   INNER JOIN OWTR T4 ON T0."DocEntry" = T4."DocEntry"  INNER JOIN WTR1 T3 ON T3."DocEntry" = T4."DocEntry"WHERE    T0."DocType" = 67 and T4."ToWhsCode" = ' + "'" + 'RENTAL' + "'" + '';
+  var sql = ' SELECT  	distinct  T4."DocNum",   T4."DocDate",   T4."CardCode",   T4."CardName",   T4."Filler",   T3."ItemCode",   T3."Dscription",   CASE When T2."AbsEntry" is null Then T3."Quantity" ELSE 1 END QTY,   T3."WhsCode",   T2."DistNumber",  T4."JrnlMemo" FROM   OITL T0   INNER JOIN ITL1 T1 ON T0."LogEntry" = T1."LogEntry"  left outer JOIN OSRN T2 on T1."MdAbsEntry" = T2."AbsEntry"   INNER JOIN OWTR T4 ON T0."DocEntry" = T4."DocEntry"  INNER JOIN WTR1 T3 ON T3."DocEntry" = T4."DocEntry"WHERE    T0."DocType" = 67 and T4."ToWhsCode" = ' + "'" + 'RENTAL' + "'" + '';
 
   connection.runQuery(res, sql);
 }
