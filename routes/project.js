@@ -32,6 +32,8 @@ router.get('/OPProject', ProjectController.budgetingOP);
 router.get('/PriceSO', ProjectController.PriceSO);
 router.get('/projectwithso', ProjectController.projectwithso);
 
+router.get('/projectrental', ProjectController.projectrental);
+
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
 // router.put('/adjustedAmmount', SalesOrderController.adjustedAmmount_update);
