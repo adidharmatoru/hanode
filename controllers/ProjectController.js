@@ -329,7 +329,7 @@ exports.salesname = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   r1."SlpCode",   r3."SlpName",   r1."OwnerCode",  r4."lastName" || ' + "'-'" + ' || r4."firstName" as "SalesName" from   ordr r1   join rdr1 r2 on r1."DocEntry" = r2."DocEntry"   left join oslp r3 on r1."SlpCode" = r3."SlpCode"  left join ohem r4 on r1."OwnerCode"=r4."empID"where   r2."Price" != 0 and 2."Project" =   ' + "'" + req.query.code + "'" + '';
+  var sql = 'select   r1."SlpCode",   r3."SlpName",   r1."OwnerCode",  r4."lastName" , r4."firstName" from   ordr r1   join rdr1 r2 on r1."DocEntry" = r2."DocEntry"   left join oslp r3 on r1."SlpCode" = r3."SlpCode"  left join ohem r4 on r1."OwnerCode"=r4."empID"where   r2."Price" != 0 and r2."Project" =   ' + "'" + req.query.code + "'" + '';
 
   connection.runQuery(res, sql);
 }
