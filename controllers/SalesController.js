@@ -12,7 +12,7 @@ exports.DeliveryGEdanPhilips = function(req, res, next) {
 };
 
 exports.DeliveryRS = function(req, res, next) {
-  var sql = 'SELECT   T4."DistNumber"from   ODLN T0   inner join DLN1 T1 on T0."DocEntry" = T1."DocEntry"   left outer join SRI1 I1 on T1."ItemCode" = I1."ItemCode"   and (    T1."DocEntry" = I1."BaseEntry"     and T1."ObjType" = I1."BaseType"  )   left outer join OSRN T4 on T4."ItemCode" = I1."ItemCode"   and I1."SysSerial" = T4."SysNumber"  left join oitm T6 on T1."ItemCode" = T6."ItemCode"   left join oitb T5 on T6."ItmsGrpCod" = T5."ItmsGrpCod" where  T0."DocNum" = ' + "'" + req.query.code + "'" + ' and T5."ItmsGrpNam" in (' + "'EATON SINGLE PHASE'" + ',' + "'EATON SINGLE PHASE'" + ',) ';
+  var sql = 'SELECT   T4."DistNumber"from   ODLN T0   inner join DLN1 T1 on T0."DocEntry" = T1."DocEntry"   left outer join SRI1 I1 on T1."ItemCode" = I1."ItemCode"   and (    T1."DocEntry" = I1."BaseEntry"     and T1."ObjType" = I1."BaseType"  )   left outer join OSRN T4 on T4."ItemCode" = I1."ItemCode"   and I1."SysSerial" = T4."SysNumber"  left join oitm T6 on T1."ItemCode" = T6."ItemCode"   left join oitb T5 on T6."ItmsGrpCod" = T5."ItmsGrpCod" where  T0."DocNum" = ' + "'" + req.query.code + "'" + ' and T5."ItmsGrpNam" in (' + "'EATON SINGLE PHASE'" + ',' + "'EATON SINGLE PHASE'" + ')';
 
   connection.runQuery(res, sql);
 };
