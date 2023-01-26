@@ -329,3 +329,11 @@ exports.pdcaSalesServices = function(req, res) {
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
 };
+
+exports.itemReadyUps = function (req, res) {
+// var sql = 'select oitm."ItemCode",oitm."ItemName", oitb."ItmsGrpNam", oitm."OnHand", oitm."IsCommited", oitm."OnOrder", oitm."OnHand" - oitm."IsCommited" as "Available" from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and (oitm."OnHand" - oitm."IsCommited" > 0)';
+var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   oitm."U_DM_CAPACITY" as "capacity" from   oitm   join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where   oitb."ItmsGrpNam" in (' + "'EATON SINGLE PHASE'" + ',' + "'EATON THREE PHASE'" + ',' + "'CHANNEL SINGLE PHASE'" + ',' + "'CHANNEL THREE PHASE'" + ') and oitm."ItemName" NOT LIKE ' + "'" + '%BACK UP%' + "'" + '  and oitm."ItemName" NOT LIKE ' + "'" + '%SECOND%' + "'" + '  and oitm."ItemName" NOT LIKE ' + "'" + '%(SECOND / BACK UP)%' + "'" + '  and oitm."ItemName" NOT LIKE ' + "'" + '%DISCONTINUE PRODUCT%' + "'" + '';
+
+  connection.runQuery(res, sql);
+  // connection.printQuery(res, sql);
+}

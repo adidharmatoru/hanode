@@ -43,5 +43,6 @@ router.get('/itemReadyWarehouse', ReportController.itemReadyWarehouse);
 router.get('/itemReadyWarehousesales', ReportController.itemReadyWarehousesales);
 router.get('/sqCPRecapProgressOpenbyYear', ReportController.sqCPRecapProgressOpenbyYear);
 router.get('/pdcaSalesServices', ReportController.pdcaSalesServices);
+router.get('/itemReadyUps', ReportController.itemReadyUps);
 
 module.exports = router;
