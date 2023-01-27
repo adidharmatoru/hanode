@@ -333,3 +333,14 @@ exports.salesname = function(req, res, next){
 
   connection.runQuery(res, sql);
 }
+
+exports.profitandlossitm = function(req,res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select t1."ItemCode", t2."ItmsGrpNam" from oitm t1 join oitb t2 on t1."ItmsGrpCod" = t2."ItmsGrpCod" where t2."ItmsGrpNam" in (' + "'EATON SINGLE PHASE'" + ',' + "'EATON THREE PHASE'" + ',' + "'CHANNEL SINGLE PHASE'" + ',' + "'CHANNEL THREE PHASE'" + ')'
+
+    connection.runQuery(res, sql);
+}

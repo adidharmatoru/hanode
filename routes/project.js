@@ -32,6 +32,7 @@ router.get('/POProject', ProjectController.budgetingPO);
 router.get('/OPProject', ProjectController.budgetingOP);
 router.get('/PriceSO', ProjectController.PriceSO);
 router.get('/projectwithso', ProjectController.projectwithso);
+router.get('/profitandlossitm', ProjectController.profitandlossitm);
 
 router.get('/projectrental', ProjectController.projectrental);
 
