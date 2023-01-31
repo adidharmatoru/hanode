@@ -307,7 +307,7 @@ exports.projectwithso = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select distinct prj."PrjCode" as "ProjectCode",rdr."DocNum",rdr."CardName" as "cardname",rdr."NumAtCard" as "NumAtCard" from oprj prj join rdr1 rdr1 on rdr1."Project" = prj."PrjCode" join ordr rdr on rdr1."DocEntry" = rdr."DocEntry" where "PrjCode" = ' + "'" + req.body.code + "'" + '';
+  var sql = 'select distinct prj."PrjCode" as "ProjectCode",rdr."DocNum",rdr."CardName" as "cardname",rdr."NumAtCard" as "NumAtCard", rdr."DocTotal" from oprj prj join rdr1 rdr1 on rdr1."Project" = prj."PrjCode" join ordr rdr on rdr1."DocEntry" = rdr."DocEntry" where "PrjCode" = ' + "'" + req.body.code + "'" + '';
 
   connection.runQuery(res, sql);
 }
