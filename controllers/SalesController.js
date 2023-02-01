@@ -16,3 +16,9 @@ exports.DeliveryRS = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.DeliveryRSContract = function(req, res, next) {
+  var sql = 'select distinct  octr."ContractID",   octr."CstmrName",  SUBSTRING(octr."StartDate", 1, 10) AS "StartDate",   SUBSTRING(octr."EndDate", 1, 10) as "EndDate",   SUBSTRING(octr."TermDate", 1, 10) as "TermDate",   octr."SrvcType",  oins."internalSN",  oins."instLction",  oins."itemName",  oins."itemCode",  ordr."Quantity"from   octr   left join ctr1 on octr."ContractID" = ctr1."ContractID"  left join oins on ctr1."InternalSN" = oins."internalSN"   left join ocrd Q7 on octr."CstmrCode" = Q7."CardCode" where Q7."GroupCode" = ' + "'" + '107' + "'" + ' ';
+
+  connection.runQuery(res, sql);
+};
