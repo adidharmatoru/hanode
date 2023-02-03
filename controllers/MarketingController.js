@@ -341,7 +341,7 @@ exports.numbercontract = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
 
-  var sql = 'select "ContractID" from octr where "TermDate" is null;';
+  var sql = 'select "ContractID" from octr where "ContractID" LIKE  ' + "'%" + req.query.code + "%'" + ' and "TermDate" is null';
 
 connection.runQuery(res, sql);
 }
