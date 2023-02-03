@@ -334,3 +334,14 @@ exports.mencaricallid = function(req, res, next){
 
 connection.runQuery(res, sql);
 }
+
+exports.numbercontract = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed FORMAT(CAST(T1."U_VIT_TOT" AS DECIMAL(20,6)) , "g16")
+
+  var sql = 'select "ContractID" from octr where "TermDate" is null;';
+
+connection.runQuery(res, sql);
+}
