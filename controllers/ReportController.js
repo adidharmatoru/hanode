@@ -337,3 +337,9 @@ var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   o
   connection.runQuery(res, sql);
   // connection.printQuery(res, sql);
 }
+
+exports.sqnotso = function (req, res) {
+var sql = 'select distinct  O1."DocNum" as "DocNum_SQ",   O2."TrgetEntry",  O5."lastName",  O5."middleName",  O5."firstName"from   oqut O1   left join qut1 O2 on O1."DocEntry" = O2."DocEntry"   left join ohem O5 on O1."OwnerCode" = O5."empID"where  O1."DocStatus" = ' + "'" + 'O' + "'" + ' and O1."CANCELED" = ' + "'" + 'N' + "'" + ' and O2."TrgetEntry" is null';
+
+  connection.runQuery(res, sql);
+}
