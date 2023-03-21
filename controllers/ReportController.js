@@ -339,7 +339,7 @@ var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   o
 }
 
 exports.sqnotso = function (req, res) {
-var sql = 'select distinct  O1."DocNum" as "DocNum_SQ",   O2."TrgetEntry",  O5."lastName",  O5."middleName",  O5."firstName"from   oqut O1   left join qut1 O2 on O1."DocEntry" = O2."DocEntry"   left join ohem O5 on O1."OwnerCode" = O5."empID"where  O1."DocStatus" = ' + "'" + 'O' + "'" + ' and O1."CANCELED" = ' + "'" + 'N' + "'" + ' and O2."TrgetEntry" is null';
+var sql = 'select   distinct O1."DocNum" as "DocNum_SQ",  O1."CardName" as "CustomerName",   O1."NumAtCard" as "Nomor_PO",  O1."U_VIT_TOPY" as "TOP",  SUBSTRING(O1."CreateDate",1,10) as "createDate",  O3."SlpName" as "salesName",  O2."TrgetEntry",   O5."lastName",   O5."middleName",   O5."firstName" from   oqut O1   left join qut1 O2 on O1."DocEntry" = O2."DocEntry"   left join ohem O5 on O1."OwnerCode" = O5."empID"   left join oslp O3 on O1."SlpCode" = O3."SlpCode" where  O1."DocStatus" = ' + "'" + 'O' + "'" + ' and O1."CANCELED" = ' + "'" + 'N' + "'" + ' and O2."TrgetEntry" is null';
 
   connection.runQuery(res, sql);
 }
