@@ -8,5 +8,6 @@ router.get('/DeliveryRS', SalesController.DeliveryRS);
 router.get('/DeliveryRSContract', SalesController.DeliveryRSContract);
 router.get('/sqss', SalesController.sqss);
 router.get('/sqssdetail', SalesController.sqssdetail);
+router.get('/servicecallsqss', SalesController.inhousesc);
 
 module.exports = router;
