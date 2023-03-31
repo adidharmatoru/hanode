@@ -32,7 +32,7 @@ exports.DeliveryRSContract = function(req, res, next) {
 exports.sqssdetail = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select   T1."DocNum",  T3."SrcvCallID",  T4."DocNum",  T4."internalSN",  T4."itemCode",  T4."itemName",  T4."custmrName",  T4."customer",  T5."ItemCode",  T5."Dscription",  T5."Quantity",  T4."Series"from   oqut T1   left join nnm1 T2 on T1."Series" = T2."Series"   left join scl4 T3 on T1."DocEntry" = T3."DocAbs"  left join oscl T4 on T3."SrcvCallID" = T4."callID"  left join qut1 T5 on T1."DocEntry" = T5."DocEntry"where   T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' and T1."DocNum" = ' + "' " + req.query.code + " '" + '';
+  var sql = 'select   T1."DocNum",  T3."SrcvCallID",  T4."DocNum" as "Nomor_SC",  T4."internalSN",  T4."itemCode",  T4."itemName",  T4."custmrName",  T4."customer",  T5."ItemCode",  T5."Dscription",  T5."Quantity",  T4."Series"from   oqut T1   left join nnm1 T2 on T1."Series" = T2."Series"   left join scl4 T3 on T1."DocEntry" = T3."DocAbs"  left join oscl T4 on T3."SrcvCallID" = T4."callID"  left join qut1 T5 on T1."DocEntry" = T5."DocEntry"where   T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' and T1."DocNum" = ' + "' " + req.query.code + " '" + '';
 
   connection.runQuery(res, sql);
 }
