@@ -39,7 +39,7 @@ exports.sqssdetail = function(req, res, next) {
 exports.sqss = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select   T1."DocNum",T1."DocEntry" from oqut T1 left join nnm1 T2 on T1."Series" = T2."Series" where T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' AND T1."DocNum" LIKE ' + "'%" + req.query.code + "%'" + '';
+  var sql = 'select   T1."DocNum",T1."DocEntry",T1."CardName" from oqut T1 left join nnm1 T2 on T1."Series" = T2."Series" where T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' AND T1."DocNum" LIKE ' + "'%" + req.query.code + "%'" + '';
 
   connection.runQuery(res, sql);
 }
