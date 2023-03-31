@@ -6,5 +6,6 @@ router.get('/DeliveryGEdanPhilips', SalesController.DeliveryGEdanPhilips);
 router.get('/DeliveryGEdanPhilipsDetail', SalesController.DeliveryGEdanPhilipsDetail);
 router.get('/DeliveryRS', SalesController.DeliveryRS);
 router.get('/DeliveryRSContract', SalesController.DeliveryRSContract);
+router.get('/sqss', SalesController.sqss);
 
 module.exports = router;
