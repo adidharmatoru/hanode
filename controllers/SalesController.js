@@ -47,7 +47,7 @@ exports.sqss = function(req, res, next) {
 exports.inhousesc = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select T4."DocNum",T4."callID",  T4."internalSN", T4."BPShipAddr",T4."Telephone", T4."itemCode",  T4."itemName",  T4."custmrName",  T4."customer",  T4."Series"from  scl4 T3  left join oscl T4 on T3."SrcvCallID" = T4."callID" where  T3."DocAbs" =  ' + "' " + req.query.code + " '" + '';
+  var sql = 'select T4."DocNum",T4."callID",  T4."internalSN", T4."BPShipAddr",T4."Telephone", T4."itemCode",  T4."itemName",  T4."custmrName",  T4."customer",  T4."Series", T2."SeriesName" from  scl4 T3  left join oscl T4 on T3."SrcvCallID" = T4."callID" left join nnm1 T2 on T4."Series" = T2."Series" where  T3."DocAbs" =  ' + "' " + req.query.code + " '" + '';
 
   connection.runQuery(res, sql);
 }
