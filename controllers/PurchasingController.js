@@ -10,7 +10,7 @@ exports.index = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   Q1."DocEntry", Q1."DocNum",   Q1."DocStatus",  Q1."CardCode",  Q1."CardName",  Q1."NumAtCard",  SUBSTRING(Q1."CreateDate",1,10) as "CreateDate",  SUBSTRING(Q1."DocDueDate",1,10) as "ShipDate",  Q1."U_DRS_NUMBER_OA",  Q2."ItemCode",  Q2."Dscription",  Q2."Quantity"from 	opor Q1  left join por1 Q2 on Q2."DocEntry" = Q1."DocEntry" where   Q1."CANCELED" = ' + "'" + 'N' + "'" + ' and Q1."DocStatus" = ' + "'" + 'O' + "'" + '';
+  var sql = 'select   Q1."DocEntry", Q1."DocNum",   Q1."DocStatus",  Q1."CardCode",  Q1."CardName",  Q1."NumAtCard",  SUBSTRING(Q1."CreateDate",1,10) as "CreateDate",  SUBSTRING(Q1."DocDueDate",1,10) as "ShipDate",  Q1."U_DRS_NUMBER_OA",  Q2."ItemCode",  Q2."Dscription",  Q2."Quantity"from 	opor Q1  left join por1 Q2 on Q2."DocEntry" = Q1."DocEntry" where   Q1."CANCELED" = ' + "'" + 'N' + "'" + ' and Q1."DocStatus" = ' + "'" + 'O' + "'" + ' Q1."OwnerCode" = ' + "'" + '410' + "'" + '';
 
   connection.runQuery(res, sql);
 };
