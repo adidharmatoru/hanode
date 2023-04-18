@@ -52,10 +52,10 @@ exports.inhousesc = function(req, res, next) {
   connection.runQuery(res, sql);
 }
 
-// exports.trgetentry = function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin'. '*');
-//
-//   var sql = 'select "TrgetEntry" from qut1 where "TrgetEntry" is not null order by "TrgetEntry" desc limit 1';
-//
-//   connection.runQuery(res, sql);
-// }
+exports.trgetentry = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select "TrgetEntry" from qut1 where "TrgetEntry" is not null order by "TrgetEntry" desc limit 1';
+
+  connection.runQuery(res, sql);
+}

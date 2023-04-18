@@ -9,6 +9,6 @@ router.get('/DeliveryRSContract', SalesController.DeliveryRSContract);
 router.get('/sqss', SalesController.sqss);
 router.get('/sqssdetail', SalesController.sqssdetail);
 router.get('/servicecallsqss', SalesController.inhousesc);
-// router.get('/trgetentry', SalesController.trgetentry);
+router.get('/trgetentry', SalesController.trgetentry);
 
 module.exports = router;
