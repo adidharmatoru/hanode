@@ -19,6 +19,8 @@ router.get('/KodeProject',ItemsController.KodeProject);
 router.get('/itemsProject',ItemsController.itemsProject);
 router.get('/listingpengirimanbattery',ItemsController.listingpengirimanbattery);
 router.get('/seriesnumberall',ItemsController.seriesnumberall);
+router.get('/itemroxy',ItemsController.itemroxy);
+router.get('/itemktb',ItemsController.itemktb);
 
 
 module.exports = router;

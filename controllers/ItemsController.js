@@ -127,3 +127,19 @@ exports.seriesnumberall = function(req, res, next){
 
   connection.runQuery(res,sql);
 }
+
+exports.itemroxy = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   oitm."OnHand",   oitm."IsCommited",   oitm."OnOrder",   oitw."WhsCode",  oitm."OnHand" - oitm."IsCommited" + oitm."OnOrder" as "Available" from   oitm   join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod"   join oitw on oitm."ItemCode" = oitw."ItemCode" "where   oitw."WhsCode" LIKE ' + "'" + '%RXY%' + "'" + '';
+
+  connection.runQuery(res,sql);
+}
+
+exports.itemktb = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   oitm."OnHand",   oitm."IsCommited",   oitm."OnOrder",   oitw."WhsCode",  oitm."OnHand" - oitm."IsCommited" + oitm."OnOrder" as "Available" from   oitm   join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod"   join oitw on oitm."ItemCode" = oitw."ItemCode" "where   oitw."WhsCode" LIKE ' + "'" + '%KTB%' + "'" + '';
+
+  connection.runQuery(res,sql);
+}
