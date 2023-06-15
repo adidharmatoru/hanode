@@ -127,3 +127,14 @@ exports.callid= function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.sqdariso = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    var sql = 'select   distinct T3."DocNum" as "DocNum",   T3."CardName",   T3."Series" as "Series",   T2."TrgetEntry" as "TargetEntry",   T3."DocEntry" as "DocEntry",   SUBSTRING(T3."CreateDate", 1, 10) as "CreateDate",   SUBSTRING(T4."CreateDate", 1, 10) as "CreateDateSO",   T3."DocStatus" as "StatusSQ",   T7."SeriesName" as "SeriesName",   T2."ItemCode" as "ItemCode",   T2."Dscription" as "ItemName",   T2."VatGroup",   T2."Price" as "Harga",   T3."DocTotal" as "TotalSQ",   T2."Price" * T2."Quantity" as "Total",   T2."Quantity" as "Qty",   T2."U_VIT_QT" as "typeSQTY" from   qut1 T2   left join oqut T3 on T2."DocEntry" = T3."DocEntry"   left join rdr1 T5 on T3."DocEntry" = T5."BaseEntry"   left join ordr T4 on T5."DocEntry" = T4."DocEntry"   left join scl4 T6 on T2."DocEntry" = T6."DocAbs"   left join nnm1 T7 on T3."Series" = T7."Series" where T2."TrgetEntry" = ' + "'" + req.query.trgetentry + "'" + '';
+
+  connection.runQuery(res, sql);
+}
