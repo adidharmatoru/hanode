@@ -27,3 +27,16 @@ exports.outstandingpr = function(req, res, next) {
 
     connection.runQuery(res, sql);
 }
+
+exports.outstandingpo = function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+    var strDate = new Date();
+    var shortYear = strDate.getFullYear();
+
+  var sql = 'select   "DocNum",  "DocEntry",  "NumAtCard",   "CreateDate",   "U_DRS_NUMBER_OA" from opor where "U_DRS_NUMBER_OA" is null and "CANCELED" = ' + "'" + 'N' + "'" + ' and LEFT("CreateDate", 4) = ' + "'" + shortYear + "'" + '';
+
+  connection.runQuery(res, sql);
+}
