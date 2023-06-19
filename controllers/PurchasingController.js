@@ -23,7 +23,7 @@ exports.outstandingpr = function(req, res, next) {
     var strDate = new Date();
     var shortYear = strDate.getFullYear();
 
-    var sql = 'select "DocNum",SUBSTRING("CreateDate",1,10) AS "CreateDate","Requester","ReqName","Comments" from oprq where "DocStatus" = ' + "'" + 'O' + "'" + '';
+    var sql = 'select "DocNum",SUBSTRING("CreateDate",1,10) AS "CreateDate","Requester","ReqName","Comments",SUBSTRING("ReqDate",1,10) as "ReqDate" from oprq where "DocStatus" = ' + "'" + 'O' + "'" + '';
 
     connection.runQuery(res, sql);
 }
