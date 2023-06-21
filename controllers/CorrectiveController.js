@@ -90,7 +90,7 @@ exports.delivery= function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql = 'select distinct T3."DocNum" as "DocNum", T3."DocEntry" as "DocEntry",T4."SrcvCallID" as "callID",SUBSTRING(T5."DocDate",1,10) as "PostingDateSO",SUBSTRING(T3."DocDueDate",1,10) as "DocDueDateDO" from dln1 T2 left join odln T3 on T2."DocEntry"=T3."DocEntry" left join odln T3 on T2."DocEntry" = T3."DocEntry"   left join rdr1 T5 on T2."BaseEntry" = T5."DocEntry"   left join scl4 T4 on T5."DocEntry" = T4."DocAbs" or T5."BaseEntry" = T4."DocAbs" where T3."Series" in ('+"'1963'"+','+"'1615'"+','+"'1346'"+', '+"' 2639 '"+') and T2."BaseEntry" in (' + req.body.dlv + ') and T2."BaseType" = 17';
+    var sql = 'select distinct T3."DocNum" as "DocNum", T3."DocEntry" as "DocEntry",T4."SrcvCallID" as "callID",SUBSTRING(T5."DocDate",1,10) as "PostingDateSO",SUBSTRING(T3."DocDueDate",1,10) as "DocDueDateDO" from dln1 T2 left join odln T3 on T2."DocEntry"=T3."DocEntry" left join rdr1 T5 on T2."BaseEntry" = T5."DocEntry"   left join scl4 T4 on T5."DocEntry" = T4."DocAbs" or T5."BaseEntry" = T4."DocAbs" where T3."Series" in ('+"'1963'"+','+"'1615'"+','+"'1346'"+', '+"' 2639 '"+') and T2."BaseEntry" in (' + req.body.dlv + ') and T2."BaseType" = 17';
 
   connection.runQuery(res, sql);
 };
