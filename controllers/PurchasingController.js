@@ -40,3 +40,15 @@ exports.outstandingpo = function(req, res, next) {
 
   connection.runQuery(res, sql);
 }
+
+
+exports.outstandingdraft = function(req,res,next)
+{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select   	"CardName",  	"ObjType",   	"DocNum",  	"DocDate",  	"Comments","Requester","WddStatus"from odrf where "ObjType" in   	  (' + "'22'" + ',' + "'1470000113'" + ') and "WddStatus" in (' + "'W'" + ',' + "'-'" + ',' + "'Y'" + ',' + "'P'" + ') and "DocStatus" = ' + "'O'" + '';
+  connection.runQuery(res, sql);
+}
