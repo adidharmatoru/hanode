@@ -11,5 +11,6 @@ router.get('/sqssdetail', SalesController.sqssdetail);
 router.get('/servicecallsqss', SalesController.inhousesc);
 router.get('/trgetentry', SalesController.trgetentry);
 router.get('/reportwarrantyexp', SalesController.reportwarrantyexp);
+router.get('/cardgroup', SalesController.cardgroup);
 
 module.exports = router;
