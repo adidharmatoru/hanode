@@ -134,7 +134,7 @@ exports.serialNum = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select SUBSTRING("dlvryDate",1,10) AS "dlvryDate","internalSN","customer","contactCod","itemName" from oins Where "internalSN" LIKE  ' + "'%" + req.query.code + "%'" + ' AND "status"='+"'A'"+' order by "internalSN"';
+  var sql = 'select SUBSTRING("dlvryDate",1,10) AS "dlvryDate","internalSN","customer","custmrName","contactCod","itemName","status","insID" from oins Where "internalSN" LIKE  ' + "'%" + req.query.code + "%'" + ' AND "status"='+"'A'"+' order by "internalSN"';
   // var sql = 'select "ItemCode","ItemName" from oitm order by "ItemCode"';
   connection.runQuery(res, sql);
 };
