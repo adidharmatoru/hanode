@@ -21,6 +21,7 @@ router.get('/listingpengirimanbattery',ItemsController.listingpengirimanbattery)
 router.get('/seriesnumberall',ItemsController.seriesnumberall);
 router.get('/itemroxy',ItemsController.itemroxy);
 router.get('/itemktb',ItemsController.itemktb);
+router.get('/eqValidasi',ItemsController.eqValidasi);
 
 
 module.exports = router;
