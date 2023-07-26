@@ -36,7 +36,7 @@ exports.outstandingpo = function(req, res, next) {
     var strDate = new Date();
     var shortYear = strDate.getFullYear();
 
-  var sql = 'select "DocNum", "DocEntry", "NumAtCard", SUBSTRING("CreateDate",1,10) as "CreateDate", SUBSTRING("DocDueDate",1,10) as "ShipDate", "U_DRS_NUMBER_OA", "Comments", "OwnerCode" from opor where "U_DRS_NUMBER_OA" is null and "CANCELED" = ' + "'" + 'N' + "'" + ' and LEFT("CreateDate", 2) in (' + req.query.year + ')';
+  var sql = 'select "DocNum", "DocEntry", "NumAtCard", SUBSTRING("CreateDate",1,10) as "CreateDate", SUBSTRING("DocDueDate",1,10) as "ShipDate", "U_DRS_NUMBER_OA", "Comments", "OwnerCode" from opor where "U_DRS_NUMBER_OA" is null and "CANCELED" = ' + "'" + 'N' + "'" + ' and SUBSTRING("CreateDate", 3,2) in (' + req.query.year + ')';
 
   connection.runQuery(res, sql);
 }
