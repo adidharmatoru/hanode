@@ -52,3 +52,14 @@ exports.outstandingdraft = function(req,res,next)
   var sql = 'select O1."CardName",	O1."ObjType", O1."DocNum", SUBSTRING(O1."DocDate",1,10) as "PostingDate", O1."Comments",O1."Requester",O1."WddStatus",O2."U_NAME" as "ReqName" from odrf O1 left join ousr O2 on O1."Requester" = O2."USER_CODE" where O1."ObjType" in (' + "'22'" + ',' + "'1470000113'" + ') and O1."WddStatus" in (' + "'W'" + ',' + "'-'" + ',' + "'Y'" + ',' + "'P'" + ') and O1."DocStatus" = ' + "'O'" + '';
   connection.runQuery(res, sql);
 }
+
+exports.close = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select "DocEntry", "DocNum" from oprq where "DocStatus" = ' + "'" + 'O' + "'" + ' and "DocNum" in  (' + req.query.code + ')';
+
+  connection.runQuery(res, sql);
+};
