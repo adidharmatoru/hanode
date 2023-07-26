@@ -283,7 +283,7 @@ var sql = 'select   oitm."ItemCode",   oitm."ItemName",   oitb."ItmsGrpNam",   o
   // connection.printQuery(res, sql);
 }
 exports.itemReadyPO = function (req, res) {
-var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate",1,10) as "ShipDate",T0."ItemCode",T1."DocNum" as "NomorPO",T2."SlpName" as "SalesName", T3."Quantity" as "QuantityGRPO"  from por1 T0 join opor T1 on T0."DocEntry" = T1."DocEntry" left join oslp T2 on T1."SlpCode"=T2."SlpCode" left join pdn1 T3 on T0."DocEntry" = T3."BaseEntry" and T0."ItemCode" = T3."ItemCode" where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + ' and T0."LineStatus"= ' + "'" + 'O' + "'" + '';
+var sql = 'select T0."DocEntry", T0."Quantity",SUBSTRING(T0."ShipDate", 1, 10) as "ShipDateItem", SUBSTRING(T1."DocDueDate", 1, 10) as "ShipDatePO",T0."ItemCode",T1."DocNum" as "NomorPO",T2."SlpName" as "SalesName", T3."Quantity" as "QuantityGRPO"  from por1 T0 join opor T1 on T0."DocEntry" = T1."DocEntry" left join oslp T2 on T1."SlpCode"=T2."SlpCode" left join pdn1 T3 on T0."DocEntry" = T3."BaseEntry" and T0."ItemCode" = T3."ItemCode" where T0."ItemCode" in (' + req.query.code + ') and T1."CANCELED" = ' + "'" + 'N' + "'" + ' and T1."DocStatus" = ' + "'" + 'O' + "'" + ' and T0."LineStatus"= ' + "'" + 'O' + "'" + '';
 
   connection.runQuery(res, sql);
 }
