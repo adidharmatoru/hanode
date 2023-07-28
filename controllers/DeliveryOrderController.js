@@ -82,6 +82,6 @@ exports.detaildelivery = function(req, res)
 {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql ='select   D1."DocNum",   D1."DocStatus",   D2."ItemCode",   D2."Dscription",   D2."ItemType" from   odln D1   join dln1 D2 on D1."DocEntry" = D2."DocEntry"where	D1."DocNum" = ' + "'" + req.query.code + "'" + '';
+  var sql ='select   D1."DocNum",   D1."DocStatus",   D2."ItemCode",   D2."Dscription",   D2."ItemType", D1."CANCELED" from   odln D1   join dln1 D2 on D1."DocEntry" = D2."DocEntry"where	D1."DocNum" = ' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql);
 }
