@@ -67,7 +67,7 @@ exports.ecScon = function(req,res,next) {
 exports.ecTransaction = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select distinct T0."ItemCode",T2."LogEntry", SUBSTRING(T2."CreateDate",1,10) as "CreateDate",T2."DocNum",SUBSTRING(T2."DocDate",1,10) as "DocDate",T2."LocCode",T2."CardCode",T2."CardName",T2."DocType" from osrn T0 left join itl1 T1 on T0."AbsEntry"=T1."MdAbsEntry" left join oitl T2 on T1."LogEntry"=T2."LogEntry" where T0."DistNumber"=' + "'" + req.query.code + "'" + '';
+  var sql = 'select distinct T0."ItemCode",T2."LogEntry", SUBSTRING(T2."CreateDate",1,10) as "CreateDate",T2."DocNum",SUBSTRING(T2."DocDate",1,10) as "DocDate",T2."LocCode",T2."CardCode",T2."CardName",T2."DocType" from osrn T0 left join itl1 T1 on T0."AbsEntry"=T1."MdAbsEntry" left join oitl T2 on T1."LogEntry"=T2."LogEntry" where T0."DistNumber"=' + "'" + req.query.code + "'" + ' order by T2."CreateDate" ASC';
   connection.runQuery(res, sql);
 }
 
