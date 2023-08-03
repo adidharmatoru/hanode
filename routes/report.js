@@ -45,5 +45,6 @@ router.get('/sqCPRecapProgressOpenbyYear', ReportController.sqCPRecapProgressOpe
 router.get('/pdcaSalesServices', ReportController.pdcaSalesServices);
 router.get('/itemReadyUps', ReportController.itemReadyUps);
 router.get('/sqnotso', ReportController.sqnotso);
+router.get('/sotidakadasq', ReportController.sotidakadasq);
 
 module.exports = router;

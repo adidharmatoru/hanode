@@ -342,3 +342,9 @@ var sql = 'select   distinct O1."DocNum" as "DocNum_SQ",  O1."CardName" as "Cust
 
   connection.runQuery(res, sql);
 }
+
+exports.sotidakadasq = function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  var sql = 'select r1."DocNum",r1."CardName",r1."NumAtCard" from ordr r1 left join rdr1 r2 on r1."DocEntry"=r2."DocEntry" where r1."OwnerCode" = 656 and r2."BaseEntry" is null order by r1."DocNum"';
+  connection.runQuery(res, sql)
+}
