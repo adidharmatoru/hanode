@@ -55,7 +55,7 @@ exports.itemsap = function(req, res, nesl){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql =' select   oitm."ItemCode",   oitm."ItemName",   oitm."validFor",  oitb."ItmsGrpNam", oitm.U_DM_CAPACITY from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where   oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and oitm."validFor" = ' + "'" + 'Y' + "'" + '';
+  var sql =' select   oitm."ItemCode",   oitm."ItemName",   oitm."validFor",  oitb."ItmsGrpNam", oitm.U_DM_CAPACITY from oitm join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where   oitb."ItmsGrpNam" LIKE  ' + "'%" + req.query.code + "%'" + ' and oitm."validFor" = ' + "'" + 'Y' + "'" + '';
   connection.runQuery(res, sql);
 }
 
