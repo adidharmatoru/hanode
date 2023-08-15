@@ -50,5 +50,11 @@ exports.billofmaterialdetail = function(req ,res, nesl ){
 };
 
 exports.itemsap = function(req, res, nesl){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+  
   var sql =' select   oitm."ItemCode",   oitm."ItemName",   oitm."validFor",  oitb."ItmsGrpNam"from   oitm   join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where   oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and oitm."validFor" = ' + "'" + 'Y' + "'" + '';
+  connection.runQuery(res, sql);
 }
