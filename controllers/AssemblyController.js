@@ -48,3 +48,7 @@ exports.billofmaterialdetail = function(req ,res, nesl ){
 
   connection.runQuery(res, sql);
 };
+
+exports.itemsap = function(req, res, nesl){
+  var sql =' select   oitm."ItemCode",   oitm."ItemName",   oitm."validFor",  oitb."ItmsGrpNam"from   oitm   join oitb on oitb."ItmsGrpCod" = oitm."ItmsGrpCod" where   oitb."ItmsGrpNam" in (' + req.query.ItmsGrpNam + ') and oitm."validFor" = ' + "'" + 'Y' + "'" + '';
+}
