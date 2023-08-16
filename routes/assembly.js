@@ -8,4 +8,5 @@ router.get('/billofmaterial', AssemblyController.billofmaterial);
 router.get('/billofmaterialdetail', AssemblyController.billofmaterialdetail);
 router.get('/itemsap', AssemblyController.itemsap);
 router.get('/codeproject', AssemblyController.codeproject);
+router.get('/itemmaterialsap', AssemblyController.itemmaterialsap);
 module.exports = router;

@@ -68,3 +68,14 @@ exports.codeproject = function(req, res, nesl){
   var sql ='select "PrjCode","PrjName" from oprj where "PrjCode" LIKE  ' + "'%" + req.query.code + "%'" + '';
   connection.runQuery(res, sql);
 }
+
+exports.itemmaterialsap = function(req, res, nesl){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select   T1."ItemCode",T1."ItemName"from   oitm T1   join oitb T2 on T1."ItmsGrpCod" = T2."ItmsGrpCod" where   T1."validFor" = ' + "'" + 'Y' + "'" + ' and T2."ItmsGrpCod" not in (101,102,103,104,171,289,291,290,295,294,297)';
+
+  connection.runQuery(res, sql);
+}
