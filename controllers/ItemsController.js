@@ -74,7 +74,7 @@ exports.ecTransaction = function(req,res,next) {
 exports.itemsAll = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select M1."ItemCode", M1."ItemName",M2."OnHand",M2."IsCommited",M2."OnOrder",M2."WhsCode", from oitm M1 join oitw M2 on M1."ItemCode" = M2."ItemCode" where M1."ItemCode" LIKE  ' + "'%" + req.query.code + "%'" + '  and M1."validFor" = ' + "'" + 'Y' + "'" + ' and M2."OnHand" != 0 OR M1."ItemName" LIKE  ' + "'%" + req.query.code + "%'" + ' and M1"validFor" = ' + "'" + 'Y' + "'" + ' and M2."OnHand" != 0 order by M1."ItemName" DESC';
+  var sql = 'select "ItemCode","ItemName" from oitm where "ItemCode" LIKE  ' + "'%" + req.query.code + "%'" + ' and "validFor" = ' + "'" + 'Y' + "'" + ' OR "ItemName" LIKE  ' + "'%" + req.query.code + "%'" + ' and "validFor" = ' + "'" + 'Y' + "'" + ' order by "ItemName" DESC';
   connection.runQuery(res, sql);
 }
 
