@@ -9,4 +9,5 @@ router.get('/billofmaterialdetail', AssemblyController.billofmaterialdetail);
 router.get('/itemsap', AssemblyController.itemsap);
 router.get('/codeproject', AssemblyController.codeproject);
 router.get('/itemmaterialsap', AssemblyController.itemmaterialsap);
+router.get('/whscode', AssemblyController.whscode);
 module.exports = router;
