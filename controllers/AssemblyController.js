@@ -75,7 +75,7 @@ exports.itemmaterialsap = function(req, res, nesl){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   T1."ItemCode",T1."ItemName"from   oitm T1   join oitb T2 on T1."ItmsGrpCod" = T2."ItmsGrpCod" where   T1."validFor" = ' + "'" + 'Y' + "'" + ' and T2."ItmsGrpCod" not in (101,102,103,104,171,289,291,290,295,294,297)';
+  var sql = 'select   T1."ItemCode",T1."ItemName"from   oitm T1   join oitb T2 on T1."ItmsGrpCod" = T2."ItmsGrpCod" where   T1."validFor" = ' + "'" + 'Y' + "'" + ' and T2."ItmsGrpCod" not in (101,102,103,104,171,289,291,290,295,294,297,223)';
 
   connection.runQuery(res, sql);
 }
