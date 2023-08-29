@@ -60,7 +60,7 @@ exports.ecScall = function(req,res,next) {
 exports.ecScon = function(req,res,next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select octr."ContractID",SUBSTRING(octr."StartDate", 1,10) AS "StartDate",SUBSTRING(octr."EndDate", 1, 10) as "EndDate",SUBSTRING(octr."TermDate", 1,10) as "TermDate",octr."SrvcType" from octr left join ctr1 on octr."ContractID"=ctr1."ContractID" where ctr1."InternalSN"=' + "'" + req.query.code + "'" + '';
+  var sql = 'select octr."ContractID",SUBSTRING(octr."StartDate", 1,10) AS "StartDate",SUBSTRING(octr."EndDate", 1, 10) as "EndDate",SUBSTRING(octr."TermDate", 1,10) as "TermDate",octr."SrvcType", octr."CntrcTmplt" as "TypeContract" from octr left join ctr1 on octr."ContractID"=ctr1."ContractID" where ctr1."InternalSN"=' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql);
 }
 
