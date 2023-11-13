@@ -5,6 +5,7 @@ const CorrectiveController = require('../controllers/CorrectiveController');
 router.get('/pdcacorrective', CorrectiveController.corrective);
 router.get('/correctiveDetail', CorrectiveController.correctiveDetail);
 router.get('/relationscall', CorrectiveController.relationscall);
+router.get('/relationshipscall', CorrectiveController.relationshipscall);
 router.get('/salesQuotation', CorrectiveController.salesQuotation);
 router.get('/salesOrder', CorrectiveController.salesOrder);
 router.get('/Inv', CorrectiveController.Inv);
