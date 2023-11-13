@@ -45,7 +45,7 @@ exports.relationshipscall = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select distinct "SrcvCallID","DocAbs","Object","DocNumber" from scl4 where "SrcvCallID" = ' + req.body.code + '';
+  var sql = 'select distinct "SrcvCallID","DocAbs","Object","DocNumber",SUBSTRING("DocPstDate",1,10) as "DocPstDate" from scl4 where "SrcvCallID" = ' + req.body.code + '';
 
   connection.runQuery(res, sql);
 };
