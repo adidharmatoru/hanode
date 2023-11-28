@@ -6,5 +6,6 @@ router.get('/profitandlossOGdetail', FinanceController.profitandlossOGdetail);
 router.get('/profitandlossOG', FinanceController.profitandlossOG);
 router.get('/profitandlossSO', FinanceController.profitandlossSO);
 router.get('/profitandlossSOdetail', FinanceController.profitandlossSOdetail);
+router.get('/emailbpseluruhcustomer', FinanceController.emailbpseluruhcustomer);
 
 module.exports = router;

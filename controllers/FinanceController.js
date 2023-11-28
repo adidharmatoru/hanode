@@ -48,3 +48,14 @@ exports.profitandlossSOdetail = function(req, res, next) {
 
   connection.runQuery(res, sql);
 };
+
+exports.emailbpseluruhcustomer = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select C1."CardName", C1."E_Mail" from ocrd C1 left join ocpr C2 on C1."CardCode" = C2."CardCode" where C1."CardType" = '+ "'C'" +' and C1."VatStatus" = '+ "'Y'" +'';
+
+  connection.runQuery(res, sql);
+}
