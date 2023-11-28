@@ -55,7 +55,7 @@ exports.emailbpseluruhcustomer = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   C1."CardName",   C1."CardCode",  C1."E_Mail",  C2."Name",  C2."E_MailL"from   ocrd C1   left join ocpr C2 on C1."CardCode" = C2."CardCode" where C1."CardType" = '+ "'C'" +' and C1."VatStatus" = '+ "'Y'" +' and C1."GroupCode" != 118';
+  var sql = 'select   C1."CardName",   C1."CardCode", C1."GroupCode", C1."E_Mail",  C2."Name",  C2."E_MailL"from   ocrd C1   left join ocpr C2 on C1."CardCode" = C2."CardCode" where C1."CardType" = '+ "'C'" +' and C1."VatStatus" = '+ "'Y'" +' and C1."GroupCode" != 118 and LEFT(C1."CardCode",1) = '+ "'C'" +'';
 
   connection.runQuery(res, sql);
 }
