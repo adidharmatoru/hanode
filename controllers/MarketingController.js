@@ -57,7 +57,7 @@ exports.docTotal = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CardCode","DocEntry","DocNum","DocTotal" from ordr where "Series"= ' + "'1674'" + ' and "DocNum"=' + "'" + req.query.code + "'" + ' order by "DocNum" DESC';
+  var sql = 'select "CardCode","DocEntry","DocNum","DocTotal" from ordr where "Series" = ' + "'2711'" + ' and "DocNum"=' + "'" + req.query.code + "'" + ' OR "Series" = ' + "'3204'" + ' and "DocNum"=' + "'" + req.query.code + "'" + ' order by "DocNum" DESC';
   // var sql = 'select * from ordr DESC limit 5';
 
   connection.runQuery(res, sql);
