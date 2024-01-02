@@ -45,7 +45,7 @@ exports.so = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select "CardCode","DocEntry","DocNum","CardName","Address","NumAtCard","DocTotal","CntctCode","CardCode" from ordr where "Series" in (' + "'2067'" + ',' + "'2064'" + ',' + "'2708'" + ',' + "'2711'" + ') and "CardCode" in (' + "'" + req.query.code + "'" + ') order by "DocNum" ASC';
+  var sql = 'select "CardCode","DocEntry","DocNum","CardName","Address","NumAtCard","DocTotal","CntctCode","CardCode" from ordr where "Series" in (' + "'2067'" + ',' + "'2064'" + ',' + "'2708'" + ',' + "'2711'" + ',' + "'3201'" + ',' + "'3204'" + ') and "CardCode" in (' + "'" + req.query.code + "'" + ') order by "DocNum" ASC';
   // var sql = 'select * from ordr DESC limit 5';
 
   connection.runQuery(res, sql);
