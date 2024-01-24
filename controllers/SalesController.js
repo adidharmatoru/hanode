@@ -32,7 +32,7 @@ exports.DeliveryRSContract = function(req, res, next) {
 exports.sqssdetail = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  var sql = 'select   T1."DocNum", T1."CardCode",T1."Series", T1."U_VIT_TOPY" as "top", SUBSTRING(T1."DocDueDate",1,10) as "DocDueDate",  T1."Address",  T3."Tel1",  T3."Tel2",  T3."E_MailL", T3."Name" as "pic", T5."ItemCode",   T5."Dscription", T5."Price",T1."DocType" ,T5."U_VIT_QT" as "typeSQTY",  T5."U_VIT_FT" as "ItmService",  T5."Quantity" from   oqut T1   left join nnm1 T2 on T1."Series" = T2."Series"   left join qut1 T5 on T1."DocEntry" = T5."DocEntry"   left join ocpr T3 on T1."CntctCode" = T3."CntctCode" where T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' and T1."DocEntry" = ' + "' " + req.query.code + " '" + '';
+  var sql = 'select   T1."DocNum", T1."CardCode",T1."Series", T1."U_VIT_TOPY" as "top", SUBSTRING(T1."DocDueDate",1,10) as "DocDueDate",  T1."Address",  T3."Tel1",  T3."Tel2",  T3."E_MailL", T3."Name" as "pic", T5."ItemCode",   T5."Dscription", T5."Price",T1."DocType" ,T5."U_VIT_QT" as "typeSQTY",  T5."U_VIT_FT" as "ItmService", T1."U_VIT_WGBA" as "garansibat", T1."U_VIT_WGSA" as "garansisp", T1."U_VIT_WGSE" as "garansiservice" , T5."Quantity" from   oqut T1   left join nnm1 T2 on T1."Series" = T2."Series"   left join qut1 T5 on T1."DocEntry" = T5."DocEntry"   left join ocpr T3 on T1."CntctCode" = T3."CntctCode" where T1."DocStatus" = ' + "'" + 'O' + "'" + ' and left(T2."SeriesName", 4) = ' + "'" + 'SQSS' + "'" + ' and T1."DocEntry" = ' + "' " + req.query.code + " '" + '';
 
   connection.runQuery(res, sql);
 }
