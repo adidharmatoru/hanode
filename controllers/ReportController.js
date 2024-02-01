@@ -351,6 +351,6 @@ exports.sotidakadasq = function (req, res) {
 
 exports.seriessap = function(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  var sql = 'select * from nnm1 where Indicator like ' + "'" + req.query.code + "'" + '';
+  var sql = 'select * from nnm1 where "Indicator" like ' + "'" + req.query.code + "'" + '';
   connection.runQuery(res, sql)
 }
