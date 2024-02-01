@@ -348,3 +348,9 @@ exports.sotidakadasq = function (req, res) {
   var sql = 'select   r1."DocNum",   r1."CardName",   r1."NumAtCard",   Q1."DocEntry",r2."TrgetEntry" , r2."BaseEntry" from   ordr r1   left join rdr1 r2 on r1."DocEntry" = r2."DocEntry"   left join qut1 Q1 on r2."BaseEntry" = Q1."DocEntry"   and r2."BaseLine" = Q1."LineNum" or Q1."DocEntry" = r2."TrgetEntry" and r2."BaseLine" = Q1."LineNum"where  r2."TrgetEntry" is null and Q1."DocEntry" is null and r1."OwnerCode" = 656 and r1."CANCELED" = ' + "'" + 'N' + "'" + ' or  r2."TrgetEntry" = 0 and Q1."DocEntry" is null and r1."OwnerCode" = 656 and r1."CANCELED" = ' + "'" + 'N' + "'" + ' order by   r1."DocNum"';
   connection.runQuery(res, sql)
 }
+
+exports.seriessap = function(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  var sql = 'select * from nnm1 where Indicator like ' + "'" + req.query.code + "'" + '';
+  connection.runQuery(res, sql)
+}

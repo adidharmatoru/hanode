@@ -46,5 +46,6 @@ router.get('/pdcaSalesServices', ReportController.pdcaSalesServices);
 router.get('/itemReadyUps', ReportController.itemReadyUps);
 router.get('/sqnotso', ReportController.sqnotso);
 router.get('/sotidakadasq', ReportController.sotidakadasq);
+router.get('/seriessap', ReportController.seriessap);
 
 module.exports = router;
