@@ -10,4 +10,5 @@ router.get('/itemsap', AssemblyController.itemsap);
 router.get('/codeproject', AssemblyController.codeproject);
 router.get('/itemmaterialsap', AssemblyController.itemmaterialsap);
 router.get('/whscode', AssemblyController.whscode);
+router.get('/validasistatus', AssemblyController.validasistatus);
 module.exports = router;

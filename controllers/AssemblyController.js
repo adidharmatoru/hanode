@@ -27,7 +27,7 @@ exports.detailproductionorder = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
-exports.billofmaterial = function(req ,res, nesl ){
+exports.billofmaterial = function(req ,res, next ){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -38,7 +38,7 @@ exports.billofmaterial = function(req ,res, nesl ){
   connection.runQuery(res, sql);
 };
 
-exports.billofmaterialdetail = function(req ,res, nesl ){
+exports.billofmaterialdetail = function(req ,res, next ){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -49,7 +49,7 @@ exports.billofmaterialdetail = function(req ,res, nesl ){
   connection.runQuery(res, sql);
 };
 
-exports.itemsap = function(req, res, nesl){
+exports.itemsap = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -59,7 +59,7 @@ exports.itemsap = function(req, res, nesl){
   connection.runQuery(res, sql);
 }
 
-exports.codeproject = function(req, res, nesl){
+exports.codeproject = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -69,7 +69,7 @@ exports.codeproject = function(req, res, nesl){
   connection.runQuery(res, sql);
 }
 
-exports.itemmaterialsap = function(req, res, nesl){
+exports.itemmaterialsap = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -80,7 +80,7 @@ exports.itemmaterialsap = function(req, res, nesl){
   connection.runQuery(res, sql);
 }
 
-exports.whscode = function(req, res, nesl){
+exports.whscode = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -91,7 +91,7 @@ exports.whscode = function(req, res, nesl){
   connection.runQuery(res, sql);
 }
 
-exports.itemdetail = function(req, res, nesl){
+exports.itemdetail = function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
@@ -100,4 +100,13 @@ exports.itemdetail = function(req, res, nesl){
   var sql = 'select O1."ItemCode", O1."ItemName", O2."WhsCode", O2."OnHand", O2."IsCommited", O2."OnOrder" from oitm O1 left join oitw O2 on O1."ItemCode" = O2."ItemCode" where O1."ItemCode" = ' + "'" + req.query.code + "'" + ' and O2."OnHand" != 0';
 
   connection.runQuery(res, sql);
+}
+
+exports.validasistatus = function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+  var sql = 'select W1."DocEntry",W1."DocNum" as "DocNumPro", G2."DocNum" as "DocNumGR", I2."DocNum" as "DocNumIssue",G1."BaseEntry" from owor W1 	left join ign1 G1 on W1."DocEntry" = G1."BaseEntry" 	left join oign G2 on G1."DocEntry" = G2."DocEntry"	left join ige1 I1 on W1."DocEntry" = I1."BaseEntry"	left join oige I2 on I1."DocEntry" = I2."DocEntry"	where W1."DocNum" = ' + "'" + req.query.code + "'" + '';
 }
