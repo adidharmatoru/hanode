@@ -86,13 +86,13 @@ exports.detaildelivery = function(req, res)
   connection.runQuery(res, sql);
 }
 
-// exports.checkwarranty = function(req, res)
-// {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
-//     res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//
-//     var sql ='select   S1."delivery",   S1."status",   S1."deliveryNo",   N1."Project",  S1."internalSN",  N2."DocDate",  N2."DocDueDate",  N2."U_VIT_WGSE" as "WarrantyServ",  N2."U_VIT_WGSA" as "WarrantySpare",  N2."U_VIT_WGBA" as "WarrantyBat"from   oins S1   left join DLN1 N1 on S1."delivery" = N1."DocEntry"   left join odln N2 on N1."DocEntry" = N2."DocEntry"where   S1."status" = 'A'   and N1."Project" is not null';
-//     connection.runQuery(res, sql);
-// }
+exports.checkwarranty = function(req, res)
+{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    var sql ='select S1."delivery", S1."status", S1."deliveryNo", N1."Project", S1."internalSN", N2."DocDate", N2."DocDueDate", N2."U_VIT_WGSE" as "WarrantyServ",  N2."U_VIT_WGSA" as "WarrantySpare",  N2."U_VIT_WGBA" as "WarrantyBat"from   oins S1   left join DLN1 N1 on S1."delivery" = N1."DocEntry"   left join odln N2 on N1."DocEntry" = N2."DocEntry" where   S1."status" = ' + "'" + 'Y' + "'" + ' and N1."Project" is not null';
+    connection.runQuery(res, sql);
+}

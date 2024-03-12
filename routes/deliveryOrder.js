@@ -10,7 +10,7 @@ router.get('/cekwarranty', DeliveryOrderController.cekwarranty);
 router.get('/serialnumber', DeliveryOrderController.serialnumber);
 router.get('/serialNum', DeliveryOrderController.serialNum);
 router.get('/detaildelivery', DeliveryOrderController.detaildelivery);
-// router.get('/checkwarranty', DeliveryOrderController.checkwarranty);
+router.get('/checkwarranty', DeliveryOrderController.checkwarranty);
 
 // adjustedAmmount
 // router.post('/adjustedAmmount', SalesOrderController.adjustedAmmount_create);
