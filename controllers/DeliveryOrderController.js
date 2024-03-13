@@ -93,6 +93,6 @@ exports.checkwarranty = function(req, res)
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
     res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-    var sql ='select distinct S1."delivery", S1."status", S1."deliveryNo", N1."Project", S1."internalSN", SUBSTRING(N2."DocDate", 1, 10) as "DocDateDO",N1."Dscription", SUBSTRING(N2."DocDueDate", 1, 10) as "DocDueDateDo", N2."U_VIT_WGSE" as "WarrantyServ",  N2."U_VIT_WGSA" as "WarrantySpare",  N2."U_VIT_WGBA" as "WarrantyBat" from   oins S1   left join DLN1 N1 on S1."delivery" = N1."DocEntry"   left join odln N2 on N1."DocEntry" = N2."DocEntry" where S1."status" = ' + "'" + 'A' + "'" + ' and SUBSTRING(N2."DocDate", 1, 10) BETWEEN ' + "'" + req.query.startdate + "'" + ' and ' + "'" + req.query.enddate + "'" + '';
+    var sql ='select distinct S1."delivery", S1."status", S1."deliveryNo", N1."Project", S1."internalSN", SUBSTRING(N2."DocDate", 1, 10) as "DocDateDO", SUBSTRING(N2."DocDueDate", 1, 10) as "DocDueDateDo", N2."U_VIT_WGSE" as "WarrantyServ",  N2."U_VIT_WGSA" as "WarrantySpare",  N2."U_VIT_WGBA" as "WarrantyBat" from   oins S1   left join DLN1 N1 on S1."delivery" = N1."DocEntry"   left join odln N2 on N1."DocEntry" = N2."DocEntry" where S1."status" = ' + "'" + 'A' + "'" + ' and SUBSTRING(N2."DocDate", 1, 10) BETWEEN ' + "'" + req.query.startdate + "'" + ' and ' + "'" + req.query.enddate + "'" + '';
     connection.runQuery(res, sql);
 }
