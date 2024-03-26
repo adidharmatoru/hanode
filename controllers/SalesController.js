@@ -91,7 +91,7 @@ exports.sqservice = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select   	C4."SrcvCallID",   	T1."DocEntry",  	T0."DocNum",  	N1."SeriesName",  	T1."Dscription",  	T1."ItemCode",  	C4."DocAbs",  	T0."CANCELED", C4."Object"  from   	scl4 C4   	left join qut1 T1 on C4."DocAbs" = T1."DocEntry" left join oqut T0 on T1."DocEntry" = T0."DocEntry"  	left join nnm1 N1 on T0."Series" = N1."Series"  where C4."SrcvCallID" = ' + "'" + req.query.code + "'" + ' and C4."Object" = 23 and N1."SeriesName" LIKE ' + "'" + 'SQSI%' + "'" + '';
+  var sql = 'select   	C4."SrcvCallID",   	T1."DocEntry",  	T0."DocNum",  	N1."SeriesName",  	T1."Dscription", T1."Quantity" ,T1."ItemCode",  	C4."DocAbs",  	T0."CANCELED", C4."Object"  from   	scl4 C4   	left join qut1 T1 on C4."DocAbs" = T1."DocEntry" left join oqut T0 on T1."DocEntry" = T0."DocEntry"  	left join nnm1 N1 on T0."Series" = N1."Series"  where C4."SrcvCallID" = ' + "'" + req.query.code + "'" + ' and C4."Object" = 23 and N1."SeriesName" LIKE ' + "'" + 'SQSI%' + "'" + '';
 
   connection.runQuery(res, sql);
 }
