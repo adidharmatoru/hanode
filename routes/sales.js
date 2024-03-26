@@ -13,5 +13,6 @@ router.get('/trgetentry', SalesController.trgetentry);
 router.get('/reportwarrantyexp', SalesController.reportwarrantyexp);
 router.get('/cardgroup', SalesController.cardgroup);
 router.get('/relationscall', SalesController.relationscall);
+router.get('/sqservice', SalesController.sqservice);
 
 module.exports = router;

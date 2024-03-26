@@ -60,7 +60,6 @@ exports.relationscall = function(req, res, next) {
 
   var sql = 'select C1."SrcvCallID", C1."DocAbs", C1."Object", T1."DocNum", T2."ItemCode", T2."Dscription", T2."Quantity",T1."DocType", T2."U_VIT_QT" as "typeSQTY", T2."U_VIT_FT" as "ItmService" from scl4 C1 left join oqut T1 on C1."DocAbs" = T1."DocEntry" left join qut1 T2 on T1."DocEntry" = T2."DocEntry" left join nnm1 N1 on T1."Series" = N1."Series" where "Object" = 23 and "SrcvCallID" =  ' + "' " + req.query.code + " '" + ' and N1."SeriesName" LIKE ' + "'" + '%SQSI%' + "'" + '';
 
-
   connection.runQuery(res, sql);
 };
 
@@ -82,6 +81,12 @@ exports.reportwarrantyexp = function(req, res, next) {
 exports.cardgroup = function(req, res, next){
 
   var sql = 'select "GroupCode", "GroupName" from ocrg where "DataSource" = ' + "'" + 'O' + "'" + '';
+
+  connection.runQuery(res, sql);
+}
+
+exports.sqservice = function(req, res, next){
+  var sql = 'select   	C4."SrcvCallID",   	T1."DocEntry",  	T0."DocNum",  	N1."SeriesName",  	T1."Dscription",  	T1."ItemCode",  	C4."DocAbs",  	T0."CANCELED"  from   	scl4 C4   	left join qut1 T1 on C4."DocAbs" = T1."DocEntry"    	left join oqut T0 on T1."DocEntry" = T0."DocEntry"  	left join nnm1 N1 on T0."Series" = N1."Series"  where C4."SrcvCallID" = ' + "'" + req.query.code + "'" + ' and N1."SeriesName" like ' + "' " + '%SQSI%' + " '" + ' and C4."Object" = ' + "' " + '23 + " '" + '';
 
   connection.runQuery(res, sql);
 }
