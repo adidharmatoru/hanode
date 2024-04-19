@@ -32,5 +32,6 @@ router.get('/reportscallsolo', MarketingController.reportscallsolo);
 router.get('/listingPenawaran', MarketingController.listingPenawaran);
 router.get('/fh_oscl', MarketingController.fh_oscl);
 router.get('/numbercontract', MarketingController.numbercontract);
+router.get('/validasiScon', MarketingController.validasiScon);
 
 module.exports = router;
