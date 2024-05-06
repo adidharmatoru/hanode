@@ -12,6 +12,7 @@ router.get('/contactPerson', ProjectController.contactPerson);
 router.get('/countProject', ProjectController.countProject);
 router.get('/primarySoldItems', ProjectController.primarySoldItems);
 router.get('/primarySoldItems1', ProjectController.primarySoldItems1);
+router.get('/primarySoldItems2', ProjectController.primarySoldItems2);
 router.get('/secondarySoldItems', ProjectController.secondarySoldItems);
 router.get('/bastINS', ProjectController.bastINS);
 router.get('/bastMNT', ProjectController.bastMNT);
