@@ -148,6 +148,12 @@ exports.listingPenawaran = function(req, res, next) {
   connection.runQuery(res, sql);
 };
 
+exports.searchLP = function(req, res, next) {
+  var sql = 'select t1."CardCode",t1."CUSTOMER",t1."LOCATION",t1."ItemCode",t1."DocStatus",t1."WO_DATE",t1."REJECT_REASON",t1."ITEM",t1."SERIAL",ins."insID",t1."SERIES",t1."SC_CALLID",t1."SC_DOCNUM",t1."CONTRACT",t1."CREATE_DATE",t1."SQ_DOCENTRY",t1."SQ_DOCNUM",t1."SQ_DATE",t1."SERIESTYPE",t1."ATCENTRY",atc."FileExt",atc."FileName",atc."trgtPath" from DM_WO t1 left join atc1 atc on t1."ATCENTRY"=atc."AbsEntry" left join oins ins on t1."SERIAL" = ins."internalSN" and ins."status" = ' + "'" + 'A' + "'" + '';
+
+  connection.runQuery(res, sql);
+};
+
 exports.monthlyIncome = function(req, res, next) {
   //var sql = 'Select MONTHNAME("DocDate") as "Month", sum("DocTotal" * "DocRate") as "Income" from oinv where "DocDate" <= now() and left("DocDate", 4) = 2020 and CANCELED =' + "'" + 'N' + "'" + ' and "DocStatus" = ' + "'" + 'C' + "'" + ' group by MONTHNAME("DocDate"), MONTH("DocDate")Order By  MONTH("DocDate")';
   var sql = 'SELECT MONTHNAME(T0."RefDate") as "Month",sum(T0."Credit") as "Income" from JDT1 T0 Left JOIN OACT T1 ON T1."AcctCode"= T0."ShortName" where T0."TransType"=24 AND T0."Credit" > 0 and left(T0."RefDate", 4) = 2020 group by MONTHNAME(T0."RefDate"), MONTH(T0."RefDate") Order By  MONTH(T0."RefDate")';
