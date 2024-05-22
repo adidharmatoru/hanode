@@ -14,5 +14,6 @@ router.get('/reportwarrantyexp', SalesController.reportwarrantyexp);
 router.get('/cardgroup', SalesController.cardgroup);
 router.get('/relationscall', SalesController.relationscall);
 router.get('/sqservice', SalesController.sqservice);
+router.get('/reportpembelian', SalesController.reportpembelian);
 
 module.exports = router;
