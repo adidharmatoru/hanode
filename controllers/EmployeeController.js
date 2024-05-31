@@ -22,7 +22,7 @@ exports.dataemployee = function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 
-  var sql = 'select * from ohem where "Active" != '+ "'Y'" +' order by "empID"';
+  var sql = 'select * from ohem where "Active" = '+ "'Y'" +' and "jobTitle" = ' + "'%" + 'SALES' + "%'" + ' order by "empID"';
 
   connection.runQuery(res, sql);
 }
